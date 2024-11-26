@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import {AuthController} from '../controllers/AuthController';
+import {authenticateToken} from '../middleware/authMiddleware';
 
 const router = Router();
 const authController = new AuthController();
@@ -12,7 +13,7 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', authenticateToken, async (req, res, next) => {
     try {
         await authController.register(req, res);
     } catch (error) {

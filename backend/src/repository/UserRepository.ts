@@ -30,7 +30,6 @@ export class UserRepository implements IUserRepository {
     async UpdateUser(user: User): Promise<void> {
         const userToUpdate = await this._userRepository.findOneBy({id: 1});
         if (userToUpdate) {
-            userToUpdate.age = user.age;
             await this._userRepository.save(userToUpdate);
         }
     }
@@ -55,7 +54,6 @@ export class UserRepository implements IUserRepository {
         newUser.username = username;
         newUser.password = password;
         newUser.email = 'alice@example.com';
-        newUser.age = 30;
         newUser.isActive = true;
         await this._userRepository.save(newUser);
         console.log('New user saved:', newUser);

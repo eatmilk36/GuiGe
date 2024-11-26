@@ -1,7 +1,7 @@
 import {Knex} from "knex";
 
 export async function up(knex: Knex): Promise<void> {
-    await knex.schema.createTable("users", (table) => {
+    await knex.schema.createTable("User", (table) => {
         table.increments("id").primary(); // 自動遞增的主鍵
         table.string("username", 255).notNullable(); // 帳號
         table.string("password", 255).notNullable(); // 密碼
@@ -14,5 +14,5 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-    await knex.schema.dropTableIfExists("users"); // 回滾刪除表
+    await knex.schema.dropTableIfExists("User"); // 回滾刪除表
 }

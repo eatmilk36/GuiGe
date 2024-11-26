@@ -1,7 +1,7 @@
 // src/entity/User.ts
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
 
-@Entity()
+@Entity({name: "User"})
 export class User {
     @PrimaryGeneratedColumn()
     id!: number;
