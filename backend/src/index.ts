@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import authRoutes from './routes/AuthRoutes';
 import {UserRepository} from "./repository/UserRepository";
+import authRoutes from './routes/AuthRoutes';
 import 'reflect-metadata';
 
 const app = express();
