@@ -30,6 +30,6 @@ async function startServer() {
     }
 }
 
-startServer().then(r => {
+startServer().then(_ => {
     console.log('startServer');
 });

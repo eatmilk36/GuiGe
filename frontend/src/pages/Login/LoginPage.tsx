@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
-import { login } from '../../api/authApi';
-import './LoginPage.scss';
-import Alert from '../../components/Alert/Alert';
+import React, {useState} from 'react';
+import {login} from '../../api/authApi';
+import AutoCloseSnackbar from '../../components/AutoCloseSnackbar';
+import {TextField, Button, Typography, Box, Card, CardContent, CircularProgress} from '@mui/material';
+import '../../styles/tailwind.css';
 
 const LoginPage: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [alert, setAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+    const [snackbar, setSnackbar] = useState<{ message: string; type: 'success' | 'error'; open: boolean }>({
+        message: '',
+        type: 'success',
+        open: false,
+    });
 
     const handleLogin = async () => {
         if (isLoading) return;
         setIsLoading(true);
         try {
             const data = await login(username, password);
-            setAlert({ message: `Login successful: ${data.token}`, type: 'success' });
+            console.log('Login successful! Welcome, ' + data.username + '. Your token is ' + data.token);
+            setSnackbar({message: `Login successful! Welcome, ${username}.`, type: 'success', open: true});
         } catch (error) {
-            setAlert({ message: 'Login failed. Please check your username and password.', type: 'error' });
+            setSnackbar({message: 'Login failed. Please check your username and password.', type: 'error', open: true});
         } finally {
             setIsLoading(false);
         }
@@ -28,32 +34,52 @@ const LoginPage: React.FC = () => {
         }
     };
 
-    const closeAlert = () => setAlert(null);
-
     return (
-        <div className="login-page">
-            <h1>Welcome Back</h1>
-            <input
-                type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                onKeyDown={handleKeyDown}
+        <Box className="login-page flex items-center justify-center h-screen bg-gradient-to-r from-blue-50 to-blue-100">
+            <Card className="shadow-lg rounded-lg p-6 w-full max-w-sm">
+                <CardContent>
+                    <Typography variant="h4" className="text-center font-bold mb-4">
+                        Login to Your Account
+                    </Typography>
+                    <TextField
+                        label="Username"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        onClick={handleLogin}
+                        disabled={isLoading}
+                        className="mt-4"
+                        size="large"
+                    >
+                        {isLoading ? <CircularProgress size={24} color="inherit"/> : 'Login'}
+                    </Button>
+                </CardContent>
+            </Card>
+            <AutoCloseSnackbar
+                message={snackbar.message}
+                type={snackbar.type}
+                open={snackbar.open}
+                onClose={() => setSnackbar({...snackbar, open: false})}
             />
-            <input
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
-            />
-            <button onClick={handleLogin} disabled={isLoading}>
-                {isLoading ? 'Logging in...' : 'Login'}
-            </button>
-            <div className="alert-container">
-                {alert && <Alert message={alert.message} type={alert.type} onClose={closeAlert} />}
-            </div>
-        </div>
+        </Box>
     );
 };
 
