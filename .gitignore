@@ -1,3 +1,9 @@
 # 忽略某些模式
 node_modules/
 /backend/dist/
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b.xml
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/GuiGeDb.t91qeQ.meta
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/mysql.osA4Bg.meta
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+/.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/sys.zb4BAA.meta
