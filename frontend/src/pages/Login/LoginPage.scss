@@ -1,0 +1,71 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  input {
+    padding: 12px;
+    width: 240px;
+    margin: 8px 0;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.4);
+      border-color: #ffdd00;
+    }
+
+    &::placeholder {
+      color: #ddd;
+    }
+  }
+
+  button {
+    padding: 12px;
+    width: 120px;
+    margin-top: 10px;
+    background: #ffdd00;
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      background: #ffe680;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      transform: translateY(2px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .alert-container {
+    position: absolute; /* 使用絕對定位以防止影響主要內容 */
+    top: 20px; /* 向上定位 */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 修正定位偏移 */
+    z-index: 999; /* 確保在其他元素之上 */
+  }
+}
