@@ -1,2 +1,3 @@
 # 忽略某些模式
 node_modules/
+/backend/dist/

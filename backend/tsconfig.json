@@ -11,6 +11,6 @@
     "experimentalDecorators": true,   // 啟用裝飾器
     "emitDecoratorMetadata": true    // 啟用裝飾器元數據
   },
-  "include": ["src/**/*"],           // 包含 src 資料夾下的所有檔案
+  "include": ["src/**/*","./migrations/**/*.ts", "./seeds/**/*.ts", "./src/**/*.ts"],           // 包含 src 資料夾下的所有檔案
   "exclude": ["node_modules"]        // 排除 node_modules 資料夾
 }
