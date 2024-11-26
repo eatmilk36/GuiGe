@@ -20,7 +20,7 @@ async function startServer() {
         // 路由
         app.use('/api/auth', authRoutes);
 
-        const PORT = process.env.PORT ?? 3000;
+        const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {
             console.log(`Backend running on http://localhost:${PORT}`);
         });
