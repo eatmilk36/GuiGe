@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="調整DB的讀取">
-      <change afterPath="$PROJECT_DIR$/backend/src/models/RegisterUserDto.ts" afterDir="false" />
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="login and user register api are ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/UserModel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/AuthRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/UserService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/authApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/mySQL/Db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/mySQL/Db.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +107,7 @@
       <workItem from="1732602346929" duration="191000" />
       <workItem from="1732602544722" duration="99000" />
       <workItem from="1732602680346" duration="17188000" />
-      <workItem from="1732677969313" duration="4510000" />
+      <workItem from="1732677969313" duration="6470000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -211,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732698735855</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="login and user register api are ok">
+      <option name="closed" value="true" />
+      <created>1732701914582</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732701914582</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +242,7 @@
     <MESSAGE value="login page call api ok" />
     <MESSAGE value="frontend 改用 MUI + tailwind.css" />
     <MESSAGE value="調整DB的讀取" />
-    <option name="LAST_COMMIT_MESSAGE" value="調整DB的讀取" />
+    <MESSAGE value="login and user register api are ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="login and user register api are ok" />
   </component>
 </project>

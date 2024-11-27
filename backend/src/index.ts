@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -9,6 +11,7 @@ const app = express();
 
 async function startServer() {
     try {
+        console.log('SECRET_KEY:', process.env.SECRET_KEY); // 測試是否成功載入
         // 初始化資料庫
         await AppDataSource.initialize();
         console.log('Database connected successfully');

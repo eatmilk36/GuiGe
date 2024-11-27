@@ -8,7 +8,7 @@ import {plainToInstance} from "class-transformer";
 
 let userService: UserService;
 userService = new UserService(new UserRepository());
-const SECRET_KEY = 'your_jwt_secret';
+const SECRET_KEY = process.env.SECRET_KEY;
 
 export class AuthController {
     async login(req: Request, res: Response) {
