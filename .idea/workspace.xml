@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="init">
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="frontend 改用 MUI + tailwind.css">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/knexfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/knexfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,6 +36,9 @@
     &quot;accountId&quot;: &quot;597872ea-d1d3-4e61-8b2b-4ce014124799&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -32,25 +47,42 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.index.ts.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/User/Desktop/Project/GuiGe/backend/src",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Users\\User\\Desktop\\Project\\GuiGe\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.backend.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.index.ts.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/Project/GuiGe/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\User\\Desktop\\Project\\GuiGe\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\@types" />
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="index.ts" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="index.ts" working-dir="$PROJECT_DIR$/backend/src">
+    <configuration name="backend" type="NodeJSConfigurationType" path-to-node="node" node-parameters="--loader ts-node/esm" path-to-js-file="src/index.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/backend">
       <method v="2" />
     </configuration>
   </component>
@@ -71,7 +103,8 @@
       <updated>1732602344349</updated>
       <workItem from="1732602346929" duration="191000" />
       <workItem from="1732602544722" duration="99000" />
-      <workItem from="1732602680346" duration="256000" />
+      <workItem from="1732602680346" duration="17188000" />
+      <workItem from="1732677969313" duration="1325000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -81,7 +114,79 @@
       <option name="project" value="LOCAL" />
       <updated>1732602838091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="run ok">
+      <option name="closed" value="true" />
+      <created>1732605844425</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732605844425</updated>
+    </task>
+    <task id="LOCAL-00003" summary="資料庫遷移OK">
+      <option name="closed" value="true" />
+      <created>1732611814176</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732611814176</updated>
+    </task>
+    <task id="LOCAL-00004" summary="git ignore add file">
+      <option name="closed" value="true" />
+      <created>1732612519640</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732612519640</updated>
+    </task>
+    <task id="LOCAL-00005" summary="login api ok">
+      <option name="closed" value="true" />
+      <created>1732629823612</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732629823612</updated>
+    </task>
+    <task id="LOCAL-00006" summary="login page call api ok">
+      <option name="closed" value="true" />
+      <created>1732630431283</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732630431283</updated>
+    </task>
+    <task id="LOCAL-00007" summary="frontend 改用 MUI + tailwind.css">
+      <option name="closed" value="true" />
+      <created>1732633227413</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732633227413</updated>
+    </task>
+    <task id="LOCAL-00008" summary="frontend 改用 MUI + tailwind.css">
+      <option name="closed" value="true" />
+      <created>1732633275066</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732633275066</updated>
+    </task>
+    <task id="LOCAL-00009" summary="frontend 改用 MUI + tailwind.css">
+      <option name="closed" value="true" />
+      <created>1732633328858</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732633328858</updated>
+    </task>
+    <task id="LOCAL-00010" summary="frontend 改用 MUI + tailwind.css">
+      <option name="closed" value="true" />
+      <created>1732633381176</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732633381176</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +208,12 @@
       <path value="$PROJECT_DIR$/frontend" />
     </ignored-roots>
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="run ok" />
+    <MESSAGE value="資料庫遷移OK" />
+    <MESSAGE value="git ignore add file" />
+    <MESSAGE value="login api ok" />
+    <MESSAGE value="login page call api ok" />
+    <MESSAGE value="frontend 改用 MUI + tailwind.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend 改用 MUI + tailwind.css" />
   </component>
 </project>
