@@ -5,11 +5,11 @@ import {AppDataSource} from "../mySQL/Db";
 import {Repository} from "typeorm";
 
 export interface IUserRepository {
-    findUser(username: string): Promise<User[]>;
+    findUser(username: string): Promise<User>;
 
     findUserById(userId: number): Promise<User | null>;
 
-    createUser(username: string, password: string): void;
+    createUser(username: string, password: string, email: string): void;
 
     UpdateUser(user: User): void;
 
@@ -41,21 +41,21 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async findUser(username: string): Promise<User[]> {
-        return await this._userRepository.find({
+    async findUser(username: string): Promise<User> {
+        return await this._userRepository.findOne({
             where: {
-                username: username
+                username: username,
+                isActive: true,
             },
         });
     }
 
-    async createUser(username: string, password: string): Promise<void> {
+    async createUser(username: string, password: string, email: string): Promise<void> {
         const newUser = new User();
         newUser.username = username;
         newUser.password = password;
-        newUser.email = 'alice@example.com';
+        newUser.email = email;
         newUser.isActive = true;
         await this._userRepository.save(newUser);
-        console.log('New user saved:', newUser);
     }
 }

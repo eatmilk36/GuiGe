@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import authRoutes from './routes/AuthRoutes';
+import authRoutes from './routes/UserRoutes';
 import 'reflect-metadata';
 import {AppDataSource} from './mySQL/Db';
 
@@ -18,7 +18,7 @@ async function startServer() {
         app.use(bodyParser.json());
 
         // 路由
-        app.use('/api/auth', authRoutes);
+        app.use('/api', authRoutes);
 
         const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {

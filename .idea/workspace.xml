@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="frontend 改用 MUI + tailwind.css">
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="調整DB的讀取">
+      <change afterPath="$PROJECT_DIR$/backend/src/models/RegisterUserDto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/knexfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/knexfile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/models/UserModel.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/AuthRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/authApi.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +113,7 @@
       <workItem from="1732602346929" duration="191000" />
       <workItem from="1732602544722" duration="99000" />
       <workItem from="1732602680346" duration="17188000" />
-      <workItem from="1732677969313" duration="1325000" />
+      <workItem from="1732677969313" duration="4510000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -186,7 +195,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732633381176</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="調整DB的讀取">
+      <option name="closed" value="true" />
+      <created>1732698644705</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732698644705</updated>
+    </task>
+    <task id="LOCAL-00012" summary="調整DB的讀取">
+      <option name="closed" value="true" />
+      <created>1732698735855</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732698735855</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +239,7 @@
     <MESSAGE value="login api ok" />
     <MESSAGE value="login page call api ok" />
     <MESSAGE value="frontend 改用 MUI + tailwind.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend 改用 MUI + tailwind.css" />
+    <MESSAGE value="調整DB的讀取" />
+    <option name="LAST_COMMIT_MESSAGE" value="調整DB的讀取" />
   </component>
 </project>
