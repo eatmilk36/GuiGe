@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
-import { login } from '../../api/authApi';
+import { login } from '../../api/UserApi';
 import AutoCloseSnackbar from '../../components/AutoCloseSnackbar';
 import { TextField, Button, Typography, Box, Card, CardContent, CircularProgress } from '@mui/material';
 import '../../styles/tailwind.css';
@@ -22,6 +22,8 @@ const LoginPage: React.FC = () => {
         setIsLoading(true);
         try {
             const data = await login(username, password);
+            // 儲存 token 到 localStorage
+            localStorage.setItem('authToken', data.token);
             console.log('Login successful! Welcome, ' + data.username + '. Your token is ' + data.token);
             setSnackbar({ message: `Login successful! Welcome, ${username}.`, type: 'success', open: true });
 
@@ -30,6 +32,7 @@ const LoginPage: React.FC = () => {
                 navigate('/dashboard'); // 導向至目標頁面
             }, 1000);
         } catch (error) {
+            console.log(error)
             setSnackbar({ message: 'Login failed. Please check your username and password.', type: 'error', open: true });
         } finally {
             setIsLoading(false);

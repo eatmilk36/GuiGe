@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
     TextField, Button, Typography, Box, TablePagination
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
+import {list} from '../../api/UserApi'; // Import the list function to fetch user data
 
 const UserListPage: React.FC = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [users, setUsers] = useState<any[]>([]); // State to hold fetched user data
 
-    const users = [
-        { id: 1, name: 'Alice', email: 'alice@example.com', role: 'Admin' },
-        { id: 2, name: 'Bob', email: 'bob@example.com', role: 'User' },
-        { id: 3, name: 'Charlie', email: 'charlie@example.com', role: 'User' },
-        { id: 4, name: 'David', email: 'david@example.com', role: 'Admin' },
-        { id: 5, name: 'Eve', email: 'eve@example.com', role: 'User' },
-        { id: 6, name: 'Frank', email: 'frank@example.com', role: 'User' },
-    ];
+    useEffect(() => {
+        // Fetch the user list when the component mounts
+        const fetchUsers = async () => {
+            try {
+                const fetchedUsers = await list(); // Call the list function to get users
+                setUsers(fetchedUsers); // Update state with fetched users
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+
+        fetchUsers().then(r => {
+            console.log('Fetched users:', r)
+        });
+    }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+        // user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        // user.email.toLowerCase().includes(searchQuery.toLowerCase())
+        true
     );
 
     const handleChangePage = (event: unknown, newPage: number) => {
@@ -52,7 +62,7 @@ const UserListPage: React.FC = () => {
                 <Button
                     variant="contained"
                     color="primary"
-                    startIcon={<AddIcon />}
+                    startIcon={<AddIcon/>}
                     onClick={() => navigate('/add-user')} // 導到新增頁面
                 >
                     Add User

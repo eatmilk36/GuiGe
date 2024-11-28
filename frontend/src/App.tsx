@@ -4,8 +4,8 @@ import LoginPage from './pages/Login/LoginPage';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
-import UserListPage from './pages/UserListPage'; // 用戶列表頁面
-import AddUserPage from './pages/AddUserPage'; // 新增用戶頁面
+import UserListPage from './pages/User/UserListPage'; // 用戶列表頁面
+import AddUserPage from './pages/User/AddUserPage'; // 新增用戶頁面
 
 const App: React.FC = () => {
     return (
