@@ -2,9 +2,10 @@ import 'reflect-metadata'; // 必須在容器初始化之前導入
 import { container } from 'tsyringe';
 import { UserController } from './controllers/UserController';
 import { UserService } from './services/UserService';
-import {IUserRepository, UserRepository} from './repository/UserRepository';
+import {UserRepository} from './repository/User/UserRepository';
 import {DataSource} from "typeorm";
 import {AppDataSource} from "./mySQL/Db";
+import {IUserRepository} from "./repository/User/IUserRepository";
 
 container.register(DataSource, { useValue: AppDataSource });
 

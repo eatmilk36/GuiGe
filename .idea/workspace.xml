@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="frontend add user page">
-      <change afterPath="$PROJECT_DIR$/backend/src/di-container.ts" afterDir="false" />
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="backend refactor all to DI">
+      <change afterPath="$PROJECT_DIR$/backend/src/repository/User/IUserRepository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/di-container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/di-container.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/Routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/User/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/Routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/services/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/UserService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,8 +83,12 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\User" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\@types" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\IUserRepository.ts" />
     </key>
   </component>
   <component name="RunManager">
@@ -112,7 +115,7 @@
       <workItem from="1732602544722" duration="99000" />
       <workItem from="1732602680346" duration="17188000" />
       <workItem from="1732677969313" duration="9771000" />
-      <workItem from="1732760176561" duration="7446000" />
+      <workItem from="1732760176561" duration="9795000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -242,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732763891126</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="backend refactor all to DI">
+      <option name="closed" value="true" />
+      <created>1732776956655</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732776956655</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +286,7 @@
     <MESSAGE value="read .env and add SECRET_KEY" />
     <MESSAGE value="frontend add Font Awesome and master page and Dashboard" />
     <MESSAGE value="frontend add user page" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend add user page" />
+    <MESSAGE value="backend refactor all to DI" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend refactor all to DI" />
   </component>
 </project>

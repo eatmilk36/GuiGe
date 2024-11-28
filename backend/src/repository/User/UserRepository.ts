@@ -1,14 +1,7 @@
-import { User } from "../entities/User";
-import { Repository, DataSource } from "typeorm";
-import { inject, injectable } from "tsyringe";
-
-export interface IUserRepository {
-    findUser(username: string): Promise<User | null>;
-    findUserById(userId: number): Promise<User | null>;
-    createUser(username: string, password: string, email: string): Promise<void>;
-    updateUser(user: User): Promise<void>;
-    deleteUser(id: number): Promise<void>;
-}
+import {User} from "../../entities/User";
+import {DataSource, Repository} from "typeorm";
+import {inject, injectable} from "tsyringe";
+import {IUserRepository} from "./IUserRepository";
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -18,14 +11,18 @@ export class UserRepository implements IUserRepository {
         this.userRepository = this.dataSource.getRepository(User);
     }
 
-    async findUser(username: string): Promise<User | null> {
+    findAll(): Promise<User[] | null> {
+        return this.userRepository.find();
+    }
+
+    async findOne(username: string): Promise<User | null> {
         return await this.userRepository.findOne({
-            where: { username, isActive: true },
+            where: {username, isActive: true},
         });
     }
 
     async findUserById(userId: number): Promise<User | null> {
-        return await this.userRepository.findOneBy({ id: userId });
+        return await this.userRepository.findOneBy({id: userId});
     }
 
     async createUser(username: string, password: string, email: string): Promise<void> {
@@ -39,7 +36,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async updateUser(user: User): Promise<void> {
-        const existingUser = await this.userRepository.findOneBy({ id: user.id });
+        const existingUser = await this.userRepository.findOneBy({id: user.id});
         if (existingUser) {
             await this.userRepository.save(user);
         } else {
@@ -48,7 +45,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async deleteUser(id: number): Promise<void> {
-        const userToDelete = await this.userRepository.findOneBy({ id });
+        const userToDelete = await this.userRepository.findOneBy({id});
         if (userToDelete) {
             await this.userRepository.remove(userToDelete);
         } else {

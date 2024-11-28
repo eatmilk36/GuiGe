@@ -1,14 +1,15 @@
 import bcrypt from 'bcryptjs';
-import {IUserRepository} from '../repository/UserRepository';
 import {User} from "../entities/User";
 import {inject, injectable} from "tsyringe";
+import {IUserRepository} from "../repository/User/IUserRepository";
 
 @injectable()
 export class UserService {
-    constructor(@inject("IUserRepository") private readonly userRepository: IUserRepository) {}
+    constructor(@inject("IUserRepository") private readonly userRepository: IUserRepository) {
+    }
 
     async register(username: string, password: string, email: string): Promise<void> {
-        const existingUser = await this.userRepository.findUser(username);
+        const existingUser = await this.userRepository.findOne(username);
         if (existingUser) throw new Error('User already exists');
 
         const hashedPassword: string = await bcrypt.hash(password, 10);
@@ -16,9 +17,13 @@ export class UserService {
     }
 
     async validateUser(username: string, password: string): Promise<boolean> {
-        const user: User | null = await this.userRepository.findUser(username);
+        const user: User | null = await this.userRepository.findOne(username);
         if (!user) return false;
 
         return await bcrypt.compare(password, user.password);
+    }
+
+    async findAll(): Promise<User[]> {
+        return await this.userRepository.findAll();
     }
 }

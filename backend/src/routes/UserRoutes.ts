@@ -22,4 +22,12 @@ router.post('/register', authenticateToken, async (req, res, next) => {
     }
 });
 
+router.get('/list', authenticateToken, async (req, res, next) => {
+    try {
+        await userController.findAll(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;
