@@ -1,13 +1,14 @@
 import {Router} from 'express';
-import {AuthController} from '../controllers/AuthController';
+import {UserController} from '../controllers/UserController';
 import {authenticateToken} from '../middleware/AuthMiddleware';
+import {container} from '../di-container';
 
 const router = Router();
-const authController = new AuthController();
+const userController = container.resolve(UserController);
 
 router.post('/login', async (req, res, next) => {
     try {
-        await authController.login(req, res);
+        await userController.login(req, res);
     } catch (error) {
         next(error); // 傳遞錯誤給 Express 的錯誤處理中間件
     }
@@ -15,7 +16,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/register', authenticateToken, async (req, res, next) => {
     try {
-        await authController.register(req, res);
+        await userController.register(req, res);
     } catch (error) {
         next(error);
     }

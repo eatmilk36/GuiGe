@@ -1,10 +1,10 @@
+import 'reflect-metadata';
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import authRoutes from './routes/UserRoutes';
-import 'reflect-metadata';
+import routes from './routes/Routes';
 import {AppDataSource} from './mySQL/Db';
 
 const app = express();
@@ -21,7 +21,7 @@ async function startServer() {
         app.use(bodyParser.json());
 
         // 路由
-        app.use('/api', authRoutes);
+        app.use('/api', routes);
 
         const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {
