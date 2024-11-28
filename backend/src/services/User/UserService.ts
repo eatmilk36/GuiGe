@@ -1,10 +1,11 @@
 import bcrypt from 'bcryptjs';
-import {User} from "../entities/User";
+import {User} from "../../entities/User";
 import {inject, injectable} from "tsyringe";
-import {IUserRepository} from "../repository/User/IUserRepository";
+import {IUserRepository} from "../../repository/User/IUserRepository";
+import {IUserService} from "./IUserService";
 
 @injectable()
-export class UserService {
+export class UserService implements IUserService {
     constructor(@inject("IUserRepository") private readonly userRepository: IUserRepository) {
     }
 

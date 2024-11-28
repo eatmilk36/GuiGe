@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
-import {UserService} from '../services/UserService';
+import {UserService} from '../services/User/UserService';
 import {RegisterUserDto} from "../models/RegisterUserDto";
 import {validate} from "class-validator";
 import {plainToInstance} from "class-transformer";
