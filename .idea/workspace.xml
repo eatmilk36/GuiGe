@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="login and user register api are ok">
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="read .env and add SECRET_KEY">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Master.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/TopNavbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Settings.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/AuthMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/mySQL/Db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/mySQL/Db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -107,7 +114,8 @@
       <workItem from="1732602346929" duration="191000" />
       <workItem from="1732602544722" duration="99000" />
       <workItem from="1732602680346" duration="17188000" />
-      <workItem from="1732677969313" duration="6470000" />
+      <workItem from="1732677969313" duration="9771000" />
+      <workItem from="1732760176561" duration="1677000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -213,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732701914582</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="read .env and add SECRET_KEY">
+      <option name="closed" value="true" />
+      <created>1732708411128</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732708411128</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +259,7 @@
     <MESSAGE value="frontend 改用 MUI + tailwind.css" />
     <MESSAGE value="調整DB的讀取" />
     <MESSAGE value="login and user register api are ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="login and user register api are ok" />
+    <MESSAGE value="read .env and add SECRET_KEY" />
+    <option name="LAST_COMMIT_MESSAGE" value="read .env and add SECRET_KEY" />
   </component>
 </project>

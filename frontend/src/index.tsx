@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons'; // Solid icons (fas)
+
+library.add(fas); // 將整個 fas (free-solid-svg-icons) 添加到圖標庫
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

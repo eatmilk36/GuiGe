@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import {login} from '../../api/authApi';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
+import { login } from '../../api/authApi';
 import AutoCloseSnackbar from '../../components/AutoCloseSnackbar';
-import {TextField, Button, Typography, Box, Card, CardContent, CircularProgress} from '@mui/material';
+import { TextField, Button, Typography, Box, Card, CardContent, CircularProgress } from '@mui/material';
 import '../../styles/tailwind.css';
 
 const LoginPage: React.FC = () => {
@@ -14,15 +15,22 @@ const LoginPage: React.FC = () => {
         open: false,
     });
 
+    const navigate = useNavigate(); // 初始化 useNavigate
+
     const handleLogin = async () => {
         if (isLoading) return;
         setIsLoading(true);
         try {
             const data = await login(username, password);
             console.log('Login successful! Welcome, ' + data.username + '. Your token is ' + data.token);
-            setSnackbar({message: `Login successful! Welcome, ${username}.`, type: 'success', open: true});
+            setSnackbar({ message: `Login successful! Welcome, ${username}.`, type: 'success', open: true });
+
+            // 延遲一段時間後跳轉到目標頁面
+            setTimeout(() => {
+                navigate('/dashboard'); // 導向至目標頁面
+            }, 1000);
         } catch (error) {
-            setSnackbar({message: 'Login failed. Please check your username and password.', type: 'error', open: true});
+            setSnackbar({ message: 'Login failed. Please check your username and password.', type: 'error', open: true });
         } finally {
             setIsLoading(false);
         }
@@ -69,7 +77,7 @@ const LoginPage: React.FC = () => {
                         className="mt-4"
                         size="large"
                     >
-                        {isLoading ? <CircularProgress size={24} color="inherit"/> : 'Login'}
+                        {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Login'}
                     </Button>
                 </CardContent>
             </Card>
@@ -77,7 +85,7 @@ const LoginPage: React.FC = () => {
                 message={snackbar.message}
                 type={snackbar.type}
                 open={snackbar.open}
-                onClose={() => setSnackbar({...snackbar, open: false})}
+                onClose={() => setSnackbar({ ...snackbar, open: false })}
             />
         </Box>
     );
