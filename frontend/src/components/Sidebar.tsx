@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { faUsers } from '@fortawesome/free-solid-svg-icons'; // 引入 fa-users 圖標
 
 const Sidebar: React.FC = () => {
     return (
@@ -9,19 +10,25 @@ const Sidebar: React.FC = () => {
             <ul className="space-y-2">
                 <li>
                     <Link to="/dashboard" className="flex items-center p-4 hover:bg-gray-700">
-                        <FontAwesomeIcon icon="tachometer-alt" className="mr-4" />
+                        <FontAwesomeIcon icon="tachometer-alt" className="mr-4"/>
                         Dashboard
                     </Link>
                 </li>
                 <li>
+                    <Link to="/users" className="flex items-center p-4 hover:bg-gray-700">
+                        <FontAwesomeIcon icon={faUsers} className="mr-4" />
+                        UserList
+                    </Link>
+                </li>
+                <li>
                     <Link to="/widgets" className="flex items-center p-4 hover:bg-gray-700">
-                        <FontAwesomeIcon icon="th" className="mr-4" />
+                        <FontAwesomeIcon icon="th" className="mr-4"/>
                         Widgets
                     </Link>
                 </li>
                 <li>
                     <Link to="/charts" className="flex items-center p-4 hover:bg-gray-700">
-                        <FontAwesomeIcon icon="chart-pie" className="mr-4" />
+                        <FontAwesomeIcon icon="chart-pie" className="mr-4"/>
                         Charts
                     </Link>
                 </li>

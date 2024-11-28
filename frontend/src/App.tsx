@@ -4,6 +4,8 @@ import LoginPage from './pages/Login/LoginPage';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
+import UserListPage from './pages/UserListPage'; // 用戶列表頁面
+import AddUserPage from './pages/AddUserPage'; // 新增用戶頁面
 
 const App: React.FC = () => {
     return (
@@ -17,6 +19,8 @@ const App: React.FC = () => {
                     <Route index element={<Dashboard />} /> {/* 預設頁面為 Dashboard */}
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="settings" element={<Settings />} />
+                    <Route path="users" element={<UserListPage />} /> {/* 用戶列表頁面 */}
+                    <Route path="users/add" element={<AddUserPage />} /> {/* 新增用戶頁面 */}
                 </Route>
             </Routes>
         </Router>
