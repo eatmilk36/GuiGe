@@ -73,10 +73,12 @@ const UserListPage: React.FC = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Email</TableCell>
-                            <TableCell>Role</TableCell>
+                            <TableCell>識別值</TableCell>
+                            <TableCell>名稱</TableCell>
+                            <TableCell>信箱</TableCell>
+                            <TableCell>創建日期</TableCell>
+                            <TableCell>更新日期</TableCell>
+                            <TableCell>啟用</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -85,9 +87,11 @@ const UserListPage: React.FC = () => {
                             .map((user) => (
                                 <TableRow key={user.id}>
                                     <TableCell>{user.id}</TableCell>
-                                    <TableCell>{user.name}</TableCell>
+                                    <TableCell>{user.username}</TableCell>
                                     <TableCell>{user.email}</TableCell>
-                                    <TableCell>{user.role}</TableCell>
+                                    <TableCell>{user.createdAt}</TableCell>
+                                    <TableCell>{user.updatedAt}</TableCell>
+                                    <TableCell>{user.isActive ? "是" : "否"}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

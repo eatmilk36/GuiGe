@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="backend user service refactor to interface">
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/axiosInterceptors.ts" afterDir="false" />
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="add token to axiosClient call api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/userApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AddUserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +111,8 @@
       <workItem from="1732602544722" duration="99000" />
       <workItem from="1732602680346" duration="17188000" />
       <workItem from="1732677969313" duration="9771000" />
-      <workItem from="1732760176561" duration="11968000" />
+      <workItem from="1732760176561" duration="12129000" />
+      <workItem from="1732946512205" duration="789000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -270,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732779417845</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add token to axiosClient call api">
+      <option name="closed" value="true" />
+      <created>1732781541038</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732781541038</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +310,7 @@
     <MESSAGE value="backend refactor all to DI" />
     <MESSAGE value="backend add user find all" />
     <MESSAGE value="backend user service refactor to interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend user service refactor to interface" />
+    <MESSAGE value="add token to axiosClient call api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add token to axiosClient call api" />
   </component>
 </project>
