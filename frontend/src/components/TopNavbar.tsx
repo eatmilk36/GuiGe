@@ -23,7 +23,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
                 >
                     <FontAwesomeIcon icon="bars" />
                 </button>
-                <h1 className="text-xl font-bold text-gray-700">AdminLTE</h1>
+                <h1 className="text-xl font-bold text-gray-700">後臺管理系統</h1>
             </div>
             <div className="flex items-center space-x-6">
                 <button className="text-gray-600 hover:text-black">
@@ -33,19 +33,19 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
                     <FontAwesomeIcon icon="bell" />
                 </button>
                 <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2">
-                        <img
-                            src="https://via.placeholder.com/40"
-                            alt="User Avatar"
-                            className="w-10 h-10 rounded-full"
-                        />
-                        <span className="text-gray-700 font-medium">Alexander Pierce</span>
-                    </div>
+                    {/*<div className="flex items-center space-x-2">*/}
+                    {/*    <img*/}
+                    {/*        src="https://via.placeholder.com/40"*/}
+                    {/*        alt="User Avatar"*/}
+                    {/*        className="w-10 h-10 rounded-full"*/}
+                    {/*    />*/}
+                    {/*    <span className="text-gray-700 font-medium">Alexander Pierce</span>*/}
+                    {/*</div>*/}
                     <button
                         onClick={handleLogout}
                         className="text-red-600 hover:text-red-800 font-medium focus:outline-none"
                     >
-                        Logout
+                        登出
                     </button>
                 </div>
             </div>

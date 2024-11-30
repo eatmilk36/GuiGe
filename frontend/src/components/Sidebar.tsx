@@ -17,18 +17,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     isOpen ? 'translate-x-0' : '-translate-x-full'
                 } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:relative`}
             >
-                <div className="p-4 text-center text-xl font-bold">AdminLTE</div>
+                <div className="p-4 text-center text-xl font-bold">後臺管理系統</div>
                 <ul className="space-y-2">
                     <li>
                         <Link to="/dashboard" className="flex items-center p-4 hover:bg-gray-700">
                             <FontAwesomeIcon icon="tachometer-alt" className="mr-4" />
-                            Dashboard
+                            儀錶板
                         </Link>
                     </li>
                     <li>
                         <Link to="/users" className="flex items-center p-4 hover:bg-gray-700">
                             <FontAwesomeIcon icon={faUsers} className="mr-4" />
-                            UserList
+                           使用者
                         </Link>
                     </li>
                     <li>

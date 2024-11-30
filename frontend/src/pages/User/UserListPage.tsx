@@ -56,27 +56,27 @@ const UserListPage: React.FC = () => {
     return (
         <Box p={3}>
             <Typography variant="h4" gutterBottom>
-                User List
+               使用者列表
             </Typography>
             {/* 搜尋框和新增按鈕的響應式佈局 */}
             <Box
                 display="flex"
-                flexDirection={{xs: 'column', sm: 'row'}}
+                flexDirection={{ xs: 'column', sm: 'row' }}
                 justifyContent="space-between"
-                gap={2}
+                gap={2} // 元素之間的間距
                 mb={2}
             >
                 <TextField
                     variant="outlined"
-                    placeholder="Search Users"
+                    placeholder="收尋使用者"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    fullWidth
+                    // fullWidth
                 />
                 <Button
                     variant="contained"
                     color="primary"
-                    startIcon={<AddIcon/>}
+                    startIcon={<AddIcon />}
                     onClick={() => navigate('/add-user')}
                     sx={{
                         width: {
@@ -85,9 +85,8 @@ const UserListPage: React.FC = () => {
                         },
                     }}
                 >
-                   新增使用者
+                    新增使用者
                 </Button>
-
             </Box>
             {/* 表格容器 */}
             <TableContainer component={Paper} style={{overflowX: 'auto'}}>
