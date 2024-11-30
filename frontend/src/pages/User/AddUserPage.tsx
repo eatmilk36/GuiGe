@@ -9,13 +9,17 @@ const AddUserPage: React.FC = () => {
     const [role, setRole] = useState('');
 
     const handleAddUser = () => {
-        // 模擬提交操作
         console.log('User added:', { name, email, role });
-        navigate('/'); // 返回用戶列表頁面
+        navigate('/users');
     };
 
     return (
-        <Box p={3} component={Paper}>
+        <Box
+            p={3}
+            component={Paper}
+            className="max-w-xl mx-auto my-6"
+            style={{ overflowX: 'auto' }}
+        >
             <Typography variant="h4" gutterBottom>
                 Add User
             </Typography>
@@ -25,20 +29,23 @@ const AddUserPage: React.FC = () => {
                     variant="outlined"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    fullWidth
                 />
                 <TextField
                     label="Email"
                     variant="outlined"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    fullWidth
                 />
                 <TextField
                     label="Role"
                     variant="outlined"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
+                    fullWidth
                 />
-                <Button variant="contained" color="primary" onClick={handleAddUser}>
+                <Button variant="contained" color="primary" onClick={handleAddUser} fullWidth>
                     Submit
                 </Button>
             </Box>

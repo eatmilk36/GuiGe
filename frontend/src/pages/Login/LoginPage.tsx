@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../api/UserApi';
 import AutoCloseSnackbar from '../../components/AutoCloseSnackbar';
 import { TextField, Button, Typography, Box, Card, CardContent, CircularProgress } from '@mui/material';
@@ -15,24 +15,22 @@ const LoginPage: React.FC = () => {
         open: false,
     });
 
-    const navigate = useNavigate(); // 初始化 useNavigate
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         if (isLoading) return;
         setIsLoading(true);
         try {
             const data = await login(username, password);
-            // 儲存 token 到 localStorage
             localStorage.setItem('authToken', data.token);
-            window.dispatchEvent(new Event('storage')); // 觸發 storage 事件
+            window.dispatchEvent(new Event('storage'));
             setSnackbar({ message: `Login successful! Welcome, ${username}.`, type: 'success', open: true });
 
-            // 延遲一段時間後跳轉到目標頁面
             setTimeout(() => {
-                navigate('/dashboard'); // 導向至目標頁面
+                navigate('/dashboard');
             }, 1000);
         } catch (error) {
-            console.log(error)
+            console.error(error);
             setSnackbar({ message: 'Login failed. Please check your username and password.', type: 'error', open: true });
         } finally {
             setIsLoading(false);
@@ -46,10 +44,10 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <Box className="login-page flex items-center justify-center h-screen bg-gradient-to-r from-blue-50 to-blue-100">
+        <Box className="login-page flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 px-4">
             <Card className="shadow-lg rounded-lg p-6 w-full max-w-sm">
                 <CardContent>
-                    <Typography variant="h4" className="text-center font-bold mb-4">
+                    <Typography variant="h4" className="text-center font-bold mb-6">
                         Login to Your Account
                     </Typography>
                     <TextField

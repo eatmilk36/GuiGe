@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
@@ -6,30 +6,28 @@ interface AutoCloseSnackbarProps {
     message: string;
     type: 'success' | 'error';
     open: boolean;
-    onClose: () => void;
+    onClose: (event?: React.SyntheticEvent | Event, reason?: string) => void;
+    duration?: number; // 新增 autoHideDuration 的可選屬性
 }
 
-const AutoCloseSnackbar: React.FC<AutoCloseSnackbarProps> = ({ message, type, open, onClose }) => {
-    const [isOpen, setIsOpen] = useState(open);
-
-    useEffect(() => {
-        setIsOpen(open);
-    }, [open]);
-
-    const handleClose = (
-        event: React.SyntheticEvent<any> | Event,
-        reason?: string
-    ) => {
+const AutoCloseSnackbar: React.FC<AutoCloseSnackbarProps> = ({
+                                                                 message,
+                                                                 type,
+                                                                 open,
+                                                                 onClose,
+                                                                 duration = 3000, // 默認值為 3000 毫秒
+                                                             }) => {
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') return; // 忽略點擊背景關閉的情況
-        setIsOpen(false);
-        onClose();
+        onClose(event, reason);
     };
 
     return (
         <Snackbar
-            open={isOpen}
-            autoHideDuration={3000}
-            onClose={handleClose} // 使用正確的 onClose 簽名
+            open={open}
+            autoHideDuration={duration}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} // 默認位置可調整
         >
             <Alert onClose={handleClose} severity={type} variant="filled">
                 {message}

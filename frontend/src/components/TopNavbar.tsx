@@ -2,18 +2,25 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
-const TopNavbar: React.FC = () => {
+interface TopNavbarProps {
+    toggleSidebar: () => void;
+}
+
+const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem('authToken'); // 清除認證資訊
-        navigate('/login'); // 跳轉到登入頁面
+        localStorage.removeItem('authToken');
+        navigate('/login');
     };
 
     return (
         <nav className="bg-white border-b shadow-md px-4 py-2 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-                <button className="text-gray-600 hover:text-black focus:outline-none lg:hidden">
+                <button
+                    className="text-gray-600 hover:text-black focus:outline-none lg:hidden"
+                    onClick={toggleSidebar}
+                >
                     <FontAwesomeIcon icon="bars" />
                 </button>
                 <h1 className="text-xl font-bold text-gray-700">AdminLTE</h1>
@@ -34,7 +41,6 @@ const TopNavbar: React.FC = () => {
                         />
                         <span className="text-gray-700 font-medium">Alexander Pierce</span>
                     </div>
-                    {/* 新增登出按鈕 */}
                     <button
                         onClick={handleLogout}
                         className="text-red-600 hover:text-red-800 font-medium focus:outline-none"

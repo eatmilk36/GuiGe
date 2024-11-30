@@ -1,37 +1,45 @@
 import React, {useState, useEffect} from 'react';
 import {
-    Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-    TextField, Button, Typography, Box, TablePagination
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    TextField,
+    Button,
+    Typography,
+    Box,
+    TablePagination,
 } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import {list} from '../../api/UserApi'; // Import the list function to fetch user data
+import {list} from '../../api/UserApi';
 
 const UserListPage: React.FC = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [users, setUsers] = useState<any[]>([]); // State to hold fetched user data
+    const [users, setUsers] = useState<any[]>([]);
 
     useEffect(() => {
-        // Fetch the user list when the component mounts
         const fetchUsers = async () => {
             try {
-                const fetchedUsers = await list(); // Call the list function to get users
-                setUsers(fetchedUsers); // Update state with fetched users
+                const fetchedUsers = await list();
+                setUsers(fetchedUsers);
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
         };
 
-        fetchUsers().then(r => {
-            console.log('Fetched users:', r)
-        });
-    }, []); // Empty dependency array ensures this runs only once when the component mounts
+        fetchUsers();
+    }, []);
 
     const filteredUsers = users.filter(_ =>
-        // user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        // 假設有搜尋功能，可以根據需要解開註解
+        // user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
         // user.email.toLowerCase().includes(searchQuery.toLowerCase())
         true
     );
@@ -50,26 +58,39 @@ const UserListPage: React.FC = () => {
             <Typography variant="h4" gutterBottom>
                 User List
             </Typography>
-            <Box display="flex" justifyContent="space-between" mb={2}>
-                {/* 搜尋框 */}
+            {/* 搜尋框和新增按鈕的響應式佈局 */}
+            <Box
+                display="flex"
+                flexDirection={{xs: 'column', sm: 'row'}}
+                justifyContent="space-between"
+                gap={2}
+                mb={2}
+            >
                 <TextField
                     variant="outlined"
                     placeholder="Search Users"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    fullWidth
                 />
-                {/* 新增按鈕 */}
                 <Button
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon/>}
-                    onClick={() => navigate('/add-user')} // 導到新增頁面
+                    onClick={() => navigate('/add-user')}
+                    sx={{
+                        width: {
+                            xs: '100%', // 小螢幕：按鈕全寬
+                            sm: 'auto', // 中大螢幕：按鈕自適應
+                        },
+                    }}
                 >
-                    Add User
+                   新增使用者
                 </Button>
+
             </Box>
-            {/* 表格 */}
-            <TableContainer component={Paper}>
+            {/* 表格容器 */}
+            <TableContainer component={Paper} style={{overflowX: 'auto'}}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -91,13 +112,13 @@ const UserListPage: React.FC = () => {
                                     <TableCell>{user.email}</TableCell>
                                     <TableCell>{user.createdAt}</TableCell>
                                     <TableCell>{user.updatedAt}</TableCell>
-                                    <TableCell>{user.isActive ? "是" : "否"}</TableCell>
+                                    <TableCell>{user.isActive ? '是' : '否'}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/* 分頁 */}
+            {/* 分頁器 */}
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"

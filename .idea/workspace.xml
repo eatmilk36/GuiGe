@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] add check token">
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] fix login and logout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TopNavbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TopNavbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +117,7 @@
       <workItem from="1732602680346" duration="17188000" />
       <workItem from="1732677969313" duration="9771000" />
       <workItem from="1732760176561" duration="12129000" />
-      <workItem from="1732946512205" duration="3656000" />
+      <workItem from="1732946512205" duration="5782000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -291,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732948144610</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="[frontend] fix login and logout">
+      <option name="closed" value="true" />
+      <created>1732955151018</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732955151018</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +342,7 @@
     <MESSAGE value="add token to axiosClient call api" />
     <MESSAGE value="[frontend] user list show" />
     <MESSAGE value="[frontend] add check token" />
-    <option name="LAST_COMMIT_MESSAGE" value="[frontend] add check token" />
+    <MESSAGE value="[frontend] fix login and logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="[frontend] fix login and logout" />
   </component>
 </project>
