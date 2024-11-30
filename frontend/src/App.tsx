@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './pages/Login/LoginPage';
 import Layout from './components/Layout';
@@ -8,7 +8,19 @@ import UserListPage from './pages/User/UserListPage'; // 用戶列表頁面
 import AddUserPage from './pages/User/AddUserPage'; // 新增用戶頁面
 
 const App: React.FC = () => {
-    const isAuthenticated = !!localStorage.getItem('authToken'); // 檢查是否有 JWTToken
+    const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('authToken'));
+
+    // 檢查 localStorage 中的認證變化
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setIsAuthenticated(!!localStorage.getItem('authToken'));
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
 
     return (
         <Router>

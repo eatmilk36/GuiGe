@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
             const data = await login(username, password);
             // 儲存 token 到 localStorage
             localStorage.setItem('authToken', data.token);
-            console.log('Login successful! Welcome, ' + data.username + '. Your token is ' + data.token);
+            window.dispatchEvent(new Event('storage')); // 觸發 storage 事件
             setSnackbar({ message: `Login successful! Welcome, ${username}.`, type: 'success', open: true });
 
             // 延遲一段時間後跳轉到目標頁面

@@ -30,7 +30,7 @@ const UserListPage: React.FC = () => {
         });
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-    const filteredUsers = users.filter(user =>
+    const filteredUsers = users.filter(_ =>
         // user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         // user.email.toLowerCase().includes(searchQuery.toLowerCase())
         true
