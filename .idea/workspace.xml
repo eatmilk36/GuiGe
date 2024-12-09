@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[backend] 供應商listAPI">
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/SupplierApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/supplier/SupplierListPage.tsx" afterDir="false" />
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] 修正手機板選單無法選擇的問題">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/migrations/20241130180212_create_supplier_table.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/migrations/20241130180212_create_supplier_table.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/entities/Supplier.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/entities/Supplier.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/login/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/user/AddUserPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +127,7 @@
       <workItem from="1732760176561" duration="12129000" />
       <workItem from="1732946512205" duration="9890000" />
       <workItem from="1733452440777" duration="14154000" />
-      <workItem from="1733709895920" duration="6804000" />
+      <workItem from="1733709895920" duration="7886000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -361,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733723265918</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="[frontend] 供應商列表">
+      <option name="closed" value="true" />
+      <created>1733724870130</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1733724870130</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,6 +405,8 @@
     <MESSAGE value="[frontend] 改成中文，i18n有空再做" />
     <MESSAGE value="[frontend] 如果Server回403跳回登入頁面" />
     <MESSAGE value="[backend] 供應商listAPI" />
-    <option name="LAST_COMMIT_MESSAGE" value="[backend] 供應商listAPI" />
+    <MESSAGE value="[frontend] 供應商列表" />
+    <MESSAGE value="[frontend] 修正手機板選單無法選擇的問題" />
+    <option name="LAST_COMMIT_MESSAGE" value="[frontend] 修正手機板選單無法選擇的問題" />
   </component>
 </project>
