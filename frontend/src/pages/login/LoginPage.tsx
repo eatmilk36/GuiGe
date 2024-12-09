@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../api/UserApi';
+import { login } from '../../api/user/UserApi';
 import AutoCloseSnackbar from '../../components/AutoCloseSnackbar';
 import { TextField, Button, Typography, Box, Card, CardContent, CircularProgress } from '@mui/material';
 import '../../styles/tailwind.css';

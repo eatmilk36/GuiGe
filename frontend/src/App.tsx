@@ -4,7 +4,7 @@ import LoginPage from './pages/login/LoginPage';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
-import AddUserPage from './pages/user/AddUserPage';
+import UserAddPage from './pages/user/UserAddPage';
 import SupplierListPage from "./pages/supplier/SupplierListPage";
 import UserListPage from "./pages/user/UserListPage";
 
@@ -35,7 +35,7 @@ const App: React.FC = () => {
                     <Route path="dashboard" element={<Dashboard/>}/>
                     <Route path="settings" element={<Settings/>}/>
                     <Route path="users" element={<UserListPage/>}/> {/* 用戶列表頁面 */}
-                    <Route path="users/add" element={<AddUserPage/>}/> {/* 新增用戶頁面 */}
+                    <Route path="users/add" element={<UserAddPage/>}/> {/* 新增用戶頁面 */}
                     <Route path="supplier" element={<SupplierListPage/>}/>
                 </Route>
             ) : (

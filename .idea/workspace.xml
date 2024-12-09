@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] 修正手機板選單無法選擇的問題">
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/user/UserCreateRequest.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/user/UserCreateRequestValidate.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/AxiosInterceptors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/AxiosInterceptors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/UserApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user/UserApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/user/AddUserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserAddPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,11 +99,11 @@
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\frontend\src\api\user" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\supplier" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services\auth" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\frontend\src\pages\User" />
-      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services\User" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\service\AuthService.ts" />
@@ -127,7 +137,7 @@
       <workItem from="1732760176561" duration="12129000" />
       <workItem from="1732946512205" duration="9890000" />
       <workItem from="1733452440777" duration="14154000" />
-      <workItem from="1733709895920" duration="7886000" />
+      <workItem from="1733709895920" duration="15400000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -361,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733724870130</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="[frontend] 修正手機板選單無法選擇的問題">
+      <option name="closed" value="true" />
+      <created>1733725944159</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1733725944159</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

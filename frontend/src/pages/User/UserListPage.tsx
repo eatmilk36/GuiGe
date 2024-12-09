@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import {list} from '../../api/UserApi';
+import {list} from '../../api/user/UserApi';
 
 const UserListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -77,7 +77,7 @@ const UserListPage: React.FC = () => {
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon />}
-                    onClick={() => navigate('/add-user')}
+                    onClick={() => navigate('/users/add')}
                     sx={{
                         width: {
                             xs: '100%', // 小螢幕：按鈕全寬

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {toast} from "react-toastify";
 
 const API_URL = 'http://localhost:3333/api/';
 
@@ -82,7 +83,22 @@ export const setupInterceptors = (navigate: (path: string) => void) => {
     apiClient.interceptors.response.use(
         (response) => response,
         async (error) => {
+            console.log('interceptors error:'); // 僅打印一次
+
             const originalRequest = error.config;
+
+            // 若已處理過此請求的錯誤，直接拋出
+            if (originalRequest._handled) {
+                throw wrapError(error, 'Response interception error');
+            }
+
+            // 標記此請求錯誤為已處理
+            originalRequest._handled = true;
+
+            if (error.response?.status === 400) {
+                toast.error('Bad Request: ' + (error.response.data.message || 'Invalid input'));
+                throw wrapError(error, 'Bad Request error');
+            }
 
             if (error.response?.status === 403 && !originalRequest._retry) {
                 originalRequest._retry = true;

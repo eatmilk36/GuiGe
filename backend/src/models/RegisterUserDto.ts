@@ -13,6 +13,6 @@ export class RegisterUserDto {
 
     @IsString()
     @IsNotEmpty({ message: "Email is required" })
-    @Length(10, 255, { message: "Email must be between 2 and 255 characters" })
+    @Length(10, 255, { message: "Email must be between 10 and 255 characters" })
     email: string;
 }
