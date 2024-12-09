@@ -8,6 +8,7 @@ import bodyParser from 'body-parser';
 import userRoutes from './routes/UserRoutes';
 import authRoutes from './routes/AuthRoutes';
 import {AppDataSource} from './mySQL/Db';
+import supplierRoutes from "./routes/SupplierRoutes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ async function startServer() {
         // 路由
         app.use('/api/user', userRoutes);
         app.use('/api/auth', authRoutes);
+        app.use('/api/supplier', supplierRoutes);
 
         const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {

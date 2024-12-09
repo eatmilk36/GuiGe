@@ -10,20 +10,26 @@ import {AuthController} from "./controllers/AuthController";
 import {AuthService} from "./services/auth/AuthService";
 import {IAuthService} from "./services/auth/IAuthService";
 import {IUserService} from "./services/user/IUserService";
+import {ISupplierService} from "./services/supplier/ISupplierService";
+import {SupplierService} from "./services/supplier/SupplierService";
+import {SupplierController} from "./controllers/SupplierController";
+import {ISupplierRepository} from "./repository/supplier/ISupplierRepository";
+import {SupplierRepository} from "./repository/supplier/SupplierRepository";
 
 container.register(DataSource, { useValue: AppDataSource });
 
 // Repository
 container.register<IUserRepository>("IUserRepository", { useClass: UserRepository });
+container.register<ISupplierRepository>("ISupplierRepository", { useClass: SupplierRepository });
 
 // Service
-// container.register(UserService, { useClass: UserService });
-// container.register(AuthService, { useClass: AuthService });
 container.register<IAuthService>("IAuthService", { useClass: AuthService });
 container.register<IUserService>("IUserService", { useClass: UserService });
+container.register<ISupplierService>("ISupplierService", { useClass: SupplierService });
 
 // Controller
 container.register(UserController, { useClass: UserController });
 container.register(AuthController, { useClass: AuthController });
+container.register(SupplierController, { useClass: SupplierController });
 
 export { container };

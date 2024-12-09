@@ -7,7 +7,7 @@ import {
     DeleteDateColumn,
 } from "typeorm";
 
-@Entity({ name: "supplier" }) // 指定資料表名稱為 supplier
+@Entity({ name: "Supplier" }) // 指定資料表名稱為 supplier
 export class Supplier {
     @PrimaryGeneratedColumn()
     id!: number; // 自動遞增主鍵

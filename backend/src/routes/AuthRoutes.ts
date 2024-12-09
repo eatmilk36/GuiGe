@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {container} from '../di-container';
 import {AuthController} from "../controllers/AuthController";
+import {authenticateToken} from "../middleware/AuthMiddleware";
 
 const router = Router();
 const authController = container.resolve(AuthController);
@@ -13,7 +14,7 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
-router.post('/renewToken', async (req, res, next) => {
+router.post('/renewToken', authenticateToken, async (req, res, next) => {
     try {
         await authController.renewToken(req, res);
     } catch (error) {

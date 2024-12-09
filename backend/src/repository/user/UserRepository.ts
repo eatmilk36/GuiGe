@@ -11,7 +11,7 @@ export class UserRepository implements IUserRepository {
         this.userRepository = this.dataSource.getRepository(User);
     }
 
-    findAll(): Promise<User[] | null> {
+    async findAll(): Promise<User[] | null> {
         return this.userRepository.find();
     }
 
