@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
             }, 1000);
         } catch (error) {
             console.error(error);
-            setSnackbar({ message: 'Login failed. Please check your username and password.', type: 'error', open: true });
+            setSnackbar({ message: 'login failed. Please check your username and password.', type: 'error', open: true });
         } finally {
             setIsLoading(false);
         }
@@ -78,7 +78,7 @@ const LoginPage: React.FC = () => {
                         className="mt-4"
                         size="large"
                     >
-                        {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Login'}
+                        {isLoading ? <CircularProgress size={24} color="inherit" /> : 'login'}
                     </Button>
                 </CardContent>
             </Card>

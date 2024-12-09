@@ -21,20 +21,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                 <ul className="space-y-2">
                     <li>
                         <Link to="/dashboard" className="flex items-center p-4 hover:bg-gray-700">
-                            <FontAwesomeIcon icon="tachometer-alt" className="mr-4" />
-                            儀錶板
+                            <FontAwesomeIcon icon="tachometer-alt" className="mr-4" />儀錶板
                         </Link>
                     </li>
                     <li>
                         <Link to="/users" className="flex items-center p-4 hover:bg-gray-700">
-                            <FontAwesomeIcon icon={faUsers} className="mr-4" />
-                           使用者
+                            <FontAwesomeIcon icon={faUsers} className="mr-4" />使用者
                         </Link>
                     </li>
                     <li>
-                        <Link to="/widgets" className="flex items-center p-4 hover:bg-gray-700">
-                            <FontAwesomeIcon icon="th" className="mr-4" />
-                            Widgets
+                        <Link to="/supplier" className="flex items-center p-4 hover:bg-gray-700">
+                            <FontAwesomeIcon icon="th" className="mr-4" />供應商
                         </Link>
                     </li>
                     <li>

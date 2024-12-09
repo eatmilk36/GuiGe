@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
-import LoginPage from './pages/Login/LoginPage';
+import LoginPage from './pages/login/LoginPage';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
-import UserListPage from './pages/User/UserListPage'; // 用戶列表頁面
-import AddUserPage from './pages/User/AddUserPage'; // 新增用戶頁面
+import AddUserPage from './pages/user/AddUserPage';
+import SupplierListPage from "./pages/supplier/SupplierListPage";
+import UserListPage from "./pages/user/UserListPage";
 
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('authToken'));
@@ -35,6 +36,7 @@ const App: React.FC = () => {
                     <Route path="settings" element={<Settings/>}/>
                     <Route path="users" element={<UserListPage/>}/> {/* 用戶列表頁面 */}
                     <Route path="users/add" element={<AddUserPage/>}/> {/* 新增用戶頁面 */}
+                    <Route path="supplier" element={<SupplierListPage/>}/>
                 </Route>
             ) : (
                 <Route path="*" element={<Navigate to="/login" replace/>}/>

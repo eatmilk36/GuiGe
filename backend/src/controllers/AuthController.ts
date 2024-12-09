@@ -6,7 +6,7 @@ import {IAuthService} from "../services/auth/IAuthService";
 export class AuthController {
     constructor(@inject("IAuthService") private readonly authService: IAuthService) {}
 
-    // Login 方法
+    // login 方法
     async login(req: Request, res: Response): Promise<Response> {
         const {username, password} = req.body;
 

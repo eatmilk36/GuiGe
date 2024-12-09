@@ -22,14 +22,14 @@ export class Supplier {
     phone!: string; // 電話
 
     @Column({ length: 255 })
-    mail!: string; // 電子郵件
+    email!: string; // 電子郵件
 
     @CreateDateColumn()
-    createdTime!: Date; // 建立時間
+    createdAt!: Date; // 建立時間
 
     @UpdateDateColumn()
-    updateTime!: Date; // 更新時間
+    updatedAt!: Date; // 更新時間
 
     @DeleteDateColumn({ nullable: true })
-    deletedTime!: Date | null; // 刪除時間，可為空
+    deletedAt!: Date | null; // 刪除時間，可為空
 }
