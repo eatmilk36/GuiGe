@@ -9,7 +9,7 @@ const AddUserPage: React.FC = () => {
     const [role, setRole] = useState('');
 
     const handleAddUser = () => {
-        console.log('User added:', { name, email, role });
+        console.log('user added:', { name, email, role });
         navigate('/users');
     };
 

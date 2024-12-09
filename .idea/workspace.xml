@@ -4,12 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] add RWD">
+    <list default="true" id="33836aea-6929-405b-af34-fb9b0d6e24bc" name="Changes" comment="[frontend] 改成中文，i18n有空再做">
+      <change afterPath="$PROJECT_DIR$/backend/migrations/20241130180212_create_supplier_table.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/controllers/AuthController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/entities/Supplier.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routes/AuthRoutes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/services/auth/AuthService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/services/auth/IAuthService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/AxiosProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Logout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/di-container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/di-container.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/entities/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/entities/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/User/IUserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/user/IUserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/User/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/user/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/UserRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/User/IUserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/user/IUserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/User/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/user/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/AxiosInterceptors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/AxiosInterceptors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/UserApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/UserApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/TopNavbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TopNavbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/UserListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/User/AddUserPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +81,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/Project/GuiGe/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/Project/GuiGe/backend/src/repository/auth&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,18 +94,27 @@
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
       &quot;mysql_aurora&quot;
+    ],
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\auth" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services\auth" />
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\frontend\src\pages\User" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\services\User" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\User" />
-      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\@types" />
-      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\service\AuthService.ts" />
       <recent name="C:\Users\User\Desktop\Project\GuiGe\backend\src\repository\IUserRepository.ts" />
     </key>
   </component>
@@ -115,7 +143,9 @@
       <workItem from="1732602680346" duration="17188000" />
       <workItem from="1732677969313" duration="9771000" />
       <workItem from="1732760176561" duration="12129000" />
-      <workItem from="1732946512205" duration="6544000" />
+      <workItem from="1732946512205" duration="9890000" />
+      <workItem from="1733452440777" duration="14154000" />
+      <workItem from="1733709895920" duration="611000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -317,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732957739591</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[frontend] 改成中文，i18n有空再做">
+      <option name="closed" value="true" />
+      <created>1732958488226</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732958488226</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +396,7 @@
     <MESSAGE value="[frontend] add check token" />
     <MESSAGE value="[frontend] fix login and logout" />
     <MESSAGE value="[frontend] add RWD" />
-    <option name="LAST_COMMIT_MESSAGE" value="[frontend] add RWD" />
+    <MESSAGE value="[frontend] 改成中文，i18n有空再做" />
+    <option name="LAST_COMMIT_MESSAGE" value="[frontend] 改成中文，i18n有空再做" />
   </component>
 </project>

@@ -1,29 +1,13 @@
 import {Request, Response} from 'express';
-import jwt from 'jsonwebtoken';
-import {UserService} from '../services/User/UserService';
 import {RegisterUserDto} from "../models/RegisterUserDto";
 import {validate} from "class-validator";
 import {plainToInstance} from "class-transformer";
-import {injectable} from "tsyringe";
-
-const SECRET_KEY = process.env.SECRET_KEY;
+import {inject, injectable} from "tsyringe";
+import {IUserService} from "../services/user/IUserService";
 
 @injectable()
 export class UserController {
-    private readonly userService: UserService;
-
-    constructor(userService: UserService) {
-        this.userService = userService;
-    }
-
-    async login(req: Request, res: Response) {
-        const {username, password} = req.body;
-        const isValid = await this.userService.validateUser(username, password);
-        if (!isValid) return res.status(401).json({message: 'Invalid credentials'});
-
-        const token = jwt.sign({username}, SECRET_KEY, {expiresIn: '1h'});
-        res.json({token});
-    }
+    constructor(@inject("IUserService") private readonly userService: IUserService) {}
 
     async register(req: Request, res: Response) {
         // 將 req.body 轉換為 RegisterUserDto
@@ -39,7 +23,7 @@ export class UserController {
 
         try {
             await this.userService.register(dto.username, dto.password, dto.email);
-            res.status(201).json({message: 'User registered successfully'});
+            res.status(201).json({message: 'user registered successfully'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

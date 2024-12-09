@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import LoginPage from './pages/Login/LoginPage';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
@@ -23,25 +23,23 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <Router>
-            <Routes>
-                {/* 登入頁面 */}
-                <Route path="/login" element={<LoginPage />} />
+        <Routes>
+            {/* 登入頁面 */}
+            <Route path="/login" element={<LoginPage/>}/>
 
-                {/* 受保護的路由 */}
-                {isAuthenticated ? (
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<Dashboard />} /> {/* 預設頁面為 Dashboard */}
-                        <Route path="dashboard" element={<Dashboard />} />
-                        <Route path="settings" element={<Settings />} />
-                        <Route path="users" element={<UserListPage />} /> {/* 用戶列表頁面 */}
-                        <Route path="users/add" element={<AddUserPage />} /> {/* 新增用戶頁面 */}
-                    </Route>
-                ) : (
-                    <Route path="*" element={<Navigate to="/login" replace />} />
-                )}
-            </Routes>
-        </Router>
+            {/* 受保護的路由 */}
+            {isAuthenticated ? (
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Dashboard/>}/> {/* 預設頁面為 Dashboard */}
+                    <Route path="dashboard" element={<Dashboard/>}/>
+                    <Route path="settings" element={<Settings/>}/>
+                    <Route path="users" element={<UserListPage/>}/> {/* 用戶列表頁面 */}
+                    <Route path="users/add" element={<AddUserPage/>}/> {/* 新增用戶頁面 */}
+                </Route>
+            ) : (
+                <Route path="*" element={<Navigate to="/login" replace/>}/>
+            )}
+        </Routes>
     );
 };
 

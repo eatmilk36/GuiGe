@@ -1,4 +1,4 @@
-// src/entity/User.ts
+// src/entity/user.ts
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
 
 @Entity({name: "User"})
