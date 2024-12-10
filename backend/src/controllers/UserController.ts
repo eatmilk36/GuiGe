@@ -22,7 +22,7 @@ export class UserController {
         }
 
         try {
-            await this.userService.register(dto.username, dto.password, dto.email);
+            await this.userService.register(dto);
             res.status(201).json({message: 'user registered successfully'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
