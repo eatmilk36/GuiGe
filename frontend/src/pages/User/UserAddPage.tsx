@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { create } from '../../api/user/UserApi';
-import { UserCreateRequest } from "../../api/user/UserCreateRequest";
+import { UserCreateRequest } from "../../api/user/create/UserCreateRequest";
 import { toast } from 'react-toastify';
 
 const UserAddPage: React.FC = () => {

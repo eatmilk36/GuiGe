@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/SupplierApi';
+import { list } from '../../api/supplier/SupplierApi';
 
 const SupplierListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -76,7 +76,7 @@ const SupplierListPage: React.FC = () => {
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon />}
-                    onClick={() => navigate('/add-supplier')}
+                    onClick={() => navigate('/supplier/add')}
                     sx={{
                         width: {
                             xs: '100%', // 小螢幕：按鈕全寬

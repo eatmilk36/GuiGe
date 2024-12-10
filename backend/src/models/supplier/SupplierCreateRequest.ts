@@ -3,7 +3,7 @@ import { IsString, IsNotEmpty, Length } from "class-validator";
 export class SupplierCreateRequest {
     @IsString()
     @IsNotEmpty({ message: "Username is required" })
-    @Length(4, 20, { message: "Username must be between 4 and 20 characters" })
+    @Length(1, 20, { message: "Username must be between 1 and 20 characters" })
     name: string;
 
     @IsString()

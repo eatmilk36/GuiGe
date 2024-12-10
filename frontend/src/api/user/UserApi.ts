@@ -1,6 +1,6 @@
 import apiClient from '../AxiosInterceptors';
-import {UserCreateRequest} from "./UserCreateRequest";
-import {validateUserCreate} from "./UserCreateRequestValidate";
+import {UserCreateRequest} from "./create/UserCreateRequest";
+import {validateUserCreate} from "./create/UserCreateRequestValidate";
 
 const API_URL = 'http://localhost:3333/api/';
 

@@ -14,7 +14,7 @@ router.get('/list', authenticateToken, async (req, res, next) => {
     }
 });
 
-router.get('/creat', authenticateToken, async (req, res, next) => {
+router.post('/create', authenticateToken, async (req, res, next) => {
     try {
         await supplierController.create(req, res);
     } catch (error) {

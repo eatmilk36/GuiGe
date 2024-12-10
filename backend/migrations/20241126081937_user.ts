@@ -3,7 +3,7 @@ import {Knex} from "knex";
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("User", (table) => {
         table.increments("id").primary(); // 自動遞增的主鍵
-        table.string("username", 255).notNullable(); // 帳號
+        table.string("username", 255).notNullable().unique(); // 帳號
         table.string("password", 255).notNullable(); // 密碼
         table.string("email", 255).notNullable().unique(); // 唯一的 Email
         table.boolean("isActive").notNullable().defaultTo(false); // 是否啟用

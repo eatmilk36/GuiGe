@@ -3,7 +3,7 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("Supplier", (table: Knex.CreateTableBuilder) => {
         table.bigIncrements("id").primary(); // 自動遞增主鍵
-        table.string("name", 20).notNullable(); // 供應商名稱
+        table.string("name", 20).notNullable().unique(); // 供應商名稱
         table.string("address", 255).notNullable(); // 地址
         table.string("phone", 10).notNullable(); // 電話
         table.string("email", 255).notNullable(); // 郵件

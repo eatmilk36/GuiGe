@@ -26,8 +26,12 @@ export class SupplierController {
         }
 
         try {
-            await this.supplierService.create(dto);
-            res.status(201).json({message: 'Supplier created successfully'});
+            let isSuccess = await this.supplierService.create(dto);
+            if (isSuccess) {
+                res.status(201).json({message: 'Supplier created successfully'});
+                return;
+            }
+            res.status(400).json({message: 'Supplier already exists'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }
