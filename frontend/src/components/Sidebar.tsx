@@ -54,11 +54,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     </li>
                     <li>
                         <Link
-                            to="/charts"
+                            to="/dailyTurnover"
                             className="flex items-center p-4 hover:bg-gray-700"
                             onClick={handleLinkClick}
                         >
-                            <FontAwesomeIcon icon={faChartPie} className="mr-4" />Charts
+                            <FontAwesomeIcon icon={faChartPie} className="mr-4" />每日營業額
                         </Link>
                     </li>
                 </ul>

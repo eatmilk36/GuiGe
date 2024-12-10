@@ -37,11 +37,8 @@ const SupplierListPage: React.FC = () => {
         fetchSuppliers();
     }, []);
 
-    const filteredSuppliers = suppliers.filter(_ =>
-        // 假設有搜尋功能，可以根據需要解開註解
-        // user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        // user.email.toLowerCase().includes(searchQuery.toLowerCase())
-        true
+    const filteredSuppliers = suppliers.filter(supplier =>
+        supplier.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const handleChangePage = (event: unknown, newPage: number) => {

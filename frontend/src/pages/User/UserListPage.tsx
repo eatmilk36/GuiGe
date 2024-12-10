@@ -37,12 +37,11 @@ const UserListPage: React.FC = () => {
         fetchUsers();
     }, []);
 
-    const filteredUsers = users.filter(_ =>
-        // 假設有搜尋功能，可以根據需要解開註解
-        // user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        // user.email.toLowerCase().includes(searchQuery.toLowerCase())
-        true
+    const filteredUsers = users.filter((user) =>
+        searchQuery === '' ||
+        user.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
