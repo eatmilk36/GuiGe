@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {RegisterUserDto} from "../models/RegisterUserDto";
+import {UserCreateRequest} from "../models/user/UserCreateRequest";
 import {validate} from "class-validator";
 import {plainToInstance} from "class-transformer";
 import {inject, injectable} from "tsyringe";
@@ -10,8 +10,8 @@ export class UserController {
     constructor(@inject("IUserService") private readonly userService: IUserService) {}
 
     async register(req: Request, res: Response) {
-        // 將 req.body 轉換為 RegisterUserDto
-        const dto = plainToInstance(RegisterUserDto, req.body);
+        // 將 req.body 轉換為 UserCreateRequest
+        const dto = plainToInstance(UserCreateRequest, req.body);
 
         // 驗證 DTO
         const errors = await validate(dto);

@@ -14,4 +14,15 @@ export class SupplierRepository implements ISupplierRepository {
     async findAll(): Promise<Supplier[] | null> {
         return this.supplierRepository.find();
     }
+
+    async create(supplier: Supplier): Promise<boolean> {
+        try {
+            const newSupplier = this.supplierRepository.create(supplier);
+            await this.supplierRepository.save(newSupplier);
+            return true; // 儲存成功時回傳 true
+        } catch (error) {
+            console.error('Error saving supplier:', error); // 可以記錄錯誤資訊
+            return false; // 發生錯誤時回傳 false
+        }
+    }
 }
