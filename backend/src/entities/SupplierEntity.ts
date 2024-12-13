@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 
 @Entity({ name: "Supplier" }) // 指定資料表名稱為 supplier
-export class Supplier {
+export class SupplierEntity {
     @PrimaryGeneratedColumn()
     id!: number; // 自動遞增主鍵
 

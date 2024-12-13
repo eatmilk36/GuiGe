@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import {User} from "../../entities/User";
+import {UserEntity} from "../../entities/UserEntity";
 import {inject, injectable} from "tsyringe";
 import {IUserRepository} from "../../repository/user/IUserRepository";
 import {IUserService} from "./IUserService";
@@ -19,13 +19,13 @@ export class UserService implements IUserService {
     }
 
     async validateUser(username: string, password: string): Promise<boolean> {
-        const user: User | null = await this.userRepository.findOne(username);
+        const user: UserEntity | null = await this.userRepository.findOne(username);
         if (!user) return false;
 
         return await bcrypt.compare(password, user.password);
     }
 
-    async findAll(): Promise<User[]> {
+    async findAll(): Promise<UserEntity[]> {
         return await this.userRepository.findAll();
     }
 }

@@ -8,6 +8,8 @@ import UserAddPage from './pages/user/UserAddPage';
 import SupplierListPage from "./pages/supplier/SupplierListPage";
 import UserListPage from "./pages/user/UserListPage";
 import SupplierAddPage from "./pages/supplier/SupplierAddPage";
+import DailySalesListPage from "./pages/dailySales/DailySalesListPage";
+import DailySalesAddPage from "./pages/dailySales/DailySalesAddPage";
 
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('authToken'));
@@ -39,6 +41,8 @@ const App: React.FC = () => {
                     <Route path="users/add" element={<UserAddPage/>}/> {/* 新增用戶頁面 */}
                     <Route path="supplier" element={<SupplierListPage/>}/>
                     <Route path="supplier/add" element={<SupplierAddPage/>}/>
+                    <Route path="dailySales" element={<DailySalesListPage/>}/>
+                    <Route path="dailySales/add" element={<DailySalesAddPage/>}/>
                 </Route>
             ) : (
                 <Route path="*" element={<Navigate to="/login" replace/>}/>

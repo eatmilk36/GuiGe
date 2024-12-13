@@ -12,7 +12,6 @@ export class AuthController {
 
         try {
             // 驗證用戶並生成 Token
-            console.log(username, password);
             const token = await this.authService.validateUser(username, password);
 
             if (!token) {

@@ -1,21 +1,21 @@
 import {DataSource, Repository} from "typeorm";
 import {inject, injectable} from "tsyringe";
 import {ISupplierRepository} from "./ISupplierRepository";
-import {Supplier} from "../../entities/Supplier";
+import {SupplierEntity} from "../../entities/SupplierEntity";
 
 @injectable()
 export class SupplierRepository implements ISupplierRepository {
-    private readonly supplierRepository: Repository<Supplier>;
+    private readonly supplierRepository: Repository<SupplierEntity>;
 
     constructor(@inject(DataSource) private readonly dataSource: DataSource) {
-        this.supplierRepository = this.dataSource.getRepository(Supplier);
+        this.supplierRepository = this.dataSource.getRepository(SupplierEntity);
     }
 
-    async findAll(): Promise<Supplier[] | null> {
+    async findAll(): Promise<SupplierEntity[] | null> {
         return this.supplierRepository.find();
     }
 
-    async create(supplier: Supplier): Promise<boolean> {
+    async create(supplier: SupplierEntity): Promise<boolean> {
         try {
             const newSupplier = this.supplierRepository.create(supplier);
             await this.supplierRepository.save(newSupplier);

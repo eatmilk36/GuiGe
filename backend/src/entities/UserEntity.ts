@@ -2,7 +2,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from 'typeorm';
 
 @Entity({name: "User"})
-export class User {
+export class UserEntity {
     @PrimaryGeneratedColumn()
     id!: number;
 

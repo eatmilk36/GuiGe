@@ -1,4 +1,4 @@
-import {User} from "../../entities/User";
+import {UserEntity} from "../../entities/UserEntity";
 import {UserCreateRequest} from "../../models/user/UserCreateRequest";
 
 export interface IUserService {
@@ -6,5 +6,5 @@ export interface IUserService {
 
     validateUser(username: string, password: string): Promise<boolean>;
 
-    findAll(): Promise<User[]>;
+    findAll(): Promise<UserEntity[]>;
 }

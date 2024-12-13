@@ -1,5 +1,5 @@
 import {inject, injectable} from "tsyringe";
-import {User} from "../../entities/User";
+import {UserEntity} from "../../entities/UserEntity";
 import bcrypt from "bcryptjs";
 import {IUserRepository} from "../../repository/user/IUserRepository";
 import jwt from "jsonwebtoken";
@@ -18,13 +18,12 @@ export class AuthService implements IAuthService {
     }
 
     async newToken(jsonString: string): Promise<string> {
-        const user: User = JSON.parse(jsonString);
+        const user: UserEntity = JSON.parse(jsonString);
         return this.generateToken({ user });
     }
 
     async validateUser(username: string, password: string): Promise<string | null> {
-        console.log('validateUser: ', username, password);
-        const user: User | null = await this.userRepository.findOne(username);
+        const user: UserEntity | null = await this.userRepository.findOne(username);
         if (!user) return null;
 
         const isPass = await bcrypt.compare(password, user.password);

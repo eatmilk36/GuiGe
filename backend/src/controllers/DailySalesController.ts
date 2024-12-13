@@ -1,23 +1,23 @@
 import {Request, Response} from 'express';
 import {inject, injectable} from "tsyringe";
-import {ISupplierService} from "../services/supplier/ISupplierService";
+import {IDailySalesService} from "../services/dailySales/IDailySalesService";
 import {plainToInstance} from "class-transformer";
 import {validate} from "class-validator";
-import {SupplierCreateRequest} from "../models/supplier/SupplierCreateRequest";
+import {DailySalesCreateRequest} from "../models/dailySales/DailySalesCreateRequest";
 
 @injectable()
-export class SupplierController {
-    constructor(@inject("ISupplierService") private readonly supplierService: ISupplierService) {
+export class DailySalesController {
+    constructor(@inject("IDailySalesService") private readonly dailySalesService: IDailySalesService) {
     }
 
     async findAll(req: Request, res: Response) {
-        const suppliers = await this.supplierService.findAll();
+        const dailySales = await this.dailySalesService.findAll();
 
-        res.status(200).json(suppliers);
+        res.status(200).json(dailySales);
     }
 
     async create(req: Request, res: Response) {
-        const dto = plainToInstance(SupplierCreateRequest, req.body);
+        const dto = plainToInstance(DailySalesCreateRequest, req.body);
 
         const errors = await validate(dto);
         if (errors.length > 0) {
@@ -26,12 +26,12 @@ export class SupplierController {
         }
 
         try {
-            let isSuccess = await this.supplierService.create(dto);
+            let isSuccess = await this.dailySalesService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'SupplierEntity created successfully'});
+                res.status(201).json({message: 'DailySalesEntity created successfully'});
                 return;
             }
-            res.status(400).json({message: 'SupplierEntity already exists'});
+            res.status(400).json({message: 'DailySalesEntity already exists'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

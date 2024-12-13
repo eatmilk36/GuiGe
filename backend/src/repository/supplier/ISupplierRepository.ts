@@ -1,7 +1,7 @@
-import {Supplier} from "../../entities/Supplier";
+import {SupplierEntity} from "../../entities/SupplierEntity";
 
 export interface ISupplierRepository {
-    findAll(): Promise<Supplier[] | null>
+    findAll(): Promise<SupplierEntity[] | null>
 
-    create(supplier: Supplier): Promise<boolean>
+    create(supplier: SupplierEntity): Promise<boolean>
 }

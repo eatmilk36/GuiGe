@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     </li>
                     <li>
                         <Link
-                            to="/dailyTurnover"
+                            to="/dailySales"
                             className="flex items-center p-4 hover:bg-gray-700"
                             onClick={handleLinkClick}
                         >

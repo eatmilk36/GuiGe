@@ -1,27 +1,27 @@
-import {User} from "../../entities/User";
+import {UserEntity} from "../../entities/UserEntity";
 import {DataSource, Repository} from "typeorm";
 import {inject, injectable} from "tsyringe";
 import {IUserRepository} from "./IUserRepository";
 
 @injectable()
 export class UserRepository implements IUserRepository {
-    private readonly userRepository: Repository<User>;
+    private readonly userRepository: Repository<UserEntity>;
 
     constructor(@inject(DataSource) private readonly dataSource: DataSource) {
-        this.userRepository = this.dataSource.getRepository(User);
+        this.userRepository = this.dataSource.getRepository(UserEntity);
     }
 
-    async findAll(): Promise<User[] | null> {
+    async findAll(): Promise<UserEntity[] | null> {
         return this.userRepository.find();
     }
 
-    async findOne(username: string): Promise<User | null> {
+    async findOne(username: string): Promise<UserEntity | null> {
         return await this.userRepository.findOne({
             where: {username, isActive: true},
         });
     }
 
-    async findUserById(userId: number): Promise<User | null> {
+    async findUserById(userId: number): Promise<UserEntity | null> {
         return await this.userRepository.findOneBy({id: userId});
     }
 
@@ -35,7 +35,7 @@ export class UserRepository implements IUserRepository {
         await this.userRepository.save(newUser);
     }
 
-    async updateUser(user: User): Promise<void> {
+    async updateUser(user: UserEntity): Promise<void> {
         const existingUser = await this.userRepository.findOneBy({id: user.id});
         if (existingUser) {
             await this.userRepository.save(user);
