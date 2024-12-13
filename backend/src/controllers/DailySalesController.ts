@@ -10,6 +10,13 @@ export class DailySalesController {
     constructor(@inject("IDailySalesService") private readonly dailySalesService: IDailySalesService) {
     }
 
+    async dashboard(req: Request, res: Response) {
+        const dailySales = await this.dailySalesService.dashboard();
+
+        res.status(200).json(dailySales);
+    }
+
+
     async findAll(req: Request, res: Response) {
         const dailySales = await this.dailySalesService.findAll();
 

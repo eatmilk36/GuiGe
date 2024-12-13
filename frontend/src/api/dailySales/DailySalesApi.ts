@@ -4,6 +4,11 @@ import {validateDailySalesCreate} from "./create/DailySalesCreateRequestValidate
 
 const API_URL = 'http://localhost:3333/api/';
 
+export const dashboard = async () => {
+    const response = await apiClient.get(`${API_URL}dailySales/dashboard`, {});
+    return response.data;
+};
+
 export const list = async () => {
     const response = await apiClient.get(`${API_URL}dailySales/list`, {});
     return response.data;

@@ -22,4 +22,12 @@ router.post('/create', authenticateToken, async (req, res, next) => {
     }
 });
 
+router.get('/dashboard', authenticateToken, async (req, res, next) => {
+    try {
+        await dailySalesController.dashboard(req, res);
+    } catch (error) {
+        next(error); // 傳遞錯誤給 Express 的錯誤處理中間件
+    }
+});
+
 export default router;
