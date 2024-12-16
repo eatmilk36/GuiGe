@@ -16,6 +16,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { list } from '../../api/dailySales/DailySalesApi';
+import {formatDate} from "../../utils/dateUtils";
 
 const DailySalesListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -37,9 +38,9 @@ const DailySalesListPage: React.FC = () => {
         fetchDailySales();
     }, []);
 
-    const filteredDailySales = dailySales.filter(sale =>
-        sale.money.toString().includes(searchQuery)
-    );
+    const filteredDailySales = dailySales
+        .filter(sale => sale.money.toString().includes(searchQuery)) // 篩選金額
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // 時間反序排序
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -91,6 +92,7 @@ const DailySalesListPage: React.FC = () => {
                         <TableRow>
                             <TableCell>識別值</TableCell>
                             <TableCell>金額</TableCell>
+                            <TableCell>日期</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -100,6 +102,7 @@ const DailySalesListPage: React.FC = () => {
                                 <TableRow key={sale.id}>
                                     <TableCell>{sale.id}</TableCell>
                                     <TableCell>{sale.money}</TableCell>
+                                    <TableCell>{formatDate(sale.createdAt)}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
