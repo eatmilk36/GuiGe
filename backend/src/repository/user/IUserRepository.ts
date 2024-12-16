@@ -5,11 +5,11 @@ export interface IUserRepository {
 
     findAll(): Promise<UserEntity[] | null>;
 
-    findUserById(userId: number): Promise<UserEntity | null>;
+    findById(userId: number): Promise<UserEntity | null>;
 
-    createUser(username: string, password: string, email: string): Promise<void>;
+    create(username: string, password: string, email: string): Promise<void>;
 
-    updateUser(user: UserEntity): Promise<void>;
+    update(user: UserEntity): Promise<void>;
 
-    deleteUser(id: number): Promise<void>;
+    delete(id: number): Promise<void>;
 }

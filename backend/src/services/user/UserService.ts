@@ -15,7 +15,7 @@ export class UserService implements IUserService {
         if (existingUser) throw new Error('user already exists');
 
         const hashedPassword: string = await bcrypt.hash(req.password, 10);
-        await this.userRepository.createUser(req.username, hashedPassword, req.email);
+        await this.userRepository.create(req.username, hashedPassword, req.email);
     }
 
     async validateUser(username: string, password: string): Promise<boolean> {

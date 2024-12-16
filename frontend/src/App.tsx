@@ -39,8 +39,9 @@ const App: React.FC = () => {
                     <Route path="settings" element={<Settings/>}/>
                     <Route path="users" element={<UserListPage/>}/> {/* 用戶列表頁面 */}
                     <Route path="users/add" element={<UserAddPage/>}/> {/* 新增用戶頁面 */}
-                    <Route path="supplier" element={<SupplierListPage/>}/>
+                    <Route path="supplier/list" element={<SupplierListPage/>}/>
                     <Route path="supplier/add" element={<SupplierAddPage/>}/>
+                    <Route path="supplier/products" element={<SupplierAddPage/>}/>
                     <Route path="dailySales" element={<DailySalesListPage/>}/>
                     <Route path="dailySales/add" element={<DailySalesAddPage/>}/>
                 </Route>

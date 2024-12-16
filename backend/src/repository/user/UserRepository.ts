@@ -21,11 +21,11 @@ export class UserRepository implements IUserRepository {
         });
     }
 
-    async findUserById(userId: number): Promise<UserEntity | null> {
+    async findById(userId: number): Promise<UserEntity | null> {
         return await this.userRepository.findOneBy({id: userId});
     }
 
-    async createUser(username: string, password: string, email: string): Promise<void> {
+    async create(username: string, password: string, email: string): Promise<void> {
         const newUser = this.userRepository.create({
             username,
             password,
@@ -35,7 +35,7 @@ export class UserRepository implements IUserRepository {
         await this.userRepository.save(newUser);
     }
 
-    async updateUser(user: UserEntity): Promise<void> {
+    async update(user: UserEntity): Promise<void> {
         const existingUser = await this.userRepository.findOneBy({id: user.id});
         if (existingUser) {
             await this.userRepository.save(user);
@@ -44,7 +44,7 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async deleteUser(id: number): Promise<void> {
+    async delete(id: number): Promise<void> {
         const userToDelete = await this.userRepository.findOneBy({id});
         if (userToDelete) {
             await this.userRepository.remove(userToDelete);

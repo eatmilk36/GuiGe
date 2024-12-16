@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-import { faUsers, faTachometerAlt, faTh, faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { Link, useLocation } from 'react-router-dom';
+import {
+    faUsers,
+    faTachometerAlt,
+    faTh,
+    faChartPie,
+    faChevronDown,
+    faChevronUp
+} from '@fortawesome/free-solid-svg-icons';
 
 interface SidebarProps {
     isOpen: boolean;
@@ -9,11 +16,23 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+    const location = useLocation();
+    const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+
     const handleLinkClick = () => {
         if (isOpen) {
             toggleSidebar();
         }
     };
+
+    const toggleExpand = (key: string) => {
+        setExpanded((prev) => ({
+            ...prev,
+            [key]: !prev[key],
+        }));
+    };
+
+    const isActive = (path: string) => location.pathname.startsWith(path);
 
     return (
         <>
@@ -28,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <Link
                             to="/dashboard"
-                            className="flex items-center p-4 hover:bg-gray-700"
+                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/dashboard') ? 'bg-gray-700' : ''}`}
                             onClick={handleLinkClick}
                         >
                             <FontAwesomeIcon icon={faTachometerAlt} className="mr-4" />儀錶板
@@ -37,25 +56,51 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <Link
                             to="/users"
-                            className="flex items-center p-4 hover:bg-gray-700"
+                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/users') ? 'bg-gray-700' : ''}`}
                             onClick={handleLinkClick}
                         >
-                            <FontAwesomeIcon icon={faUsers} className="mr-4" />使用者
+                            <FontAwesomeIcon icon={faUsers} className="mr-4" />使用者列表
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            to="/supplier"
-                            className="flex items-center p-4 hover:bg-gray-700"
-                            onClick={handleLinkClick}
+                        <button
+                            className="flex items-center justify-between w-full p-4 hover:bg-gray-700 focus:outline-none"
+                            onClick={() => toggleExpand('supplier')}
                         >
-                            <FontAwesomeIcon icon={faTh} className="mr-4" />供應商
-                        </Link>
+                            <div className="flex items-center">
+                                <FontAwesomeIcon icon={faTh} className="mr-4" />供應商
+                            </div>
+                            <FontAwesomeIcon
+                                icon={expanded['supplier'] ? faChevronUp : faChevronDown}
+                            />
+                        </button>
+                        {expanded['supplier'] && (
+                            <ul className="ml-6 space-y-2">
+                                <li>
+                                    <Link
+                                        to="/supplier/list"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/supplier/list') ? 'bg-gray-700' : ''}`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        供應商列表
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/supplier/products"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/supplier/products') ? 'bg-gray-700' : ''}`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        商品列表
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
                     </li>
                     <li>
                         <Link
                             to="/dailySales"
-                            className="flex items-center p-4 hover:bg-gray-700"
+                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/dailySales') ? 'bg-gray-700' : ''}`}
                             onClick={handleLinkClick}
                         >
                             <FontAwesomeIcon icon={faChartPie} className="mr-4" />每日營業額
@@ -69,7 +114,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                 <button
                     className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
                     onClick={toggleSidebar}
-                    aria-label="Close Sidebar" // 無障礙性描述
+                    aria-label="Close Sidebar"
                 />
             )}
         </>

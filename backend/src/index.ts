@@ -10,6 +10,7 @@ import authRoutes from './routes/AuthRoutes';
 import {AppDataSource} from './mySQL/Db';
 import supplierRoutes from "./routes/SupplierRoutes";
 import dailySalesRoutes from "./routes/DailySalesRoutes";
+import productRoutes from "./routes/ProductRoutes";
 
 const app = express();
 
@@ -27,6 +28,7 @@ async function startServer() {
         app.use('/api/auth', authRoutes);
         app.use('/api/supplier', supplierRoutes);
         app.use('/api/dailySales', dailySalesRoutes);
+        app.use('/api/product', productRoutes);
 
         const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {
