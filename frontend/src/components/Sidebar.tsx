@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -19,6 +19,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const location = useLocation();
     const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
 
+    useEffect(() => {
+        // 根據當前路徑初始化展開狀態
+        setExpanded({
+            supplier: location.pathname.startsWith('/supplier'),
+        });
+    }, [location.pathname]);
+
     const handleLinkClick = () => {
         if (isOpen) {
             toggleSidebar();
@@ -32,7 +39,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         }));
     };
 
-    const isActive = (path: string) => location.pathname.startsWith(path);
+    const isActive = (path: string) => {
+        return location.pathname === path || location.pathname.startsWith(path + '/');
+    };
 
     return (
         <>
@@ -47,7 +56,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <Link
                             to="/dashboard"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/dashboard') ? 'bg-gray-700' : ''}`}
+                            className={`flex items-center p-4 hover:bg-gray-700 ${
+                                isActive('/dashboard') ? 'bg-gray-700' : ''
+                            }`}
                             onClick={handleLinkClick}
                         >
                             <FontAwesomeIcon icon={faTachometerAlt} className="mr-4" />儀錶板
@@ -56,7 +67,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <Link
                             to="/users"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/users') ? 'bg-gray-700' : ''}`}
+                            className={`flex items-center p-4 hover:bg-gray-700 ${
+                                isActive('/users') ? 'bg-gray-700' : ''
+                            }`}
                             onClick={handleLinkClick}
                         >
                             <FontAwesomeIcon icon={faUsers} className="mr-4" />使用者列表
@@ -79,7 +92,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                 <li>
                                     <Link
                                         to="/supplier/list"
-                                        className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/supplier/list') ? 'bg-gray-700' : ''}`}
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/supplier/list') ? 'bg-gray-700' : ''
+                                        }`}
                                         onClick={handleLinkClick}
                                     >
                                         供應商列表
@@ -87,8 +102,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/supplier/products"
-                                        className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/supplier/products') ? 'bg-gray-700' : ''}`}
+                                        to="/supplier/products/list"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/supplier/products/list') ? 'bg-gray-700' : ''
+                                        }`}
                                         onClick={handleLinkClick}
                                     >
                                         商品列表
@@ -100,7 +117,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <Link
                             to="/dailySales"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${isActive('/dailySales') ? 'bg-gray-700' : ''}`}
+                            className={`flex items-center p-4 hover:bg-gray-700 ${
+                                isActive('/dailySales') ? 'bg-gray-700' : ''
+                            }`}
                             onClick={handleLinkClick}
                         >
                             <FontAwesomeIcon icon={faChartPie} className="mr-4" />每日營業額
