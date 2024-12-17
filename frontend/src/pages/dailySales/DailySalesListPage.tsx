@@ -16,11 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { list } from '../../api/dailySales/DailySalesApi';
-import {formatDate} from "../../utils/dateUtils";
+import { formatDate } from "../../utils/dateUtils";
 
 const DailySalesListPage: React.FC = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [dailySales, setDailySales] = useState<any[]>([]);
@@ -40,6 +42,18 @@ const DailySalesListPage: React.FC = () => {
 
     const filteredDailySales = dailySales
         .filter(sale => sale.money.toString().includes(searchQuery)) // 篩選金額
+        .filter(sale => {
+            const saleDate = new Date(sale.createdAt);
+            // 開始日期的 00:00:00
+            const startOfDay = startDate ? new Date(startDate).setHours(0, 0, 0, 0) : null;
+            // 結束日期的 23:59:59
+            const endOfDay = endDate ? new Date(endDate).setHours(23, 59, 59, 999) : null;
+
+            const isAfterStartDate = startOfDay ? saleDate.getTime() >= startOfDay : true;
+            const isBeforeEndDate = endOfDay ? saleDate.getTime() <= endOfDay : true;
+
+            return isAfterStartDate && isBeforeEndDate;
+        }) // 篩選日期範圍
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // 時間反序排序
 
     const handleChangePage = (event: unknown, newPage: number) => {
@@ -61,7 +75,7 @@ const DailySalesListPage: React.FC = () => {
                 display="flex"
                 flexDirection={{ xs: 'column', sm: 'row' }}
                 justifyContent="space-between"
-                gap={2} // 元素之間的間距
+                gap={2}
                 mb={2}
             >
                 <TextField
@@ -69,6 +83,27 @@ const DailySalesListPage: React.FC = () => {
                     placeholder="搜尋金額"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <TextField
+                    variant="outlined"
+                    type="date"
+                    label="開始日期"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    slotProps={{
+                        inputLabel: { shrink: true },
+                    }}
+                />
+
+                <TextField
+                    variant="outlined"
+                    type="date"
+                    label="結束日期"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    slotProps={{
+                        inputLabel: { shrink: true },
+                    }}
                 />
                 <Button
                     variant="contained"

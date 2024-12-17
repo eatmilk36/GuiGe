@@ -24,14 +24,14 @@ const LoginPage: React.FC = () => {
             const data = await login(username, password);
             localStorage.setItem('authToken', data.token);
             window.dispatchEvent(new Event('storage'));
-            setSnackbar({ message: `Login successful! Welcome, ${username}.`, type: 'success', open: true });
+            setSnackbar({ message: `登入成功! 歡迎, ${username}.`, type: 'success', open: true });
 
             setTimeout(() => {
                 navigate('/dashboard');
             }, 1000);
         } catch (error) {
             console.error(error);
-            setSnackbar({ message: 'login failed. Please check your username and password.', type: 'error', open: true });
+            setSnackbar({ message: '登入失敗，請檢查帳號與密碼', type: 'error', open: true });
         } finally {
             setIsLoading(false);
         }
@@ -48,7 +48,7 @@ const LoginPage: React.FC = () => {
             <Card className="shadow-lg rounded-lg p-6 w-full max-w-sm">
                 <CardContent>
                     <Typography variant="h4" className="text-center font-bold mb-6">
-                        Login to Your Account
+                       登入
                     </Typography>
                     <TextField
                         label="Username"
