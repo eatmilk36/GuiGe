@@ -44,9 +44,7 @@ const DailySalesListPage: React.FC = () => {
         .filter(sale => sale.money.toString().includes(searchQuery)) // 篩選金額
         .filter(sale => {
             const saleDate = new Date(sale.createdAt);
-            // 開始日期的 00:00:00
             const startOfDay = startDate ? new Date(startDate).setHours(0, 0, 0, 0) : null;
-            // 結束日期的 23:59:59
             const endOfDay = endDate ? new Date(endDate).setHours(23, 59, 59, 999) : null;
 
             const isAfterStartDate = startOfDay ? saleDate.getTime() >= startOfDay : true;
@@ -63,6 +61,18 @@ const DailySalesListPage: React.FC = () => {
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
+    };
+
+    // 轉換 type 為對應文字
+    const getTypeLabel = (type: number) => {
+        switch (type) {
+            case 1:
+                return '收入';
+            case 2:
+                return '支出';
+            default:
+                return '未知';
+        }
     };
 
     return (
@@ -94,7 +104,6 @@ const DailySalesListPage: React.FC = () => {
                         inputLabel: { shrink: true },
                     }}
                 />
-
                 <TextField
                     variant="outlined"
                     type="date"
@@ -112,8 +121,8 @@ const DailySalesListPage: React.FC = () => {
                     onClick={() => navigate('/dailySales/add')}
                     sx={{
                         width: {
-                            xs: '100%', // 小螢幕：按鈕全寬
-                            sm: 'auto', // 中大螢幕：按鈕自適應
+                            xs: '100%',
+                            sm: 'auto',
                         },
                     }}
                 >
@@ -127,6 +136,7 @@ const DailySalesListPage: React.FC = () => {
                         <TableRow>
                             <TableCell>識別值</TableCell>
                             <TableCell>金額</TableCell>
+                            <TableCell>類型</TableCell>
                             <TableCell>日期</TableCell>
                         </TableRow>
                     </TableHead>
@@ -137,6 +147,7 @@ const DailySalesListPage: React.FC = () => {
                                 <TableRow key={sale.id}>
                                     <TableCell>{sale.id}</TableCell>
                                     <TableCell>{sale.money}</TableCell>
+                                    <TableCell>{getTypeLabel(sale.type)}</TableCell>
                                     <TableCell>{formatDate(sale.createdAt)}</TableCell>
                                 </TableRow>
                             ))}

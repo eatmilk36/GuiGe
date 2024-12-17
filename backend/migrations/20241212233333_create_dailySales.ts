@@ -3,6 +3,7 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable("DailySales", (table: Knex.CreateTableBuilder): void => {
         table.bigIncrements("id").primary(); // 自動遞增主鍵
+        table.tinyint("type").notNullable().comment("1.收入2.支出")
         table.decimal("money").notNullable().comment("營業額"); // 營業額
         table
             .timestamp("createdAt", { useTz: false })

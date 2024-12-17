@@ -3,6 +3,7 @@ import { DailySalesCreateRequest } from './DailySalesCreateRequest';
 import { validateSchema } from '../../ValidateSchema';
 
 const DailySalesCreateSchema = yup.object({
+    type: yup.number().required('Type is required'),
     money: yup.number().required('Money is required')
 });
 

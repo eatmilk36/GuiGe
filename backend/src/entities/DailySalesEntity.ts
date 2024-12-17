@@ -5,6 +5,10 @@ export class DailySalesEntity {
     @PrimaryGeneratedColumn()
     id!: number; // 自動遞增主鍵
 
+    @Column({ type: "tinyint", nullable: false })
+    type!: number; // '1.收入2.支出'
+
+
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
     money!: number; // 營業額
 

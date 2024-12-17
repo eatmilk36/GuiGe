@@ -20,6 +20,7 @@ export class DailySalesService implements IDailySalesService {
 
     async create(req: DailySalesCreateRequest): Promise<boolean> {
         let dailySalesEntity: DailySalesEntity = new DailySalesEntity();
+        dailySalesEntity.type = req.type;
         dailySalesEntity.money = req.money;
 
         return await this.dailySalesRepository.create(dailySalesEntity);
