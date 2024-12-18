@@ -1,4 +1,4 @@
 export interface DailySalesCreateRequest {
-    type: number,
+    saleType: number,
     money: number;
 }

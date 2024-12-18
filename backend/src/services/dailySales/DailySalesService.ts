@@ -3,14 +3,14 @@ import {IDailySalesService} from "./IDailySalesService";
 import {IDailySalesRepository} from "../../repository/dailySales/IDailySalesRepository";
 import {DailySalesEntity} from "../../entities/DailySalesEntity";
 import {DailySalesCreateRequest} from "../../models/dailySales/DailySalesCreateRequest";
-import {SalesReportDTO} from "../../repository/dailySales/SalesReportDTO";
+import {DashbordReportDTO} from "../../repository/dailySales/DashbordReportDTO";
 
 @injectable()
 export class DailySalesService implements IDailySalesService {
     constructor(@inject("IDailySalesRepository") private readonly dailySalesRepository: IDailySalesRepository) {
     }
 
-    async dashboard(): Promise<SalesReportDTO[]> {
+    async dashboard(): Promise<DashbordReportDTO[]> {
         return await this.dailySalesRepository.dashboard();
     }
 
@@ -20,7 +20,7 @@ export class DailySalesService implements IDailySalesService {
 
     async create(req: DailySalesCreateRequest): Promise<boolean> {
         let dailySalesEntity: DailySalesEntity = new DailySalesEntity();
-        dailySalesEntity.type = req.type;
+        dailySalesEntity.saleType = req.saleType;
         dailySalesEntity.money = req.money;
 
         return await this.dailySalesRepository.create(dailySalesEntity);

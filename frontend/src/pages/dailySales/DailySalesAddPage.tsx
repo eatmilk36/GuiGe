@@ -8,12 +8,12 @@ import { toast } from 'react-toastify';
 const DailySalesAddPage: React.FC = () => {
     const navigate = useNavigate();
     const [money, setMoney] = useState('');
-    const [type, setType] = useState(1); // 初始值為收入 (1)
+    const [saleType, setSaleType] = useState(1); // 初始值為收入 (1)
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     const handleAddDailySales = async () => {
         const requestData: DailySalesCreateRequest = {
-            type: type,
+            saleType: saleType,
             money: parseFloat(money),
         };
 
@@ -47,8 +47,8 @@ const DailySalesAddPage: React.FC = () => {
                     <InputLabel id="type-label">類型</InputLabel>
                     <Select
                         labelId="type-label"
-                        value={type}
-                        onChange={(e) => setType(Number(e.target.value))}
+                        value={saleType}
+                        onChange={(e) => setSaleType(Number(e.target.value))}
                         label="類型"
                     >
                         <MenuItem value={1}>收入</MenuItem>

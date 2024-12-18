@@ -2,7 +2,7 @@ import {DailySalesEntity} from "../../entities/DailySalesEntity";
 import {IDailySalesRepository} from "./IDailySalesRepository";
 import {DataSource, Repository} from "typeorm";
 import {inject, injectable} from "tsyringe";
-import {SalesReportDTO} from "./SalesReportDTO";
+import {DashbordReportDTO} from "./DashbordReportDTO";
 
 @injectable()
 export class DailySalesRepository implements IDailySalesRepository {
@@ -12,7 +12,7 @@ export class DailySalesRepository implements IDailySalesRepository {
         this.dailySalesRepository = this.dataSource.getRepository(DailySalesEntity);
     }
 
-    async dashboard(): Promise<SalesReportDTO[] | null> {
+    async dashboard(): Promise<DashbordReportDTO[] | null> {
         try {
             const query = `
 SELECT

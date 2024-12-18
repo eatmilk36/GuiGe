@@ -1,8 +1,8 @@
 import {DailySalesEntity} from "../../entities/DailySalesEntity";
-import {SalesReportDTO} from "./SalesReportDTO";
+import {DashbordReportDTO} from "./DashbordReportDTO";
 
 export interface IDailySalesRepository {
-    dashboard(): Promise<SalesReportDTO[] | null>;
+    dashboard(): Promise<DashbordReportDTO[] | null>;
 
     findAll(): Promise<DailySalesEntity[] | null>
 

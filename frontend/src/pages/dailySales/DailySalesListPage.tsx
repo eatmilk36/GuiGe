@@ -147,7 +147,7 @@ const DailySalesListPage: React.FC = () => {
                                 <TableRow key={sale.id}>
                                     <TableCell>{sale.id}</TableCell>
                                     <TableCell>{sale.money}</TableCell>
-                                    <TableCell>{getTypeLabel(sale.type)}</TableCell>
+                                    <TableCell>{getTypeLabel(sale.saleType)}</TableCell>
                                     <TableCell>{formatDate(sale.createdAt)}</TableCell>
                                 </TableRow>
                             ))}
