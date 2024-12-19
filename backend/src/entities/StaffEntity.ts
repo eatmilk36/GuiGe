@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
+import { StaffWorkEntity } from './StaffWorkEntity';
 
 @Entity({ name: "Staff" })
 export class StaffEntity {
@@ -22,4 +23,7 @@ export class StaffEntity {
 
     @DeleteDateColumn()
     deletedAt?: Date; // 刪除時間
+
+    @OneToMany(() => StaffWorkEntity, (staffWork) => staffWork.staff, { cascade: ["update", "remove"] })
+    staffWorks!: StaffWorkEntity[]; // 與 StaffWork 的一對多關聯，更新和刪除時觸發連鎖反應
 }
