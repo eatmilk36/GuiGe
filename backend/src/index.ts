@@ -12,6 +12,7 @@ import supplierRoutes from "./routes/SupplierRoutes";
 import dailySalesRoutes from "./routes/DailySalesRoutes";
 import productRoutes from "./routes/ProductRoutes";
 import dailySalesTypeRoutes from "./routes/DailySalesTypeRoutes";
+import staffRoutes from "./routes/StaffRoutes";
 
 const app = express();
 
@@ -31,6 +32,7 @@ async function startServer() {
         app.use('/api/dailySales', dailySalesRoutes);
         app.use('/api/dailySalesType', dailySalesTypeRoutes);
         app.use('/api/product', productRoutes);
+        app.use('/api/staff', staffRoutes);
 
         const PORT = process.env.SERVER_PORT ?? 3333;
         app.listen(PORT, () => {

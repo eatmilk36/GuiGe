@@ -30,6 +30,11 @@ import {IDailySalesTypeService} from "./services/dailySalesType/IDailySalesTypeS
 import {DailySalesTypeService} from "./services/dailySalesType/DailySalesTypeService";
 import {DailySalesTypeController} from "./controllers/DailySalesTypeController";
 import {DailySalesTypeRepository} from "./repository/dailySalesType/DailySalesTypeRepository";
+import {IStaffRepository} from "./repository/staff/IStaffRepository";
+import {StaffRepository} from "./repository/staff/StaffRepository";
+import {IStaffService} from "./services/staff/IStaffService";
+import {StaffService} from "./services/staff/StaffService";
+import {StaffController} from "./controllers/StaffController";
 
 container.register(DataSource, { useValue: AppDataSource });
 
@@ -39,6 +44,7 @@ container.register<ISupplierRepository>("ISupplierRepository", { useClass: Suppl
 container.register<IDailySalesRepository>("IDailySalesRepository", { useClass: DailySalesRepository });
 container.register<IDailySalesTypeRepository>("IDailySalesTypeRepository", { useClass: DailySalesTypeRepository });
 container.register<IProductRepository>("IProductRepository", { useClass: ProductRepository });
+container.register<IStaffRepository>("IStaffRepository", { useClass: StaffRepository });
 
 // Service
 container.register<IAuthService>("IAuthService", { useClass: AuthService });
@@ -47,6 +53,7 @@ container.register<ISupplierService>("ISupplierService", { useClass: SupplierSer
 container.register<IDailySalesService>("IDailySalesService", { useClass: DailySalesService });
 container.register<IDailySalesTypeService>("IDailySalesTypeService", { useClass: DailySalesTypeService });
 container.register<IProductService>("IProductService", { useClass: ProductService });
+container.register<IStaffService>("IStaffService", { useClass: StaffService });
 
 // Controller
 container.register(UserController, { useClass: UserController });
@@ -55,5 +62,6 @@ container.register(SupplierController, { useClass: SupplierController });
 container.register(DailySalesController, { useClass: DailySalesController });
 container.register(DailySalesTypeController, { useClass: DailySalesTypeController });
 container.register(ProductController, { useClass: ProductController });
+container.register(StaffController, { useClass: StaffController });
 
 export { container };

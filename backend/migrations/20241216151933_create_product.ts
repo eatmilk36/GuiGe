@@ -19,6 +19,9 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("unitPrice").notNullable().comment("單價");
         table.integer("count").notNullable().comment("數量");
         table.string("note", 255).nullable().comment("備註");
+        table.timestamp("createdAt").defaultTo(knex.fn.now()).notNullable(); // 自動紀錄建立時間
+        table.timestamp("updatedAt").defaultTo(knex.fn.now()).notNullable(); // 自動紀錄更新時間
+        table.timestamp("deletedAt").nullable(); // 刪除時間
 
         // 建立唯一索引
         table.unique(["supplierId", "name"], {
