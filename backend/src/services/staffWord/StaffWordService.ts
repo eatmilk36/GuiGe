@@ -19,6 +19,7 @@ export class StaffWorkService implements IStaffWorkService {
         staffWork.workType = req.workType;
         staffWork.workCount = req.workCount;
         staffWork.staffId = req.staffId;
+        staffWork.pay = req.pay;
 
         return await this.staffWorkRepository.create(staffWork);
     }

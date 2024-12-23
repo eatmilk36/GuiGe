@@ -3,6 +3,7 @@ import {inject, injectable} from "tsyringe";
 import {IStaffWorkRepository} from "./IStaffWorkRepository";
 import {StaffWorkEntity} from "../../entities/StaffWorkEntity";
 import {StaffEntity} from "../../entities/StaffEntity";
+import {StaffWorkListDTO} from "./StaffWorkListDTO";
 
 @injectable()
 export class StaffWorkRepository implements IStaffWorkRepository {
@@ -13,7 +14,17 @@ export class StaffWorkRepository implements IStaffWorkRepository {
     }
 
     async findAll(): Promise<StaffWorkEntity[] | null> {
-        return this.staffWorkRepository.find();
+        let query = "SELECT sw.*,s.name " +
+            "FROM StaffWork sw left join Staff s on s.id = sw.staffId";
+        const result = await this.staffWorkRepository.query(query);
+        return result.map((row: StaffWorkListDTO) => ({
+            id: row.id,
+            name: row.name,
+            workType: row.workType,
+            workCount: row.workCount,
+            pay: row.pay,
+            createdAt: row.createdAt,
+        }));
     }
 
     async create(staffWork: StaffWorkEntity): Promise<boolean> {
@@ -28,6 +39,7 @@ export class StaffWorkRepository implements IStaffWorkRepository {
             const staffWorkEntity = this.staffWorkRepository.create({
                 workType: staffWork.workType,
                 workCount: staffWork.workCount,
+                pay: staffWork.pay,
                 staff: staffEntity,
             });
             await this.staffWorkRepository.save(staffWorkEntity);

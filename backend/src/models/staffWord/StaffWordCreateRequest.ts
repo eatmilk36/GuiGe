@@ -15,4 +15,9 @@ export class StaffWorkCreateRequest {
     @IsNotEmpty({ message: "Work count is required" })
     @Min(1, { message: "Work count must be at least 1" })
     workCount: number; // 工作時數
+
+    @IsInt()
+    @IsNotEmpty({ message: "Pay is required" })
+    @Min(1, { message: "Pay must be at least 1" })
+    pay: number; // 薪水
 }

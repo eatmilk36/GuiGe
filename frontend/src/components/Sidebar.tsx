@@ -5,7 +5,8 @@ import {
     faUsers,
     faTachometerAlt,
     faTh,
-    faChartPie,
+    faBriefcase,
+    faMoneyBillAlt,
     faChevronDown,
     faChevronUp
 } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +24,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         // 根據當前路徑初始化展開狀態
         setExpanded({
             supplier: location.pathname.startsWith('/supplier'),
+            staff: location.pathname.startsWith('/staff'),
+            sales: location.pathname.startsWith('/dailySales'),
         });
     }, [location.pathname]);
 
@@ -78,6 +81,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     <li>
                         <button
                             className="flex items-center justify-between w-full p-4 hover:bg-gray-700 focus:outline-none"
+                            onClick={() => toggleExpand('staff')}
+                        >
+                            <div className="flex items-center">
+                                <FontAwesomeIcon icon={faBriefcase} className="mr-4"/>員工管理
+                            </div>
+                            <FontAwesomeIcon
+                                icon={expanded['staff'] ? faChevronUp : faChevronDown}
+                            />
+                        </button>
+                        {expanded['staff'] && (
+                            <ul className="ml-6 space-y-2">
+                                <li>
+                                    <Link
+                                        to="/staff"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/staff') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        員工列表
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/staffWork"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/staffWork') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        工作類型
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
+                    </li>
+                    <li>
+                        <button
+                            className="flex items-center justify-between w-full p-4 hover:bg-gray-700 focus:outline-none"
                             onClick={() => toggleExpand('supplier')}
                         >
                             <div className="flex items-center">
@@ -115,26 +157,43 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                         )}
                     </li>
                     <li>
-                        <Link
-                            to="/dailySales"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${
-                                isActive('/dailySales') ? 'bg-gray-700' : ''
-                            }`}
-                            onClick={handleLinkClick}
+                        <button
+                            className="flex items-center justify-between w-full p-4 hover:bg-gray-700 focus:outline-none"
+                            onClick={() => toggleExpand('sales')}
                         >
-                            <FontAwesomeIcon icon={faChartPie} className="mr-4"/>每日營業額
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/dailySalesType"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${
-                                isActive('/dailySalesType') ? 'bg-gray-700' : ''
-                            }`}
-                            onClick={handleLinkClick}
-                        >
-                            <FontAwesomeIcon icon={faChartPie} className="mr-4"/>每日營業額類型
-                        </Link>
+                            <div className="flex items-center">
+                                <FontAwesomeIcon icon={faMoneyBillAlt} className="mr-4"/>營業額
+                            </div>
+                            <FontAwesomeIcon
+                                icon={expanded['sales'] ? faChevronUp : faChevronDown}
+                            />
+                        </button>
+                        {expanded['sales'] && (
+                            <ul className="ml-6 space-y-2">
+                                <li>
+                                    <Link
+                                        to="/dailySales"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/dailySales') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        每日營業額
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/dailySalesType"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/dailySalesType') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        營業額類型
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
                     </li>
                 </ul>
             </aside>

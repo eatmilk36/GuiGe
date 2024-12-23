@@ -14,6 +14,10 @@ import ProductListPage from "./pages/product/ProductListPage";
 import ProductAddPage from "./pages/product/ProductAddPage";
 import DailySalesTypeListPage from "./pages/dailySalesType/dailySalesTypeListPage";
 import DailySalesTypeAddPage from "./pages/dailySalesType/dailySalesTypeAddPage";
+import StaffListPage from "./pages/staff/StaffListPage";
+import StaffWorkListPage from "./pages/staffWork/StaffWorkListPage";
+import StaffAddPage from "./pages/staff/StaffAddPage";
+import StaffWorkAddPage from "./pages/staffWork/StaffWorkAddPage";
 
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('authToken'));
@@ -51,6 +55,10 @@ const App: React.FC = () => {
                     <Route path="dailySales/add" element={<DailySalesAddPage/>}/>
                     <Route path="dailySalesType" element={<DailySalesTypeListPage/>}/>
                     <Route path="dailySalesType/add" element={<DailySalesTypeAddPage/>}/>
+                    <Route path="staff" element={<StaffListPage/>}/>
+                    <Route path="staff/add" element={<StaffAddPage/>}/>
+                    <Route path="staffWork" element={<StaffWorkListPage/>}/>
+                    <Route path="staffWork/add" element={<StaffWorkAddPage/>}/>
                 </Route>
             ) : (
                 <Route path="*" element={<Navigate to="/login" replace/>}/>

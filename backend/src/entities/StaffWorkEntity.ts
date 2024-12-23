@@ -24,6 +24,9 @@ export class StaffWorkEntity {
     @Column({type: "int", comment: "工作時數"})
     workCount!: number; // 工作時數
 
+    @Column({type: "int", comment: "薪水"})
+    pay!: number; // 工作時數
+
     @CreateDateColumn()
     createdAt!: Date; // 自動紀錄建立時間
 
