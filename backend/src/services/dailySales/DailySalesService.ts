@@ -4,6 +4,7 @@ import {IDailySalesRepository} from "../../repository/dailySales/IDailySalesRepo
 import {DailySalesEntity} from "../../entities/DailySalesEntity";
 import {DailySalesCreateRequest} from "../../models/dailySales/DailySalesCreateRequest";
 import {DashbordReportDTO} from "../../repository/dailySales/DashbordReportDTO";
+import {DailySalesListDTO} from "../../repository/dailySales/DailySalesListDTO";
 
 @injectable()
 export class DailySalesService implements IDailySalesService {
@@ -14,13 +15,14 @@ export class DailySalesService implements IDailySalesService {
         return await this.dailySalesRepository.dashboard();
     }
 
-    async findAll(): Promise<DailySalesEntity[]> {
+    async findAll(): Promise<DailySalesListDTO[]> {
         return await this.dailySalesRepository.findAll();
     }
 
     async create(req: DailySalesCreateRequest): Promise<boolean> {
         let dailySalesEntity: DailySalesEntity = new DailySalesEntity();
-        dailySalesEntity.saleType = req.saleType;
+        dailySalesEntity.dailySalesTypeId = req.dailySalesTypeId;
+        dailySalesEntity.salesType = req.salesType;
         dailySalesEntity.money = req.money;
 
         return await this.dailySalesRepository.create(dailySalesEntity);

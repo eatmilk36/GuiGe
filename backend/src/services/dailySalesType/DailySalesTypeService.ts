@@ -15,7 +15,6 @@ export class DailySalesTypeService implements IDailySalesTypeService {
 
     async create(req: DailySalesTypeCreateRequest): Promise<boolean> {
         let dailySalesTypeEntity: DailySalesTypeEntity = new DailySalesTypeEntity();
-        dailySalesTypeEntity.dailySalesId = req.dailySalesId;
         dailySalesTypeEntity.name = req.name;
 
         return await this.dailySalesTypeRepository.create(dailySalesTypeEntity);

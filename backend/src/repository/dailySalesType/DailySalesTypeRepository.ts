@@ -2,7 +2,6 @@ import {DailySalesTypeEntity} from "../../entities/DailySalesTypeEntity";
 import {IDailySalesTypeRepository} from "./IDailySalesTypeRepository";
 import {DataSource, Repository} from "typeorm";
 import {inject, injectable} from "tsyringe";
-import {DailySalesEntity} from "../../entities/DailySalesEntity";
 
 @injectable()
 export class DailySalesTypeRepository implements IDailySalesTypeRepository {
@@ -18,16 +17,8 @@ export class DailySalesTypeRepository implements IDailySalesTypeRepository {
 
     async create(dailySalesType: DailySalesTypeEntity): Promise<boolean> {
         try {
-
-            const dailySalesEntityRepository = this.dataSource.getRepository(DailySalesEntity);
-            const dailySalesEntity = await dailySalesEntityRepository.findOneBy({id: dailySalesType.dailySalesId});
-            if (!dailySalesEntity) {
-                throw new Error("dailySalesType not found");
-            }
-
             const newDailySalesType = this.dailySalesTypeRepository.create({
                 name: dailySalesType.name,
-                dailySales: dailySalesEntity,
                 isActive: true
             });
             await this.dailySalesTypeRepository.save(newDailySalesType);

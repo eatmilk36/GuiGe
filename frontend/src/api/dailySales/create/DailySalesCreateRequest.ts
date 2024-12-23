@@ -1,4 +1,5 @@
 export interface DailySalesCreateRequest {
-    saleType: number,
+    dailySalesTypeId:number,
+    salesType: number,
     money: number;
 }

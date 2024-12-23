@@ -41,9 +41,9 @@ const DailySalesListPage: React.FC = () => {
     }, []);
 
     const filteredDailySales = dailySales
-        .filter(sale => sale.money.toString().includes(searchQuery)) // 篩選金額
-        .filter(sale => {
-            const saleDate = new Date(sale.createdAt);
+        .filter(sales => sales.money.toString().includes(searchQuery)) // 篩選金額
+        .filter(sales => {
+            const saleDate = new Date(sales.createdAt);
             const startOfDay = startDate ? new Date(startDate).setHours(0, 0, 0, 0) : null;
             const endOfDay = endDate ? new Date(endDate).setHours(23, 59, 59, 999) : null;
 
@@ -137,18 +137,20 @@ const DailySalesListPage: React.FC = () => {
                             <TableCell>識別值</TableCell>
                             <TableCell>金額</TableCell>
                             <TableCell>類型</TableCell>
+                            <TableCell>項目</TableCell>
                             <TableCell>日期</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {filteredDailySales
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((sale) => (
-                                <TableRow key={sale.id}>
-                                    <TableCell>{sale.id}</TableCell>
-                                    <TableCell>{sale.money}</TableCell>
-                                    <TableCell>{getTypeLabel(sale.saleType)}</TableCell>
-                                    <TableCell>{formatDate(sale.createdAt)}</TableCell>
+                            .map((sales) => (
+                                <TableRow key={sales.id}>
+                                    <TableCell>{sales.id}</TableCell>
+                                    <TableCell>{sales.money}</TableCell>
+                                    <TableCell>{getTypeLabel(sales.salesType)}</TableCell>
+                                    <TableCell>{sales.name}</TableCell>
+                                    <TableCell>{formatDate(sales.createdAt)}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

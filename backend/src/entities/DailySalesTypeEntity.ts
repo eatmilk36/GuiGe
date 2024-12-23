@@ -1,13 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    DeleteDateColumn,
+    OneToOne
+} from 'typeorm';
 import {DailySalesEntity} from "./DailySalesEntity";
 
 @Entity({ name: "DailySalesType" })
 export class DailySalesTypeEntity {
     @PrimaryGeneratedColumn({ type: "bigint", unsigned: true })
     id!: number;
-
-    @Column({ type: "bigint", unsigned: true, nullable: false, comment: "每日營業額來鍵" })
-    dailySalesId!: number;
 
     @Column({ type: "varchar", length: 20, comment: "類型名稱" })
     name!: string;
@@ -24,7 +29,6 @@ export class DailySalesTypeEntity {
     @DeleteDateColumn({ type: "timestamp", nullable: true })
     deletedAt!: Date | null;
 
-    @ManyToOne(() => DailySalesEntity, (dailySales) => dailySales.id, { nullable: false, onDelete: "CASCADE", onUpdate: "CASCADE" })
-    @JoinColumn({ name: "dailySalesId" })
+    @OneToOne(() => DailySalesEntity, (dailySales) => dailySales.id, { nullable: false, onDelete: "CASCADE", onUpdate: "CASCADE" })
     dailySales!: DailySalesEntity;
 }

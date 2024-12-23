@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             }`}
                             onClick={handleLinkClick}
                         >
-                            <FontAwesomeIcon icon={faTachometerAlt} className="mr-4" />儀錶板
+                            <FontAwesomeIcon icon={faTachometerAlt} className="mr-4"/>儀錶板
                         </Link>
                     </li>
                     <li>
@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             }`}
                             onClick={handleLinkClick}
                         >
-                            <FontAwesomeIcon icon={faUsers} className="mr-4" />使用者列表
+                            <FontAwesomeIcon icon={faUsers} className="mr-4"/>使用者列表
                         </Link>
                     </li>
                     <li>
@@ -81,7 +81,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             onClick={() => toggleExpand('supplier')}
                         >
                             <div className="flex items-center">
-                                <FontAwesomeIcon icon={faTh} className="mr-4" />供應商
+                                <FontAwesomeIcon icon={faTh} className="mr-4"/>供應商
                             </div>
                             <FontAwesomeIcon
                                 icon={expanded['supplier'] ? faChevronUp : faChevronDown}
@@ -122,7 +122,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             }`}
                             onClick={handleLinkClick}
                         >
-                            <FontAwesomeIcon icon={faChartPie} className="mr-4" />每日營業額
+                            <FontAwesomeIcon icon={faChartPie} className="mr-4"/>每日營業額
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/dailySalesType"
+                            className={`flex items-center p-4 hover:bg-gray-700 ${
+                                isActive('/dailySalesType') ? 'bg-gray-700' : ''
+                            }`}
+                            onClick={handleLinkClick}
+                        >
+                            <FontAwesomeIcon icon={faChartPie} className="mr-4"/>每日營業額類型
                         </Link>
                     </li>
                 </ul>
