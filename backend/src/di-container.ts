@@ -40,6 +40,11 @@ import {StaffWorkService} from "./services/staffWord/StaffWordService";
 import {IStaffWorkRepository} from "./repository/staffWork/IStaffWorkRepository";
 import {StaffWorkRepository} from "./repository/staffWork/StaffWorkRepository";
 import {StaffWorkController} from "./controllers/StaffWordController";
+import {IReportRepository} from "./repository/report/IReportRepository";
+import {ReportRepository} from "./repository/report/ReportRepository";
+import {IReportService} from "./services/report/IReportService";
+import {ReportService} from "./services/report/ReportService";
+import {ReportController} from "./controllers/ReportController";
 
 container.register(DataSource, { useValue: AppDataSource });
 
@@ -51,6 +56,7 @@ container.register<IDailySalesTypeRepository>("IDailySalesTypeRepository", { use
 container.register<IProductRepository>("IProductRepository", { useClass: ProductRepository });
 container.register<IStaffRepository>("IStaffRepository", { useClass: StaffRepository });
 container.register<IStaffWorkRepository>("IStaffWorkRepository", { useClass: StaffWorkRepository });
+container.register<IReportRepository>("IReportRepository", { useClass: ReportRepository });
 
 // Service
 container.register<IAuthService>("IAuthService", { useClass: AuthService });
@@ -61,6 +67,7 @@ container.register<IDailySalesTypeService>("IDailySalesTypeService", { useClass:
 container.register<IProductService>("IProductService", { useClass: ProductService });
 container.register<IStaffService>("IStaffService", { useClass: StaffService });
 container.register<IStaffWorkService>("IStaffWorkService", { useClass: StaffWorkService });
+container.register<IReportService>("IReportService", { useClass: ReportService });
 
 // Controller
 container.register(UserController, { useClass: UserController });
@@ -71,5 +78,6 @@ container.register(DailySalesTypeController, { useClass: DailySalesTypeControlle
 container.register(ProductController, { useClass: ProductController });
 container.register(StaffController, { useClass: StaffController });
 container.register(StaffWorkController, { useClass: StaffWorkController });
+container.register(ReportController, { useClass: ReportController });
 
 export { container };
