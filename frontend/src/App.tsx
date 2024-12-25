@@ -18,6 +18,7 @@ import StaffListPage from "./pages/staff/StaffListPage";
 import StaffWorkListPage from "./pages/staffWork/StaffWorkListPage";
 import StaffAddPage from "./pages/staff/StaffAddPage";
 import StaffWorkAddPage from "./pages/staffWork/StaffWorkAddPage";
+import ReportListPage from "./pages/report/ReportListPage";
 
 const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('authToken'));
@@ -59,6 +60,7 @@ const App: React.FC = () => {
                     <Route path="staff/add" element={<StaffAddPage/>}/>
                     <Route path="staffWork" element={<StaffWorkListPage/>}/>
                     <Route path="staffWork/add" element={<StaffWorkAddPage/>}/>
+                    <Route path="report" element={<ReportListPage/>}/>
                 </Route>
             ) : (
                 <Route path="*" element={<Navigate to="/login" replace/>}/>

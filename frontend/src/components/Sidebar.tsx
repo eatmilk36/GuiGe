@@ -195,6 +195,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             </ul>
                         )}
                     </li>
+                    <li>
+                        <Link
+                            to="/report"
+                            className={`flex items-center p-4 hover:bg-gray-700 ${
+                                isActive('/report') ? 'bg-gray-700' : ''
+                            }`}
+                            onClick={handleLinkClick}
+                        >
+                            <FontAwesomeIcon icon={faTachometerAlt} className="mr-4"/>報表
+                        </Link>
+                    </li>
                 </ul>
             </aside>
 
