@@ -21,7 +21,7 @@ const StaffWorkAddPage: React.FC = () => {
                 const staffs = await fetchStaffList();
                 setStaffList(staffs);
             } catch (error) {
-                console.error('Error fetching staff list:', error);
+                console.error('獲取員工列表失敗', error);
             }
         };
 
@@ -45,7 +45,7 @@ const StaffWorkAddPage: React.FC = () => {
             return;
         }
         toast.success('員工工作新增成功！', { position: 'top-right' }); // 顯示成功通知
-        navigate('/staffwork'); // 跳轉至列表頁
+        navigate('/staffWork'); // 跳轉至列表頁
     };
 
     return (

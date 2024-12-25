@@ -77,14 +77,14 @@ const ProductListPage: React.FC = () => {
 
                 setProducts(fetchedProducts as Product[]);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('獲取產品失敗', error);
             }
         };
 
-        fetchData();
+        fetchData().then(_ => {});
     }, []);
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 
@@ -127,7 +127,7 @@ const ProductListPage: React.FC = () => {
                     <Autocomplete
                         options={[{ label: '全部產品', id: '' }, ...productOptions]}
                         getOptionLabel={(option) => option.label}
-                        onChange={(event, value) => setSelectedProductId(value?.id ?? null)}
+                        onChange={(_, value) => setSelectedProductId(value?.id ?? null)}
                         renderInput={(params) => (
                             <TextField
                                 {...params}
@@ -141,7 +141,7 @@ const ProductListPage: React.FC = () => {
                     <Autocomplete
                         options={[{ label: '全部供應商', id: '' }, ...supplierOptions]}
                         getOptionLabel={(option) => option.label}
-                        onChange={(event, value) => setSelectedSupplierId(value?.id ?? null)}
+                        onChange={(_, value) => setSelectedSupplierId(value?.id ?? null)}
                         renderInput={(params) => (
                             <TextField
                                 {...params}

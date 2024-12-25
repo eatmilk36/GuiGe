@@ -3,10 +3,10 @@ import { SupplierCreateRequest } from './SupplierCreateRequest';
 import { validateSchema } from '../../ValidateSchema';
 
 const SupplierCreateSchema = yup.object({
-    name: yup.string().required('Name is required').min(1, 'Name must be at least 4 characters'),
-    address: yup.string().required('Address is required').min(10, 'Address must be at least 10 characters'),
-    email: yup.string().required('Email is required').min(10, 'Email must be at least 10 characters').email('Invalid email format'),
-    phone: yup.string().required('Phone is required').min(10, 'Phone must be at least 10 characters'),
+    name: yup.string().required('名稱為必填').min(1, '名稱至少需包含4個字元'),
+    address: yup.string().required('地址為必填').min(10, '地址至少需包含10個字元'),
+    email: yup.string().required('電子郵件為必填').min(10, '電子郵件至少需包含10個字元').email('電子郵件格式無效'),
+    phone: yup.string().required('電話為必填').min(10, '電話至少需包含10個字元'),
     isActive: yup.boolean().optional(),
 });
 

@@ -30,18 +30,18 @@ const DailySalesTypeListPage: React.FC = () => {
                 const fetchedDailySalesTypes = await list();
                 setDailySalesTypes(fetchedDailySalesTypes);
             } catch (error) {
-                console.error('Error fetching daily sales types:', error);
+                console.error('獲取日銷售額類型失敗', error);
             }
         };
 
-        fetchDailySalesTypes();
+        fetchDailySalesTypes().then(_ => {});
     }, []);
 
     const filteredDailySalesTypes = dailySalesTypes.filter(dailySalesType =>
         dailySalesType.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 

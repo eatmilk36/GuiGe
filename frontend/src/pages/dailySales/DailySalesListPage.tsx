@@ -33,11 +33,11 @@ const DailySalesListPage: React.FC = () => {
                 const fetchedDailySales = await list();
                 setDailySales(fetchedDailySales);
             } catch (error) {
-                console.error('Error fetching daily sales:', error);
+                console.error('獲取日銷售額失敗', error);
             }
         };
 
-        fetchDailySales();
+        fetchDailySales().then(_ => {});
     }, []);
 
     const filteredDailySales = dailySales
@@ -54,7 +54,7 @@ const DailySalesListPage: React.FC = () => {
         }) // 篩選日期範圍
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()); // 時間反序排序
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 

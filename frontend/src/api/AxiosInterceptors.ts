@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const API_URL = 'http://localhost:3333/api/';
 
@@ -37,7 +37,7 @@ const handleTokenRefresh = async (originalRequest: any, handleLogout: () => void
             return retryRequestWithToken(originalRequest, newToken);
         } catch (error) {
             handleLogout();
-            throw wrapError(error, 'Failed to renew token');
+            throw wrapError(error, '刷新令牌失敗');
         } finally {
             isRefreshing = false;
         }
@@ -70,7 +70,7 @@ apiClient.interceptors.request.use(
         }
         return config;
     },
-    (error) => Promise.reject(wrapError(error, 'Request interception error'))
+    (error) => Promise.reject(wrapError(error, '請求攔截錯誤'))
 );
 
 // 添加回應攔截器來處理 403 錯誤
@@ -83,21 +83,21 @@ export const setupInterceptors = (navigate: (path: string) => void) => {
     apiClient.interceptors.response.use(
         (response) => response,
         async (error) => {
-            console.log('interceptors error:'); // 僅打印一次
+            console.log('攔截器錯誤:'); // 僅打印一次
 
             const originalRequest = error.config;
 
             // 若已處理過此請求的錯誤，直接拋出
             if (originalRequest._handled) {
-                throw wrapError(error, 'Response interception error');
+                throw wrapError(error, '回應攔截錯誤');
             }
 
             // 標記此請求錯誤為已處理
             originalRequest._handled = true;
 
             if (error.response?.status === 400) {
-                toast.error('Bad Request: ' + (error.response.data.message || 'Invalid input'));
-                throw wrapError(error, 'Bad Request error');
+                toast.error('請求錯誤: ' + (error.response.data.message || '輸入無效'));
+                throw wrapError(error, '請求錯誤');
             }
 
             if (error.response?.status === 403 && !originalRequest._retry) {
@@ -106,14 +106,14 @@ export const setupInterceptors = (navigate: (path: string) => void) => {
                 if (retryCount >= MAX_RETRIES) {
                     handleLogout();
                     retryCount = 0;
-                    throw wrapError(error, 'Max retries reached');
+                    throw wrapError(error, '已達到最大重試次數');
                 }
 
                 retryCount++;
                 return handleTokenRefresh(originalRequest, handleLogout);
             }
 
-            throw wrapError(error, 'Response interception error');
+            throw wrapError(error, '回應攔截錯誤');
         }
     );
 };
@@ -130,7 +130,7 @@ const renewToken = async (): Promise<string> => {
         localStorage.setItem('authToken', newToken); // 更新 token
         return newToken;
     } catch (error) {
-        throw wrapError(error, 'Failed to renew token');
+        throw wrapError(error, '刷新令牌失敗');
     }
 };
 

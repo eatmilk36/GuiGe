@@ -30,7 +30,7 @@ const StaffWorkListPage: React.FC = () => {
                 const fetchedStaffWorks = await list();
                 setStaffWorks(fetchedStaffWorks);
             } catch (error) {
-                console.error('Error fetching staff works:', error);
+                console.error('獲取員工工作列表失敗', error);
             }
         };
 

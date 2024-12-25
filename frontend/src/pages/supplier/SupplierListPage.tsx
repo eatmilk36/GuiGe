@@ -30,7 +30,7 @@ const SupplierListPage: React.FC = () => {
                 const fetchedSuppliers = await list();
                 setSuppliers(fetchedSuppliers);
             } catch (error) {
-                console.error('Error fetching suppliers:', error);
+                console.error('獲取供應商列表失敗', error);
             }
         };
 

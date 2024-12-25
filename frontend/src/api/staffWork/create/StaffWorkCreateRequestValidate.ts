@@ -1,11 +1,11 @@
 import * as yup from 'yup';
-import {StaffWorkCreateRequest} from './StaffWorkCreateRequest';
-import {validateSchema} from '../../ValidateSchema';
+import { StaffWorkCreateRequest } from './StaffWorkCreateRequest';
+import { validateSchema } from '../../ValidateSchema';
 
 const StaffWorkCreateSchema = yup.object({
-    staffId: yup.number().required('StaffId is required'),
-    workType: yup.number().required('WorkType is required'),
-    workCount: yup.number().required('WorkCount is required')
+    staffId: yup.number().required('員工 ID 為必填'),
+    workType: yup.number().required('工作類型為必填'),
+    workCount: yup.number().required('工作數量為必填')
 });
 
 export const validateStaffWorkCreate = (data: StaffWorkCreateRequest): Promise<Record<string, string>> => {

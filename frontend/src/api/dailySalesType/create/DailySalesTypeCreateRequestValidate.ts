@@ -3,7 +3,7 @@ import { DailySalesTypeCreateRequest } from './DailySalesTypeCreateRequest';
 import { validateSchema } from '../../ValidateSchema';
 
 const DailySalesTypeCreateSchema = yup.object({
-    name: yup.string().required('Name is required').min(1, 'Name must be at least 1 characters'),
+    name: yup.string().required('名稱為必填').min(1, '名稱至少需包含1個字元'),
 });
 
 export const validateDailySalesTypeCreate = (data: DailySalesTypeCreateRequest): Promise<Record<string, string>> => {
