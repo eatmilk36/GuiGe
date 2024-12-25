@@ -30,7 +30,7 @@ const UserListPage: React.FC = () => {
                 const fetchedUsers = await list();
                 setUsers(fetchedUsers);
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('獲取使用者列表失敗', error);
             }
         };
 
