@@ -15,12 +15,12 @@ export class AuthController {
             const token = await this.authService.validateUser(username, password);
 
             if (!token) {
-                return res.status(401).json({message: 'Invalid credentials'});
+                return res.status(401).json({message: '無效的憑證'});
             }
 
             return res.status(200).json({token});
         } catch (error) {
-            return res.status(500).json({message: 'Internal server error', error: error.message});
+            return res.status(500).json({message: '內部伺服器錯誤', error: error.message});
         }
     }
 
@@ -32,7 +32,7 @@ export class AuthController {
 
             return res.status(200).json({token: newToken});
         } catch (error) {
-            return res.status(500).json({message: 'Internal server error', error: error.message});
+            return res.status(500).json({message: '內部伺服器錯誤', error: error.message});
         }
     }
 }

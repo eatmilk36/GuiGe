@@ -7,13 +7,13 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     const token = req.headers['authorization']?.split(' ')[1]; // Bearer Token
 
     if (!token) {
-        res.status(401).json({ message: 'Access token is missing or invalid' });
+        res.status(401).json({ message: '存取權杖缺失或無效' });
         return;
     }
 
-    jwt.verify(token, SECRET_KEY, (err, user) => {
+    jwt.verify(token, SECRET_KEY, (err, _) => {
         if (err) {
-            res.status(403).json({ message: 'Invalid token' });
+            res.status(403).json({ message: '權杖無效' });
             return;
         }
 

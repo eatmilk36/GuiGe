@@ -29,11 +29,10 @@ export class StaffWorkRepository implements IStaffWorkRepository {
 
     async create(staffWork: StaffWorkEntity): Promise<boolean> {
         try {
-
             const staffEntityRepository = this.dataSource.getRepository(StaffEntity);
             const staffEntity = await staffEntityRepository.findOneBy({id: staffWork.staffId});
             if (!staffEntity) {
-                throw new Error("staff not found");
+                throw new Error("找不到該員工");
             }
 
             const staffWorkEntity = this.staffWorkRepository.create({
@@ -45,7 +44,7 @@ export class StaffWorkRepository implements IStaffWorkRepository {
             await this.staffWorkRepository.save(staffWorkEntity);
             return true; // 儲存成功時回傳 true
         } catch (error) {
-            console.error('Error saving staffWork', error); // 可以記錄錯誤資訊
+            console.error('儲存員工工作時發生錯誤', error); // 可以記錄錯誤資訊
             return false; // 發生錯誤時回傳 false
         }
     }

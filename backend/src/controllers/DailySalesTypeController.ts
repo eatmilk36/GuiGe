@@ -28,10 +28,10 @@ export class DailySalesTypeController {
         try {
             let isSuccess = await this.dailySalesTypeService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'DailySalesTypeEntity created successfully'});
+                res.status(201).json({message: '每日銷售類型創建成功'});
                 return;
             }
-            res.status(400).json({message: 'DailySalesTypeEntity already exists'});
+            res.status(400).json({message: '每日銷售類型已存在'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

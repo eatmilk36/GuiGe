@@ -72,7 +72,7 @@ export class DailySalesRepository implements IDailySalesRepository {
                 type: row.type as "daily" | "monthly" | "quarterly" | "yearly",
             }));
         } catch (error) {
-            console.error("Error generating dashboard:", error);
+            console.error("生成儀表板時發生錯誤:", error);
             return null;
         }
     }
@@ -98,7 +98,7 @@ export class DailySalesRepository implements IDailySalesRepository {
             await this.dailySalesRepository.save(newDailySales);
             return true; // 儲存成功時回傳 true
         } catch (error) {
-            console.error('Error saving dailySales:', error); // 可以記錄錯誤資訊
+            console.error('儲存每日銷售數據時發生錯誤:', error); // 可以記錄錯誤資訊
             return false; // 發生錯誤時回傳 false
         }
     }

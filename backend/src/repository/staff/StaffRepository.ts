@@ -21,7 +21,7 @@ export class StaffRepository implements IStaffRepository {
             await this.staffRepository.save(newStaff);
             return true; // 儲存成功時回傳 true
         } catch (error) {
-            console.error('Error saving staff:', error); // 可以記錄錯誤資訊
+            console.error('儲存員工時發生錯誤:', error); // 可以記錄錯誤資訊
             return false; // 發生錯誤時回傳 false
         }
     }

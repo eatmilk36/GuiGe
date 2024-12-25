@@ -12,7 +12,7 @@ export class AuthService implements IAuthService {
 
     private generateToken(payload: object): string {
         if (!process.env.SECRET_KEY) {
-            throw new Error("SECRET_KEY is not defined in environment variables.");
+            throw new Error("環境變數中未定義 SECRET_KEY。");
         }
         return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
     }

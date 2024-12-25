@@ -23,7 +23,7 @@ export class ProductRepository implements IProductRepository {
             const supplierRepository = this.dataSource.getRepository(SupplierEntity);
             const supplier = await supplierRepository.findOneBy({id: product.supplierId});
             if (!supplier) {
-                throw new Error("Product not found");
+                throw new Error("產品找不到");
             }
 
             const newProduct = this.productRepository.create({

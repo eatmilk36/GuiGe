@@ -1,30 +1,30 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
 
 export class ProductCreateRequest {
-    @IsNumber({}, { message: "Supplier ID must be a number" })
-    @IsNotEmpty({ message: "Supplier ID is required" })
+    @IsNumber({}, { message: "供應商 ID 必須是數字" })
+    @IsNotEmpty({ message: "供應商 ID 是必填項" })
     supplierId!: number;
 
-    @IsString({ message: "Product name must be a string" })
-    @IsNotEmpty({ message: "Product name is required" })
-    @MaxLength(20, { message: "Product name must not exceed 20 characters" })
+    @IsString({ message: "產品名稱必須是字串" })
+    @IsNotEmpty({ message: "產品名稱是必填項" })
+    @MaxLength(20, { message: "產品名稱不得超過 20 個字元" })
     name!: string;
 
-    @IsNumber({}, { message: "Unit price must be a number" })
-    @IsNotEmpty({ message: "Unit price is required" })
+    @IsNumber({}, { message: "單價必須是數字" })
+    @IsNotEmpty({ message: "單價是必填項" })
     unitPrice!: number;
 
-    @IsString({ message: "Pricing unit must be a string" })
-    @IsNotEmpty({ message: "Pricing unit is required" })
-    @MaxLength(10, { message: "Pricing unit must not exceed 10 characters" })
+    @IsString({ message: "計價單位必須是字串" })
+    @IsNotEmpty({ message: "計價單位是必填項" })
+    @MaxLength(10, { message: "計價單位不得超過 10 個字元" })
     pricingUnit!: string;
 
-    @IsNumber({}, { message: "Count must be a number" })
-    @IsNotEmpty({ message: "Count is required" })
+    @IsNumber({}, { message: "數量必須是數字" })
+    @IsNotEmpty({ message: "數量是必填項" })
     count!: number;
 
-    @IsString({ message: "Note must be a string" })
+    @IsString({ message: "備註必須是字串" })
     @IsOptional() // 備註是選填欄位
-    @MaxLength(255, { message: "Note must not exceed 255 characters" })
+    @MaxLength(255, { message: "備註不得超過 255 個字元" })
     note?: string;
 }

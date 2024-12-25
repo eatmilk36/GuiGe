@@ -28,10 +28,10 @@ export class ProductController {
         try {
             let isSuccess = await this.productService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'ProductEntity created successfully'});
+                res.status(201).json({message: '產品創建成功'});
                 return;
             }
-            res.status(400).json({message: 'ProductEntity already exists'});
+            res.status(400).json({message: '產品已存在'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

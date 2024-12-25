@@ -28,10 +28,10 @@ export class SupplierController {
         try {
             let isSuccess = await this.supplierService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'SupplierEntity created successfully'});
+                res.status(201).json({message: '供應商資料創建成功'});
                 return;
             }
-            res.status(400).json({message: 'SupplierEntity already exists'});
+            res.status(400).json({message: '供應商資料已存在'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

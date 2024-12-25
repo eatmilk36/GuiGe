@@ -35,10 +35,10 @@ export class DailySalesController {
         try {
             let isSuccess = await this.dailySalesService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'DailySalesEntity created successfully'});
+                res.status(201).json({message: '每日銷售記錄創建成功'});
                 return;
             }
-            res.status(400).json({message: 'DailySalesEntity already exists'});
+            res.status(400).json({message: '每日銷售記錄已存在'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }

@@ -40,7 +40,7 @@ export class UserRepository implements IUserRepository {
         if (existingUser) {
             await this.userRepository.save(user);
         } else {
-            throw new Error(`User with id ${user.id} not found`);
+            throw new Error(`ID 為 ${user.id} 的使用者未找到`);
         }
     }
 
@@ -49,7 +49,7 @@ export class UserRepository implements IUserRepository {
         if (userToDelete) {
             await this.userRepository.remove(userToDelete);
         } else {
-            throw new Error(`User with id ${id} not found`);
+            throw new Error(`ID 為 ${id} 的使用者未找到`);
         }
     }
 }

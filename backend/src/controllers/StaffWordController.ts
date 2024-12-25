@@ -28,10 +28,10 @@ export class StaffWorkController {
         try {
             let isSuccess = await this.staffWorkService.create(dto);
             if (isSuccess) {
-                res.status(201).json({message: 'StaffWorkEntity created successfully'});
+                res.status(201).json({message: '員工工作資料創建成功'});
                 return;
             }
-            res.status(400).json({message: 'StaffWorkEntity already exists'});
+            res.status(400).json({message: '員工工作資料已存在'});
         } catch (error: any) {
             res.status(400).json({message: error.message});
         }
