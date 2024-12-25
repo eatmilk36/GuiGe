@@ -38,24 +38,39 @@ const ReportListPage: React.FC = () => {
         report.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // 計算加總金額（轉為數值後再加總）
-    const totalSalesSum = filteredReports.reduce((sum, report) => {
-        const totalSales = parseFloat(report.totalSales) || 0;
-        return sum + totalSales;
-    }, 0);
+    // 計算收入與支出金額總和
+    const incomeSum = filteredReports
+        .filter(report => report.salesType === 1) // 1: 收入
+        .reduce((sum, report) => sum + (parseFloat(report.totalSales) || 0), 0);
+
+    const expenseSum = filteredReports
+        .filter(report => report.salesType === 2) // 2: 支出
+        .reduce((sum, report) => sum + (parseFloat(report.totalSales) || 0), 0);
+
+    const totalSalesSum = incomeSum - expenseSum; // 收支差額
+
+    const getTypeLabel = (type: number) => {
+        switch (type) {
+            case 1:
+                return '收入';
+            case 2:
+                return '支出';
+            default:
+                return '未知';
+        }
+    };
 
     return (
         <Box p={3}>
             <Typography variant="h4" gutterBottom>
                 供應商列表
             </Typography>
-            {/* 搜尋框和新增按鈕的響應式佈局 */}
             <Box
                 display="flex"
                 flexDirection={{ xs: 'column', sm: 'row' }}
                 justifyContent="space-between"
                 alignItems="center"
-                gap={2} // 元素之間的間距
+                gap={2}
                 mb={2}
             >
                 <TextField
@@ -72,20 +87,20 @@ const ReportListPage: React.FC = () => {
                     onClick={() => navigate('/report/add')}
                     sx={{
                         width: {
-                            xs: '100%', // 小螢幕：按鈕全寬
-                            sm: 'auto', // 中大螢幕：按鈕自適應
+                            xs: '100%',
+                            sm: 'auto',
                         },
                     }}
                 >
                     新增供應商
                 </Button>
             </Box>
-            {/* 表格容器 */}
             <TableContainer component={Paper} style={{ overflowX: 'auto' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>名稱</TableCell>
+                            <TableCell>類型</TableCell>
                             <TableCell align="right">金額</TableCell>
                         </TableRow>
                     </TableHead>
@@ -93,17 +108,38 @@ const ReportListPage: React.FC = () => {
                         {filteredReports.map((report) => (
                             <TableRow key={report.id}>
                                 <TableCell>{report.name}</TableCell>
+                                <TableCell>{getTypeLabel(report.salesType)}</TableCell>
                                 <TableCell align="right">{parseFloat(report.totalSales).toLocaleString()} 元</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/* 總金額顯示 */}
-            <Box mt={2} display="flex" justifyContent="flex-end">
-                <Typography variant="h6" color="text.secondary">
-                    總金額：<Typography component="span" color="primary" variant="h6">{totalSalesSum.toLocaleString()}</Typography> 元
-                </Typography>
+            <Box mt={2}>
+                {/* 收支統計 */}
+                <Box display="flex" justifyContent="space-between" mt={2}>
+                    <Typography variant="h6" color="text.secondary">
+                        總收入：
+                        <Typography component="span" color="primary" variant="h6">
+                            {incomeSum.toLocaleString()} 元
+                        </Typography>
+                    </Typography>
+                    <Typography variant="h6" color="text.secondary">
+                        總支出：
+                        <Typography component="span" color="error" variant="h6">
+                            {expenseSum.toLocaleString()} 元
+                        </Typography>
+                    </Typography>
+                </Box>
+                {/* 差額顯示 */}
+                <Box display="flex" justifyContent="flex-end" mt={2}>
+                    <Typography variant="h6" color="text.secondary">
+                        收支差額：
+                        <Typography component="span" color="primary" variant="h6">
+                            {totalSalesSum.toLocaleString()} 元
+                        </Typography>
+                    </Typography>
+                </Box>
             </Box>
         </Box>
     );

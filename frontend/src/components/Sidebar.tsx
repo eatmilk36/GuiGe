@@ -178,7 +178,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                         }`}
                                         onClick={handleLinkClick}
                                     >
-                                        每日營業額
+                                       營業額列表
                                     </Link>
                                 </li>
                                 <li>
