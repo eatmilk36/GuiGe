@@ -16,45 +16,51 @@ export class DailySalesRepository implements IDailySalesRepository {
     async dashboard(): Promise<DashbordReportDTO[] | null> {
         try {
             const query = `
-                SELECT SUM(money) AS totalSales,
-                       'daily'    AS type
+                SELECT
+                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
+                    'daily' AS type
                 FROM DailySales
                 WHERE
-                    DATE (createdAt) = CURDATE() -- 當天
+                    DATE(createdAt) = CURDATE() -- 當天
                 GROUP BY
-                    DATE (createdAt), type
+                    DATE(createdAt), type
 -- Daily: 當天數據
 
                 UNION ALL
 
-                SELECT SUM(money) AS totalSales,
-                       'monthly'  AS type
+                SELECT
+                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
+                    'monthly' AS type
                 FROM DailySales
-                WHERE DATE_FORMAT(createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') -- 當月
-                GROUP BY DATE_FORMAT(createdAt, '%Y-%m'), type
+                WHERE
+                    DATE_FORMAT(createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') -- 當月
+                GROUP BY
+                    DATE_FORMAT(createdAt, '%Y-%m'), type
 -- Monthly: 當月數據
 
                 UNION ALL
 
-                SELECT SUM(money)  AS totalSales,
-                       'quarterly' AS type
+                SELECT
+                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
+                    'quarterly' AS type
                 FROM DailySales
-                WHERE QUARTER(createdAt) = QUARTER(CURDATE()) -- 當前季度
-                          AND YEAR (createdAt) = YEAR (CURDATE()) -- 當前年份
+                WHERE
+                    QUARTER(createdAt) = QUARTER(CURDATE()) -- 當前季度
+                        AND YEAR(createdAt) = YEAR(CURDATE())  -- 當前年份
                 GROUP BY
-                    YEAR (createdAt), QUARTER(createdAt), type
+                    YEAR(createdAt), QUARTER(createdAt), type
 -- Quarterly: 當前季度數據
 
                 UNION ALL
 
-                SELECT SUM(money) AS totalSales,
-                       'yearly'   AS type
+                SELECT
+                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
+                    'yearly' AS type
                 FROM DailySales
                 WHERE
-                    YEAR (createdAt) = YEAR (CURDATE()) -- 當前年
+                    YEAR(createdAt) = YEAR(CURDATE()) -- 當前年
                 GROUP BY
-                    YEAR (createdAt), type;
--- Yearly: 當年數據
+                    YEAR(createdAt), type;
             `;
 
             const result = await this.dailySalesRepository.query(query);
