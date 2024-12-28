@@ -1,0 +1,122 @@
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: jeter
+      MYSQL_DATABASE: GuiGeDb
+      MYSQL_USER: jeter
+      MYSQL_PASSWORD: jeter
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    container_name: guiGe
+    build:
+      context: ./backend
+    working_dir: /app
+#    command: ["npm", "start"]
+    volumes:
+      - C:/logs:/var/log/myapp # 僅映射日誌
+    ports:
+      - "3333:3333" # 將容器內的 3000 端口映射到主機的 33925
+    environment:
+      - ENVIRONMENT=production
+      - NODE_ENV=production
+      - DB_HOST=mysqldb
+      - DB_USER=jeter
+      - DB_PASSWORD=jeter
+      - DB_NAME=GuiGeDb
+      - DB_PORT=3306
+      - SECRET_KEY=X5Tn+2cVQz8eY4yH3L98h6UkHY2NCs7OpgkT/P2SHMA=
+      - TYPEORM_ENTITIES= "dist/src/entities/*.js"
+    networks:
+      - app_network
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    working_dir: /app
+    ports:
+      - "80:80"
+    networks:
+      - app_network
+    environment:
+      - NODE_ENV=production
+
+  loki:
+    image: grafana/loki:2.9.1
+    container_name: loki
+    ports:
+      - "3100:3100"
+    user: "root"
+    volumes:
+      - C:/logs:/var/log/myapp
+      - ./loki-config:/etc/loki/
+      - C:/loki-data:/var/loki  # 將容器內的 /var/loki 目錄映射到宿主機
+    command: -config.file=/etc/loki/loki.yaml
+    networks:
+      - app_network
+
+  promtail:
+    image: grafana/promtail:2.9.1
+    container_name: promtail
+    ports:
+      - "9080:9080"
+    volumes:
+      - ./promtail-config:/etc/promtail/
+      - C:/logs:/var/log
+    command: -config.file=/etc/promtail/promtail.yaml
+    networks:
+      - app_network
+
+  # 查看需要把在頁面上把loki設定成http:loki:3100 跟 搜尋條件要改成{job="varlogs"}
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_compose
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_ROOT_URL=/grafana/
+    networks:
+      - app_network
+
+#  alpine:
+#    image: nginx:latest # 使用 nginx 官方映像檔
+#    container_name: alpine_proxy
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/nginx.conf:ro # 將自定義的 Nginx 配置文件掛載到容器中
+#    ports:
+#      - "59233:80" # 將宿主機的 59233 埠映射到容器的 80 埠
+#    networks:
+#      - app_network
+#    depends_on:
+#      app:
+#        condition: service_started
+
+networks:
+  app_network:
+    driver: bridge
+    enable_ipv6: false
+
+volumes:
+  grafana-data:

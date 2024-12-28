@@ -29,9 +29,23 @@ export async function up(knex: Knex): Promise<void> {
             .dateTime("deletedAt", { useTz: false })
             .nullable()
             .comment("可為空的刪除時間"); // 可為空的刪除時間
+    }).then(() => {
+        // 設定字元集和排序規則
+        return knex.raw('ALTER TABLE GuiGeDb.DailySales CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+    });
+
+    // 修改資料表，新增 stall 欄位
+    await knex.schema.alterTable("DailySales", (table: Knex.AlterTableBuilder): void => {
+        table.integer("stall").notNullable().comment("攤位1.雜貨2.水果攤").after("dailySalesTypeId");
     });
 }
 
 export async function down(knex: Knex): Promise<void> {
-    await knex.schema.dropTableIfExists("DailySales"); // 刪除資料表
+    // 移除 stall 欄位
+    await knex.schema.alterTable("DailySales", (table: Knex.AlterTableBuilder): void => {
+        table.dropColumn("stall");
+    });
+
+    // 刪除資料表
+    await knex.schema.dropTableIfExists("DailySales");
 }

@@ -2,8 +2,10 @@
   "compilerOptions": {
     "target": "ES6",                  // 編譯到 ES6
     "module": "CommonJS",            // Node.js 使用 CommonJS 模組系統
+//    "module": "esnext",            // Node.js 使用 CommonJS 模組系統
     "outDir": "./dist",              // 編譯輸出的目錄
-    "rootDir": "./src",              // 源碼的根目錄
+    "rootDir": ".",              // 源碼的根目錄
+    "baseUrl": "./src", // 這是關鍵，定義 src 資料夾為基準路徑
 //    "strict": true,                  // 開啟嚴格模式
     "esModuleInterop": true,         // 允許與 CommonJS 模組互操作
     "skipLibCheck": true,            // 跳過型別檢查
@@ -12,7 +14,14 @@
     "emitDecoratorMetadata": true,    // 啟用裝飾器元數據
     "typeRoots": ["./node_modules/@types", "./@types"],
     "types": ["node", "express"],
+//    "paths": {
+//      "@entities/*": ["entities/*"], // 短路徑對應到 src/entities
+//      "@repository/*": ["repository/*"] // 短路徑對應到 src/repository
+//    }
   },
-  "include": ["src/**/*","./migrations/**/*.ts", "./seeds/**/*.ts", "./src/**/*.ts"],           // 包含 src 資料夾下的所有檔案
-  "exclude": ["node_modules"]        // 排除 node_modules 資料夾
+//  "include": [ "migrations", "seeds","src/**/*","./migrations/**/*.ts", "./seeds/**/*.ts", "./src/**/*.ts"],           // 包含 src 資料夾下的所有檔案
+  "include": [
+    "migrations",
+    "seeds","src"],
+  "exclude": ["node_modules","dist"]        // 排除 node_modules 資料夾
 }

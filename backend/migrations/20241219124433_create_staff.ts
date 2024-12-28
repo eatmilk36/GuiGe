@@ -10,6 +10,9 @@ export async function up(knex: Knex): Promise<void> {
         table.timestamp("updatedAt").defaultTo(knex.fn.now()).notNullable(); // 自動紀錄更新時間
         table.timestamp("deletedAt").nullable(); // 刪除時間
         table.comment("員工"); // 表格註解
+    }).then(() => {
+        // 設定字元集和排序規則
+        return knex.raw('ALTER TABLE GuiGeDb.Staff CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     });
 }
 

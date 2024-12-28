@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Table,
     TableBody,
@@ -7,18 +7,14 @@ import {
     TableHead,
     TableRow,
     Paper,
-    TextField,
-    Button,
     Typography,
     Box,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/report/ReportApi';
+import {useNavigate} from 'react-router-dom';
+import {list} from '../../api/report/ReportApi';
 
 const ReportListPage: React.FC = () => {
-    const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState('');
+    useNavigate();
     const [reports, setReports] = useState<any[]>([]);
 
     useEffect(() => {
@@ -35,7 +31,7 @@ const ReportListPage: React.FC = () => {
     }, []);
 
     const filteredReports = reports.filter(report =>
-        report.name.toLowerCase().includes(searchQuery.toLowerCase())
+        report.name.toLowerCase()
     );
 
     // 計算收入與支出金額總和
@@ -62,40 +58,7 @@ const ReportListPage: React.FC = () => {
 
     return (
         <Box p={3}>
-            <Typography variant="h4" gutterBottom>
-                供應商列表
-            </Typography>
-            <Box
-                display="flex"
-                flexDirection={{ xs: 'column', sm: 'row' }}
-                justifyContent="space-between"
-                alignItems="center"
-                gap={2}
-                mb={2}
-            >
-                <TextField
-                    variant="outlined"
-                    placeholder="搜尋供應商"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    fullWidth
-                />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<AddIcon />}
-                    onClick={() => navigate('/report/add')}
-                    sx={{
-                        width: {
-                            xs: '100%',
-                            sm: 'auto',
-                        },
-                    }}
-                >
-                    新增供應商
-                </Button>
-            </Box>
-            <TableContainer component={Paper} style={{ overflowX: 'auto' }}>
+            <TableContainer component={Paper} style={{overflowX: 'auto'}}>
                 <Table>
                     <TableHead>
                         <TableRow>

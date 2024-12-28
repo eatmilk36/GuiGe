@@ -10,6 +10,9 @@ export async function up(knex: Knex): Promise<void> {
         table.timestamp("createdAt", { useTz: false }).defaultTo(knex.fn.now()).notNullable(); // 自動記錄創建時間
         table.timestamp("updatedAt", { useTz: false }).defaultTo(knex.fn.now()).notNullable(); // 自動記錄更新時間
         table.timestamp("deletedAt", { useTz: false }).nullable(); // 可為空的刪除時間
+    }).then(() => {
+        // 設定字元集和排序規則
+        return knex.raw('ALTER TABLE GuiGeDb.Supplier CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     });
 }
 

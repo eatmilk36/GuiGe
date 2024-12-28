@@ -8,3 +8,11 @@ node_modules/
 /.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
 /.idea/dataSources/07ee84b0-b329-4efc-9917-ba6130eae21b/storage_v2/_src_/schema/sys.zb4BAA.meta
 /.idea/
+/backend/migrations/20241126081937_create_user.js
+/backend/migrations/20241130180212_create_supplier_table.js
+/backend/migrations/20241212233333_create_dailySales.js
+/backend/migrations/20241216151933_create_product.js
+/backend/migrations/20241217135833_create_dailySalesType.js
+/backend/migrations/20241219124433_create_staff.js
+/backend/migrations/20241219140133_create_staffWork.js
+/backend/seeds/init_users.js

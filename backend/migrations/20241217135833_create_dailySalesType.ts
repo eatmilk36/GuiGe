@@ -8,16 +8,9 @@ export async function up(knex: Knex): Promise<void> {
         table.timestamp("createdAt").defaultTo(knex.fn.now()).notNullable(); // 自動記錄創建時間
         table.timestamp("updatedAt").defaultTo(knex.fn.now()).notNullable(); // 自動記錄更新時間
         table.timestamp("deletedAt").nullable(); // 刪除時間
-
-        // 新增 dailySalesId 欄位，並設置為外鍵
-        table.bigInteger("dailySalesId")
-            .unsigned()
-            .notNullable()
-            .comment("參考 dailySales 表的 ID")
-            .references("id")
-            .inTable("DailySales")
-            .onDelete("CASCADE") // 設置連鎖反應: 刪除時一併刪除
-            .onUpdate("CASCADE"); // 設置更新時同步更新
+    }).then(() => {
+        // 設定字元集和排序規則
+        return knex.raw('ALTER TABLE GuiGeDb.DailySalesType CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     });
 }
 

@@ -27,6 +27,9 @@ export async function up(knex: Knex): Promise<void> {
         table.unique(["supplierId", "name"], {
             indexName: "product_supplierId_name_uindex",
         });
+    }).then(() => {
+        // 設定字元集和排序規則
+        return knex.raw('ALTER TABLE GuiGeDb.Product CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     });
 
     // 加入表格註解
