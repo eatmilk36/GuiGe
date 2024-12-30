@@ -35,7 +35,6 @@ const ProductCreateSchema = yup.object({
 
     note: yup
         .string()
-        .required('備註為必填項')
         .max(255, '備註不能超過 255 個字'),
 });
 
