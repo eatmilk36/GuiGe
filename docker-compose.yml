@@ -18,6 +18,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: always
 
   app:
     container_name: guiGe
@@ -44,6 +45,7 @@ services:
     depends_on:
       mysqldb:
         condition: service_healthy
+    restart: always
 
   frontend:
     container_name: frontend
@@ -57,6 +59,7 @@ services:
       - app_network
     environment:
       - NODE_ENV=production
+    restart: always
 
   loki:
     image: grafana/loki:2.9.1
@@ -71,6 +74,7 @@ services:
     command: -config.file=/etc/loki/loki.yaml
     networks:
       - app_network
+    restart: always
 
   promtail:
     image: grafana/promtail:2.9.1
@@ -83,6 +87,7 @@ services:
     command: -config.file=/etc/promtail/promtail.yaml
     networks:
       - app_network
+    restart: always
 
   # 查看需要把在頁面上把loki設定成http:loki:3100 跟 搜尋條件要改成{job="varlogs"}
   grafana:
@@ -99,6 +104,7 @@ services:
       - GF_SERVER_ROOT_URL=/grafana/
     networks:
       - app_network
+    restart: always
 
   alpine:
     image: nginx:latest # 使用 nginx 官方映像檔
@@ -112,6 +118,7 @@ services:
     depends_on:
       app:
         condition: service_started
+    restart: always
 
 networks:
   app_network:
