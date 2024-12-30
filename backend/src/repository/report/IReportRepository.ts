@@ -1,3 +1,3 @@
 export interface IReportRepository {
-    daily(stall: number): Promise<any[]>
+    daily(stall: number, date: string): Promise<any[]>
 }

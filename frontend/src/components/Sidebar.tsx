@@ -214,7 +214,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                     <Link
                                         to="/report/1"
                                         className={`flex items-center p-4 hover:bg-gray-700 ${
-                                            isActive('/report/grocery') ? 'bg-gray-700' : ''
+                                            isActive('/report/1') ? 'bg-gray-700' : ''
                                         }`}
                                         onClick={handleLinkClick}
                                     >
@@ -225,7 +225,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                     <Link
                                         to="/report/2"
                                         className={`flex items-center p-4 hover:bg-gray-700 ${
-                                            isActive('/report/fruit') ? 'bg-gray-700' : ''
+                                            isActive('/report/2') ? 'bg-gray-700' : ''
                                         }`}
                                         onClick={handleLinkClick}
                                     >

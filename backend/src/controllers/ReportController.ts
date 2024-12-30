@@ -8,8 +8,8 @@ export class ReportController {
     }
 
     async daily(req: Request, res: Response) {
-        const {stall} = req.params; // 路由參數
-        const reports = await this.reportService.daily(parseInt(stall));
+        const {stall, date} = req.params; // 路由參數
+        const reports = await this.reportService.daily(parseInt(stall), date);
 
         res.status(200).json(reports);
     }

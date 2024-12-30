@@ -6,7 +6,7 @@ import {ReportController} from "../controllers/ReportController";
 const router = Router();
 const dailyController = container.resolve(ReportController);
 
-router.get('/daily/:stall', authenticateToken, async (req, res, next) => {
+router.get('/daily/:stall/:date', authenticateToken, async (req, res, next) => {
     try {
         await dailyController.daily(req, res);
     } catch (error) {
