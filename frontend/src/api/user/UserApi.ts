@@ -2,15 +2,13 @@ import apiClient from '../AxiosInterceptors';
 import {UserCreateRequest} from "./create/UserCreateRequest";
 import {validateUserCreate} from "./create/UserCreateRequestValidate";
 
-const API_URL = 'http://localhost:3333/api/';
-
 export const login = async (username: string, password: string) => {
-    const response = await apiClient.post(`${API_URL}auth/login`, {username, password});
+    const response = await apiClient.post(`auth/login`, {username, password});
     return response.data;
 };
 
 export const list = async () => {
-    const response = await apiClient.get(`${API_URL}user/list`, {});
+    const response = await apiClient.get(`user/list`, {});
     return response.data;
 };
 
@@ -22,7 +20,7 @@ export const create = async (userData: UserCreateRequest) => {
     }
 
     try {
-        const response = await apiClient.post(`${API_URL}user/register`, userData);
+        const response = await apiClient.post(`user/register`, userData);
         return response.data;
     } catch (error) {
         return null;

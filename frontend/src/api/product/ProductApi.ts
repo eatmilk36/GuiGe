@@ -2,10 +2,8 @@ import apiClient from '../AxiosInterceptors';
 import {validateProductCreate} from "./create/ProductCreateRequestValidate";
 import {ProductCreateRequest} from "./create/ProductCreateRequest";
 
-const API_URL = 'http://localhost:3333/api/';
-
 export const list = async () => {
-    const response = await apiClient.get(`${API_URL}product/list`, {});
+    const response = await apiClient.get(`product/list`, {});
     return response.data;
 };
 
@@ -17,7 +15,7 @@ export const create = async (supplierData: ProductCreateRequest) => {
     }
 
     try {
-        const response = await apiClient.post(`${API_URL}product/create`, supplierData);
+        const response = await apiClient.post(`product/create`, supplierData);
         return response.data;
     } catch (error) {
         return null;

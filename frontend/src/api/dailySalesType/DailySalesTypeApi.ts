@@ -2,10 +2,8 @@ import apiClient from '../AxiosInterceptors';
 import {DailySalesTypeCreateRequest} from "./create/DailySalesTypeCreateRequest";
 import {validateDailySalesTypeCreate} from "./create/DailySalesTypeCreateRequestValidate";
 
-const API_URL = 'http://localhost:3333/api/';
-
 export const list = async () => {
-    const response = await apiClient.get(`${API_URL}dailySalesType/list`, {});
+    const response = await apiClient.get(`dailySalesType/list`, {});
     return response.data;
 };
 
@@ -17,7 +15,7 @@ export const create = async (dailySalesTypeData: DailySalesTypeCreateRequest) =>
     }
 
     try {
-        const response = await apiClient.post(`${API_URL}dailySalesType/create`, dailySalesTypeData);
+        const response = await apiClient.post(`dailySalesType/create`, dailySalesTypeData);
         return response.data;
     } catch (error) {
         return null;

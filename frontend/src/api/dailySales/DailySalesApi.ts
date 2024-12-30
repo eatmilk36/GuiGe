@@ -2,15 +2,13 @@ import apiClient from '../AxiosInterceptors';
 import {DailySalesCreateRequest} from "./create/DailySalesCreateRequest";
 import {validateDailySalesCreate} from "./create/DailySalesCreateRequestValidate";
 
-const API_URL = 'http://localhost:3333/api/';
-
 export const dashboard = async () => {
-    const response = await apiClient.get(`${API_URL}dailySales/dashboard`, {});
+    const response = await apiClient.get(`dailySales/dashboard`, {});
     return response.data;
 };
 
 export const list = async () => {
-    const response = await apiClient.get(`${API_URL}dailySales/list`, {});
+    const response = await apiClient.get(`dailySales/list`, {});
     return response.data;
 };
 
@@ -22,7 +20,7 @@ export const create = async (dailySalesData: DailySalesCreateRequest) => {
     }
 
     try {
-        const response = await apiClient.post(`${API_URL}dailySales/create`, dailySalesData);
+        const response = await apiClient.post(`dailySales/create`, dailySalesData);
         return response.data;
     } catch (error) {
         return null;

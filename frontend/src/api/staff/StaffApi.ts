@@ -2,10 +2,8 @@ import apiClient from '../AxiosInterceptors';
 import {StaffCreateRequest} from "./create/StaffCreateRequest";
 import {validateStaffCreate} from "./create/StaffCreateRequestValidate";
 
-const API_URL = 'http://localhost:3333/api/';
-
 export const list = async () => {
-    const response = await apiClient.get(`${API_URL}staff/list`, {});
+    const response = await apiClient.get(`staff/list`, {});
     return response.data;
 };
 
@@ -17,7 +15,7 @@ export const create = async (staffData: StaffCreateRequest) => {
     }
 
     try {
-        const response = await apiClient.post(`${API_URL}staff/create`, staffData);
+        const response = await apiClient.post(`staff/create`, staffData);
         return response.data;
     } catch (error) {
         return null;
