@@ -1,4 +1,3 @@
-
 export interface IReportService {
-    daily(): Promise<any[]>;
+    daily(stall: number): Promise<any[]>;
 }

@@ -7,7 +7,7 @@ export class ReportService implements IReportService {
     constructor(@inject("IReportRepository") private readonly reportRepository: IReportRepository) {
     }
 
-    async daily(): Promise<any[]> {
-        return await this.reportRepository.daily();
+    async daily(stall: number): Promise<any[]> {
+        return await this.reportRepository.daily(stall);
     }
 }

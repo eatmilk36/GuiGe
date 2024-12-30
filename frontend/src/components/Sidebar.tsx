@@ -26,6 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             supplier: location.pathname.startsWith('/supplier'),
             staff: location.pathname.startsWith('/staff'),
             sales: location.pathname.startsWith('/dailySales'),
+            report: location.pathname.startsWith('/report'),
         });
     }, [location.pathname]);
 
@@ -178,7 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                         }`}
                                         onClick={handleLinkClick}
                                     >
-                                       營業額列表
+                                        營業額列表
                                     </Link>
                                 </li>
                                 <li>
@@ -196,15 +197,43 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                         )}
                     </li>
                     <li>
-                        <Link
-                            to="/report"
-                            className={`flex items-center p-4 hover:bg-gray-700 ${
-                                isActive('/report') ? 'bg-gray-700' : ''
-                            }`}
-                            onClick={handleLinkClick}
+                        <button
+                            className="flex items-center justify-between w-full p-4 hover:bg-gray-700 focus:outline-none"
+                            onClick={() => toggleExpand('report')}
                         >
-                            <FontAwesomeIcon icon={faTachometerAlt} className="mr-4"/>報表
-                        </Link>
+                            <div className="flex items-center">
+                                <FontAwesomeIcon icon={faTachometerAlt} className="mr-4"/>報表
+                            </div>
+                            <FontAwesomeIcon
+                                icon={expanded['report'] ? faChevronUp : faChevronDown}
+                            />
+                        </button>
+                        {expanded['report'] && (
+                            <ul className="ml-6 space-y-2">
+                                <li>
+                                    <Link
+                                        to="/report/1"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/report/grocery') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        每日報表 - 雜貨
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/report/2"
+                                        className={`flex items-center p-4 hover:bg-gray-700 ${
+                                            isActive('/report/fruit') ? 'bg-gray-700' : ''
+                                        }`}
+                                        onClick={handleLinkClick}
+                                    >
+                                        每日報表 - 水果攤
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
                     </li>
                 </ul>
             </aside>

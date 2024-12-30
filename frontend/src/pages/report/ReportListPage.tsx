@@ -10,25 +10,30 @@ import {
     Typography,
     Box,
 } from '@mui/material';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {list} from '../../api/report/ReportApi';
 
 const ReportListPage: React.FC = () => {
     useNavigate();
     const [reports, setReports] = useState<any[]>([]);
+    const { stall } = useParams<{ stall: string }>(); // 抓取路由參數
 
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const fetchedReports = await list();
-                setReports(fetchedReports);
+                if (stall) {
+                    const fetchedReports = await list(stall); // 將參數傳入 list 函數
+                    setReports(fetchedReports);
+                } else {
+                    console.error('路由參數 stall 缺失');
+                }
             } catch (error) {
                 console.error('獲取報表列表失敗', error);
             }
         };
 
         fetchReports();
-    }, []);
+    }, [stall]);
 
     const filteredReports = reports.filter(report =>
         report.name.toLowerCase()

@@ -1,8 +1,6 @@
 import {DataSource} from "typeorm";
 import * as process from "node:process";
 
-console.log(process.env.DB_USER)
-
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST ?? "127.0.0.1",

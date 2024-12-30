@@ -60,7 +60,7 @@ const App: React.FC = () => {
                     <Route path="staff/add" element={<StaffAddPage/>}/>
                     <Route path="staffWork" element={<StaffWorkListPage/>}/>
                     <Route path="staffWork/add" element={<StaffWorkAddPage/>}/>
-                    <Route path="report" element={<ReportListPage/>}/>
+                    <Route path="report/:stall" element={<ReportListPage/>}/>
                 </Route>
             ) : (
                 <Route path="*" element={<Navigate to="/login" replace/>}/>
