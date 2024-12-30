@@ -15,7 +15,8 @@ export class StaffWorkRepository implements IStaffWorkRepository {
 
     async findAll(): Promise<StaffWorkEntity[] | null> {
         let query = "SELECT sw.*,s.name " +
-            "FROM StaffWork sw left join Staff s on s.id = sw.staffId";
+            "FROM StaffWork sw left join Staff s on s.id = sw.staffId"
+            + " WHERE sw.deletedAt IS NULL AND s.deletedAt IS NULL";
         const result = await this.staffWorkRepository.query(query);
         return result.map((row: StaffWorkListDTO) => ({
             id: row.id,

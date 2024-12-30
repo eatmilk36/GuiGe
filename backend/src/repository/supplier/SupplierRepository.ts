@@ -12,7 +12,9 @@ export class SupplierRepository implements ISupplierRepository {
     }
 
     async findAll(): Promise<SupplierEntity[] | null> {
-        return this.supplierRepository.find();
+        return this.supplierRepository.find({
+            where: {deletedAt: null}
+        });
     }
 
     async create(supplier: SupplierEntity): Promise<boolean> {

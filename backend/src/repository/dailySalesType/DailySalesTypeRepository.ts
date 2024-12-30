@@ -12,7 +12,9 @@ export class DailySalesTypeRepository implements IDailySalesTypeRepository {
     }
 
     async findAll(): Promise<DailySalesTypeEntity[] | null> {
-        return this.dailySalesTypeRepository.find();
+        return this.dailySalesTypeRepository.find({
+            where: {deletedAt: null}
+        });
     }
 
     async create(dailySalesType: DailySalesTypeEntity): Promise<boolean> {

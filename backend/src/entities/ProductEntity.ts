@@ -4,7 +4,7 @@ import {
   Column,
   Index,
   ManyToOne,
-  JoinColumn,
+  JoinColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn,
 } from "typeorm";
 import { SupplierEntity } from "./SupplierEntity";
 
@@ -31,6 +31,15 @@ export class ProductEntity {
 
   @Column({ type: "varchar", length: 255, nullable: true, comment: "備註" })
   note?: string;
+
+  @CreateDateColumn()
+  createdAt!: Date; // 自動紀錄建立時間
+
+  @UpdateDateColumn()
+  updatedAt!: Date; // 自動紀錄更新時間
+
+  @DeleteDateColumn()
+  deletedAt?: Date; // 刪除時間
 
   // 關聯至 Supplier 表格
   @ManyToOne(() => SupplierEntity, (supplier) => supplier.products, {

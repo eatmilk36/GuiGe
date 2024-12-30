@@ -12,7 +12,9 @@ export class UserRepository implements IUserRepository {
     }
 
     async findAll(): Promise<UserEntity[] | null> {
-        return this.userRepository.find();
+        return this.userRepository.find({
+            where: {deletedAt: null}
+        });
     }
 
     async findOne(username: string): Promise<UserEntity | null> {

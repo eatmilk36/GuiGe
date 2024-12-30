@@ -92,7 +92,8 @@ export class DailySalesRepository implements IDailySalesRepository {
 
     async findAll(): Promise<DailySalesListDTO[] | null> {
         let query = "SELECT ds.*,dst.name" +
-            "    FROM DailySales as ds left join DailySalesType dst on dst.id = ds.dailySalesTypeId";
+            "    FROM DailySales as ds left join DailySalesType dst on dst.id = ds.dailySalesTypeId"
+            + " WHERE ds.deletedAt IS NULL AND dst.deletedAt IS NULL";
         const result = await this.dailySalesRepository.query(query);
 
         // 將結果轉換為 DTO 格式

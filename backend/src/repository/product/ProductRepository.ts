@@ -14,7 +14,9 @@ export class ProductRepository implements IProductRepository {
     }
 
     async findAll(): Promise<ProductEntity[] | null> {
-        return this.productRepository.find();
+        return this.productRepository.find({
+            where: {deletedAt: null}
+        });
     }
 
     async create(product: ProductCreateRequest): Promise<boolean> {

@@ -12,7 +12,9 @@ export class StaffRepository implements IStaffRepository {
     }
 
     async findAll(): Promise<StaffEntity[] | null> {
-        return this.staffRepository.find();
+        return this.staffRepository.find({
+            where: {deletedAt: null}
+        });
     }
 
     async create(staff: StaffEntity): Promise<boolean> {
