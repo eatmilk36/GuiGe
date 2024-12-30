@@ -30,7 +30,7 @@ const SupplierAddPage: React.FC = () => {
             return;
         }
         toast.success('供應商新增成功！', { position: 'top-right' }); // 顯示成功通知
-        navigate('/supplier'); // 跳轉至列表頁
+        navigate('/supplier/list'); // 跳轉至列表頁
     };
 
     return (
