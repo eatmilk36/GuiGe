@@ -16,51 +16,64 @@ export class DailySalesRepository implements IDailySalesRepository {
     async dashboard(): Promise<DashbordReportDTO[] | null> {
         try {
             const query = `
-                SELECT
-                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
-                    'daily' AS type
+                SELECT SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) -
+                       SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) -
+                       (SELECT COALESCE(SUM(sw.pay), 0)
+                        FROM GuiGeDb.StaffWork AS sw
+                                 LEFT JOIN GuiGeDb.Staff AS s ON sw.staffId = s.id
+                        WHERE
+                        DATE(sw.createdAt) = CURDATE() AND sw.deletedAt IS NULL AND s.deletedAt IS NULL) AS totalSales
+                     , 'daily' AS type
                 FROM DailySales
-                WHERE
-                    DATE(createdAt) = CURDATE() -- 當天
-                GROUP BY
-                    DATE(createdAt), type
--- Daily: 當天數據
+                WHERE DATE (createdAt) = CURDATE() -- 當天
+                GROUP BY DATE (createdAt), type
 
                 UNION ALL
 
-                SELECT
-                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
-                    'monthly' AS type
+                SELECT SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) -
+                       SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) -
+                       (SELECT COALESCE(SUM(sw.pay), 0)
+                        FROM GuiGeDb.StaffWork AS sw
+                                 LEFT JOIN GuiGeDb.Staff AS s ON sw.staffId = s.id
+                        WHERE DATE_FORMAT(sw.createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
+                          AND sw.deletedAt IS NULL
+                          AND s.deletedAt IS NULL) AS totalSales,
+                       'monthly'                   AS type
                 FROM DailySales
-                WHERE
-                    DATE_FORMAT(createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') -- 當月
-                GROUP BY
-                    DATE_FORMAT(createdAt, '%Y-%m'), type
--- Monthly: 當月數據
+                WHERE DATE_FORMAT(createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') -- 當月
+                GROUP BY DATE_FORMAT(createdAt, '%Y-%m'), type
 
                 UNION ALL
 
-                SELECT
-                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
-                    'quarterly' AS type
+                SELECT SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) -
+                       SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) -
+                       (SELECT COALESCE(SUM(sw.pay), 0)
+                        FROM GuiGeDb.StaffWork AS sw
+                                 LEFT JOIN GuiGeDb.Staff AS s ON sw.staffId = s.id
+                        WHERE QUARTER(sw.createdAt) = QUARTER(CURDATE())
+                                  AND YEAR (sw.createdAt) = YEAR(CURDATE())
+          AND sw.deletedAt IS NULL
+          AND s.deletedAt IS NULL) AS totalSales,
+       'quarterly'                 AS type
                 FROM DailySales
-                WHERE
-                    QUARTER(createdAt) = QUARTER(CURDATE()) -- 當前季度
-                        AND YEAR(createdAt) = YEAR(CURDATE())  -- 當前年份
-                GROUP BY
-                    YEAR(createdAt), QUARTER(createdAt), type
--- Quarterly: 當前季度數據
+                WHERE QUARTER(createdAt) = QUARTER(CURDATE()) -- 當前季度
+                  AND YEAR (createdAt) = YEAR (CURDATE())     -- 當前年份
+                GROUP BY YEAR (createdAt), QUARTER(createdAt), type
 
                 UNION ALL
 
-                SELECT
-                    SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) - SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) AS totalSales,
-                    'yearly' AS type
+                SELECT SUM(CASE WHEN salesType = 1 THEN money ELSE 0 END) -
+                       SUM(CASE WHEN salesType = 2 THEN money ELSE 0 END) -
+                       (SELECT COALESCE(SUM(sw.pay), 0)
+                        FROM GuiGeDb.StaffWork AS sw
+                                 LEFT JOIN GuiGeDb.Staff AS s ON sw.staffId = s.id
+                        WHERE YEAR (sw.createdAt) = YEAR(CURDATE())
+          AND sw.deletedAt IS NULL
+          AND s.deletedAt IS NULL) AS totalSales,
+       'yearly'                    AS type
                 FROM DailySales
-                WHERE
-                    YEAR(createdAt) = YEAR(CURDATE()) -- 當前年
-                GROUP BY
-                    YEAR(createdAt), type;
+                WHERE YEAR (createdAt) = YEAR (CURDATE()) -- 當前年
+                GROUP BY YEAR (createdAt), type;
             `;
 
             const result = await this.dailySalesRepository.query(query);

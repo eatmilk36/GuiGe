@@ -23,6 +23,7 @@ export class DailySalesService implements IDailySalesService {
         let dailySalesEntity: DailySalesEntity = new DailySalesEntity();
         dailySalesEntity.dailySalesTypeId = req.dailySalesTypeId;
         dailySalesEntity.salesType = req.salesType;
+        dailySalesEntity.stall = req.stall;
         dailySalesEntity.money = req.money;
 
         return await this.dailySalesRepository.create(dailySalesEntity);

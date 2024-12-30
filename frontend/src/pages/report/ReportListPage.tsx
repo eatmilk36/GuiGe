@@ -36,20 +36,20 @@ const ReportListPage: React.FC = () => {
 
     // 計算收入與支出金額總和
     const incomeSum = filteredReports
-        .filter(report => report.salesType === 1) // 1: 收入
-        .reduce((sum, report) => sum + (parseFloat(report.totalSales) || 0), 0);
+        .filter(report => report.salesType == 1) // 1: 收入
+        .reduce((sum, report) => sum + (parseInt(report.totalSales) ?? 0), 0);
 
     const expenseSum = filteredReports
-        .filter(report => report.salesType === 2) // 2: 支出
-        .reduce((sum, report) => sum + (parseFloat(report.totalSales) || 0), 0);
+        .filter(report => report.salesType == 2) // 2: 支出
+        .reduce((sum, report) => sum + (parseInt(report.totalSales) ?? 0), 0);
 
-    const totalSalesSum = incomeSum - expenseSum; // 收支差額
+    const totalSalesSum = incomeSum + expenseSum; // 收支差額
 
     const getTypeLabel = (type: number) => {
-        switch (type) {
-            case 1:
+        switch (type.toString()) {
+            case "1":
                 return '收入';
-            case 2:
+            case "2":
                 return '支出';
             default:
                 return '未知';
@@ -68,13 +68,16 @@ const ReportListPage: React.FC = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filteredReports.map((report) => (
-                            <TableRow key={report.id}>
-                                <TableCell>{report.name}</TableCell>
-                                <TableCell>{getTypeLabel(report.salesType)}</TableCell>
-                                <TableCell align="right">{parseFloat(report.totalSales).toLocaleString()} 元</TableCell>
-                            </TableRow>
-                        ))}
+                        {filteredReports
+                            .filter((report) => report.totalSales != null) // 過濾掉 totalSales 為 null 或 undefined 的項目
+                            .map((report) => (
+                                <TableRow key={report.id}>
+                                    <TableCell>{report.name}</TableCell>
+                                    <TableCell>{getTypeLabel(report.salesType)}</TableCell>
+                                    <TableCell
+                                        align="right">{parseFloat(report.totalSales).toLocaleString()} 元</TableCell>
+                                </TableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>

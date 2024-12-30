@@ -20,6 +20,9 @@ export class DailySalesEntity {
     @Column({ type: "tinyint", nullable: false, comment: "1.收入2.支出" })
     salesType!: number; // '1.收入2.支出'
 
+    @Column({ type: "tinyint", nullable: false, comment: "'1.雜貨2.水果攤" })
+    stall!: number; // '1.雜貨2.水果攤'
+
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: false, comment: "營業額" })
     money!: number; // 營業額
 

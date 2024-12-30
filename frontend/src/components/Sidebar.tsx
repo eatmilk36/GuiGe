@@ -111,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                                         }`}
                                         onClick={handleLinkClick}
                                     >
-                                        工作類型
+                                        員工工作
                                     </Link>
                                 </li>
                             </ul>

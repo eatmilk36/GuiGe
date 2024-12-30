@@ -12,6 +12,7 @@ const DailySalesAddPage: React.FC = () => {
     const [salesType, setSalesType] = useState(1); // 初始值為收入 (1)
     const [dailySalesType, setDailySalesType] = useState(0);
     const [dailySalesTypeList, setDailySalesTypeList] = useState<{ id: number; name: string }[]>([]);
+    const [stall, setStall] = useState(1); // 初始值為雜貨 (1)
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     useEffect(() => {
@@ -34,8 +35,9 @@ const DailySalesAddPage: React.FC = () => {
     const handleAddDailySales = async () => {
         const requestData: DailySalesCreateRequest = {
             salesType: salesType,
-            money: parseFloat(money),
+            money: Number(money),
             dailySalesTypeId: Number(dailySalesType),
+            stall: Number(stall),
         };
 
         let response = await create(requestData);
@@ -91,6 +93,20 @@ const DailySalesAddPage: React.FC = () => {
                                 {proj.name}
                             </MenuItem>
                         ))}
+                    </Select>
+                </FormControl>
+
+                {/* 攤位選擇 */}
+                <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="stall-label">攤位</InputLabel>
+                    <Select
+                        labelId="stall-label"
+                        value={stall}
+                        onChange={(e) => setStall(Number(e.target.value))}
+                        label="攤位"
+                    >
+                        <MenuItem value={1}>雜貨</MenuItem>
+                        <MenuItem value={2}>水果攤</MenuItem>
                     </Select>
                 </FormControl>
 

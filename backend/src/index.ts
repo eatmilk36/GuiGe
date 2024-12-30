@@ -15,6 +15,7 @@ import dailySalesTypeRoutes from "./routes/DailySalesTypeRoutes";
 import staffRoutes from "./routes/StaffRoutes";
 import staffWorkRoutes from "./routes/StaffWorkRoutes";
 import reportRoutes from "./routes/ReportRoutes";
+import * as process from "node:process";
 
 const app = express();
 
