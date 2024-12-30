@@ -14,6 +14,11 @@ export async function up(knex: Knex): Promise<void> {
         // 設定字元集和排序規則
         return knex.raw('ALTER TABLE GuiGeDb.StaffWork CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     });
+
+    // 修改資料表，新增 stall 欄位
+    await knex.schema.alterTable("StaffWork", (table: Knex.AlterTableBuilder): void => {
+        table.integer("stall").notNullable().comment("攤位1.雜貨2.水果攤").after("staffId");
+    });
 }
 
 export async function down(knex: Knex): Promise<void> {

@@ -64,6 +64,17 @@ const StaffWorkListPage: React.FC = () => {
         }
     };
 
+    const renderStall = (type: number) => {
+        switch (type.toString()) {
+            case "1":
+                return '雜貨';
+            case "2":
+                return '水果';
+            default:
+                return '未知類型';
+        }
+    };
+
     return (
         <Box p={3}>
             <Typography variant="h4" gutterBottom>
@@ -104,7 +115,8 @@ const StaffWorkListPage: React.FC = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
-                            <TableCell>員工ID</TableCell>
+                            <TableCell>員工姓名</TableCell>
+                            <TableCell>攤位</TableCell>
                             <TableCell>工作類型</TableCell>
                             <TableCell>工作數量</TableCell>
                             <TableCell>薪水</TableCell>
@@ -118,6 +130,7 @@ const StaffWorkListPage: React.FC = () => {
                                 <TableRow key={staffWork.id}>
                                     <TableCell>{staffWork.id}</TableCell>
                                     <TableCell>{staffWork.name}</TableCell>
+                                    <TableCell>{renderStall(staffWork.stall)}</TableCell>
                                     <TableCell>{renderWorkType(staffWork.workType)}</TableCell>
                                     <TableCell>{staffWork.workCount}</TableCell>
                                     <TableCell>{staffWork.pay}</TableCell>

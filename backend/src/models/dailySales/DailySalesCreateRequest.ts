@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsNumber} from "class-validator";
+import {IsNotEmpty, IsNumber, Max, Min} from "class-validator";
 
 export class DailySalesCreateRequest {
     @IsNumber({}, { message: "項目 必須是數字" })
@@ -9,8 +9,9 @@ export class DailySalesCreateRequest {
     @IsNotEmpty({ message: "類型 是必填項" })
     salesType!: number;
 
-    @IsNumber({}, { message: "攤位必須是數字" })
-    @IsNotEmpty({ message: "攤位是必填項" })
+    @IsNotEmpty({message: "攤位是必填項"})
+    @Min(1, {message: "攤位必須是 1.雜貨 2.水果"})
+    @Max(2, {message: "攤位必須是 1.雜貨 2.水果"})
     stall!: number;
 
     @IsNumber({}, {message: "金額必須是數字"})

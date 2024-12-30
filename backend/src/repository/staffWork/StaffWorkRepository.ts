@@ -20,6 +20,7 @@ export class StaffWorkRepository implements IStaffWorkRepository {
         return result.map((row: StaffWorkListDTO) => ({
             id: row.id,
             name: row.name,
+            stall: row.stall,
             workType: row.workType,
             workCount: row.workCount,
             pay: row.pay,
@@ -36,6 +37,7 @@ export class StaffWorkRepository implements IStaffWorkRepository {
             }
 
             const staffWorkEntity = this.staffWorkRepository.create({
+                stall: staffWork.stall,
                 workType: staffWork.workType,
                 workCount: staffWork.workCount,
                 pay: staffWork.pay,

@@ -18,6 +18,9 @@ export class StaffWorkEntity {
     @Column({ type: "bigint", unsigned: true, nullable: false, comment: "員工基本資料外鍵" })
     staffId!: number;
 
+    @Column({type: "int", comment: "1.雜貨 2.水果"})
+    stall!: number; // 1.雜貨 2.水果
+
     @Column({type: "int", comment: "1.時薪2.日薪3.月薪"})
     workType!: number; // 工作類型
 

@@ -16,6 +16,7 @@ export class StaffWorkService implements IStaffWorkService {
 
     async create(req: StaffWorkCreateRequest): Promise<boolean> {
         let staffWork: StaffWorkEntity = new StaffWorkEntity();
+        staffWork.stall = req.stall;
         staffWork.workType = req.workType;
         staffWork.workCount = req.workCount;
         staffWork.staffId = req.staffId;

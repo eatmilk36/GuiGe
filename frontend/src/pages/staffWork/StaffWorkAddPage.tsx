@@ -12,20 +12,21 @@ const StaffWorkAddPage: React.FC = () => {
     const [workType, setWorkType] = useState('');
     const [workCount, setWorkCount] = useState('');
     const [pay, setPay] = useState('');
+    const [stall, setStall] = useState('');
     const [staffList, setStaffList] = useState<any[]>([]);
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     useEffect(() => {
-        const fetchStaffs = async () => {
+        const fetchData = async () => {
             try {
                 const staffs = await fetchStaffList();
                 setStaffList(staffs);
             } catch (error) {
-                console.error('獲取員工列表失敗', error);
+                console.error('獲取資料失敗', error);
             }
         };
 
-        fetchStaffs();
+        fetchData();
     }, []);
 
     const handleAddStaffWork = async () => {
@@ -34,6 +35,7 @@ const StaffWorkAddPage: React.FC = () => {
             workType: parseInt(workType),
             workCount: parseInt(workCount),
             pay: parseInt(pay),
+            stall: parseInt(stall),
         };
         let response = await create(requestData);
         if (response == null) {
@@ -88,6 +90,19 @@ const StaffWorkAddPage: React.FC = () => {
                     <MenuItem value={1}>時薪</MenuItem>
                     <MenuItem value={2}>日薪</MenuItem>
                     <MenuItem value={3}>月薪</MenuItem>
+                </TextField>
+                <TextField
+                    label="攤位"
+                    variant="outlined"
+                    select
+                    value={stall}
+                    onChange={(e) => setStall(e.target.value)}
+                    error={Boolean(errors.stall)}
+                    helperText={errors.stall}
+                    fullWidth
+                >
+                    <MenuItem value={1}>雜貨</MenuItem>
+                    <MenuItem value={2}>水果</MenuItem>
                 </TextField>
                 <TextField
                     label="時長"

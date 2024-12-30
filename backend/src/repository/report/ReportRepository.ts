@@ -37,8 +37,9 @@ export class ReportRepository implements IReportRepository {
                                ON sw.staffId = s.id
             WHERE DATE(sw.createdAt) = CURDATE()
               AND sw.deletedAt IS NULL
-              AND s.deletedAt IS NULL;
+              AND s.deletedAt IS NULL
+              AND sw.stall = ?;
         `;
-        return await this.queryRunner.query(query, [stall]); // 返回報表的查詢結果
+        return await this.queryRunner.query(query, [stall, stall]); // 返回報表的查詢結果
     }
 }
