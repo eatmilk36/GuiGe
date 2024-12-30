@@ -2,6 +2,8 @@
 REM 設置字符集為 UTF-8
 chcp 65001 >nul
 
+call update.bat
+
 REM 進入 backend 資料夾
 cd .\backend\
 
