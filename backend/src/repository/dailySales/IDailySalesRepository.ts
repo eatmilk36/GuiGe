@@ -8,4 +8,6 @@ export interface IDailySalesRepository {
     findAll(): Promise<DailySalesListDTO[] | null>
 
     create(DailySales: DailySalesEntity): Promise<boolean>
+
+    delete(id: number): Promise<boolean>
 }

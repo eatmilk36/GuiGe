@@ -11,5 +11,5 @@ export interface IUserRepository {
 
     update(user: UserEntity): Promise<void>;
 
-    delete(id: number): Promise<void>;
+    delete(id: number): Promise<boolean>;
 }

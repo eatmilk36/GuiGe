@@ -36,4 +36,14 @@ export class SupplierController {
             res.status(400).json({message: error.message});
         }
     }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params; // 路由參數
+        let isSuccess = await this.supplierService.deleted(parseInt(id));
+        if (isSuccess) {
+            res.status(200).json({message: '供應商資料刪除成功'});
+            return;
+        }
+        res.status(400).json({message: '供應商資料刪除失敗'});
+    }
 }

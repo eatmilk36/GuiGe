@@ -36,4 +36,14 @@ export class ProductController {
             res.status(400).json({message: error.message});
         }
     }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params; // 路由參數
+        let isSuccess = await this.productService.deleted(parseInt(id));
+        if (isSuccess) {
+            res.status(200).json({message: '產品刪除成功'});
+            return;
+        }
+        res.status(400).json({message: '產品刪除失敗'});
+    }
 }

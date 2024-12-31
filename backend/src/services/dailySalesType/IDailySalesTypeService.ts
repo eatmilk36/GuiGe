@@ -5,4 +5,6 @@ export interface IDailySalesTypeService {
     findAll(): Promise<DailySalesTypeEntity[]>;
 
     create(req: DailySalesTypeCreateRequest): Promise<boolean>
+
+    deleted(id: number): Promise<boolean>
 }

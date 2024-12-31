@@ -7,7 +7,8 @@ import {IUserService} from "../services/user/IUserService";
 
 @injectable()
 export class UserController {
-    constructor(@inject("IUserService") private readonly userService: IUserService) {}
+    constructor(@inject("IUserService") private readonly userService: IUserService) {
+    }
 
     async register(req: Request, res: Response) {
         // 將 req.body 轉換為 UserCreateRequest
@@ -32,5 +33,15 @@ export class UserController {
     async findAll(req: Request, res: Response) {
         let users = await this.userService.findAll();
         res.status(200).json(users);
+    }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params; // 路由參數
+        let isSuccess = await this.userService.deleted(parseInt(id));
+        if (isSuccess) {
+            res.status(200).json({message: '使用者刪除成功'});
+            return;
+        }
+        res.status(400).json({message: '使用者刪除失敗'})
     }
 }

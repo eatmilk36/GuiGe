@@ -8,4 +8,6 @@ export interface IDailySalesService {
     findAll(): Promise<DailySalesListDTO[]>;
 
     create(req: DailySalesCreateRequest): Promise<boolean>
+
+    deleted(id: number): Promise<boolean>
 }

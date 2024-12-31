@@ -24,4 +24,8 @@ export class StaffWorkService implements IStaffWorkService {
 
         return await this.staffWorkRepository.create(staffWork);
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.staffWorkRepository.delete(id);
+    }
 }

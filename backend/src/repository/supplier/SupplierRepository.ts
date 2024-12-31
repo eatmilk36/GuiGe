@@ -27,4 +27,17 @@ export class SupplierRepository implements ISupplierRepository {
             return false; // 發生錯誤時回傳 false
         }
     }
+
+    async delete(id: number): Promise<boolean> {
+        const supplierEntity = await this.supplierRepository.findOneBy({id});
+        if (supplierEntity) {
+            // await this.supplierRepository.remove(supplierEntity);
+            supplierEntity.deletedAt = new Date();
+            await this.supplierRepository.save(supplierEntity);
+            return true;
+        } else {
+            // throw new Error(`ID 為 ${id} 的供應商未找到`);
+            return false;
+        }
+    }
 }

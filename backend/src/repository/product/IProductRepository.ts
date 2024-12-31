@@ -5,4 +5,6 @@ export interface IProductRepository {
     findAll(): Promise<ProductEntity[] | null>;
 
     create(product: ProductCreateRequest): Promise<boolean>;
+
+    delete(id: number): Promise<boolean>
 }

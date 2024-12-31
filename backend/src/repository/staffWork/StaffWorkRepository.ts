@@ -51,4 +51,17 @@ export class StaffWorkRepository implements IStaffWorkRepository {
             return false; // 發生錯誤時回傳 false
         }
     }
+
+    async delete(id: number): Promise<boolean> {
+        const staffWorkEntity = await this.staffWorkRepository.findOneBy({id});
+        if (staffWorkEntity) {
+            // await this.staffWorkRepository.remove(staffWorkEntity);
+            staffWorkEntity.deletedAt = new Date();
+            await this.staffWorkRepository.save(staffWorkEntity);
+            return true;
+        } else {
+            // throw new Error(`ID 為 ${id} 的員工工作未找到`);
+            return false;
+        }
+    }
 }

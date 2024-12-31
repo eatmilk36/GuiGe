@@ -5,4 +5,6 @@ export interface IStaffService {
     findAll(): Promise<StaffEntity[]>;
 
     create(req: StaffCreateRequest): Promise<boolean>
+
+    deleted(id: number): Promise<boolean>
 }

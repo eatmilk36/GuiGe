@@ -46,12 +46,16 @@ export class UserRepository implements IUserRepository {
         }
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number): Promise<boolean> {
         const userToDelete = await this.userRepository.findOneBy({id});
         if (userToDelete) {
-            await this.userRepository.remove(userToDelete);
+            // await this.userRepository.remove(userToDelete);
+            userToDelete.deletedAt = new Date();
+            await this.userRepository.save(userToDelete);
+            return true;
         } else {
-            throw new Error(`ID 為 ${id} 的使用者未找到`);
+            // throw new Error(`ID 為 ${id} 的使用者未找到`);
+            return false;
         }
     }
 }

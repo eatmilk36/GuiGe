@@ -28,4 +28,8 @@ export class DailySalesService implements IDailySalesService {
 
         return await this.dailySalesRepository.create(dailySalesEntity);
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.dailySalesRepository.delete(id);
+    }
 }

@@ -30,4 +30,17 @@ export class DailySalesTypeRepository implements IDailySalesTypeRepository {
             return false; // 發生錯誤時回傳 false
         }
     }
+
+    async delete(id: number): Promise<boolean> {
+        const dailySalesTypeEntity = await this.dailySalesTypeRepository.findOneBy({id});
+        if (dailySalesTypeEntity) {
+            // await this.dailySalesTypeRepository.remove(dailySalesTypeEntity);
+            dailySalesTypeEntity.deletedAt = new Date();
+            await this.dailySalesTypeRepository.save(dailySalesTypeEntity);
+            return true;
+        } else {
+            // throw new Error(`ID 為 ${id} 的營業額類型未找到`);
+            return false;
+        }
+    }
 }

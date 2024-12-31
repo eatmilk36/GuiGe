@@ -116,4 +116,17 @@ export class DailySalesRepository implements IDailySalesRepository {
             return false; // 發生錯誤時回傳 false
         }
     }
+
+    async delete(id: number): Promise<boolean> {
+        const dailySalesEntity = await this.dailySalesRepository.findOneBy({id});
+        if (dailySalesEntity) {
+            // await this.dailySalesRepository.remove(dailySalesEntity);
+            dailySalesEntity.deletedAt = new Date();
+            await this.dailySalesRepository.save(dailySalesEntity);
+            return true;
+        } else {
+            // throw new Error(`ID 為 ${id} 的營業額未找到`);
+            return false;
+        }
+    }
 }

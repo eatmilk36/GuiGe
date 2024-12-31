@@ -4,4 +4,6 @@ export interface ISupplierRepository {
     findAll(): Promise<SupplierEntity[] | null>
 
     create(supplier: SupplierEntity): Promise<boolean>
+
+    delete(id: number): Promise<boolean>
 }

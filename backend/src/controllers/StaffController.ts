@@ -36,4 +36,14 @@ export class StaffController {
             res.status(400).json({message: error.message});
         }
     }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params; // 路由參數
+        let isSuccess = await this.staffService.deleted(parseInt(id));
+        if (isSuccess) {
+            res.status(200).json({message: '員工資料刪除成功'});
+            return;
+        }
+        res.status(400).json({message: '員工資料刪除失敗'});
+    }
 }

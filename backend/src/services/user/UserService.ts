@@ -28,4 +28,8 @@ export class UserService implements IUserService {
     async findAll(): Promise<UserEntity[]> {
         return await this.userRepository.findAll();
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.userRepository.delete(id);
+    }
 }

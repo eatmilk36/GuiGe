@@ -5,4 +5,6 @@ export interface ISupplierService {
     findAll(): Promise<SupplierEntity[]>;
 
     create(req: SupplierCreateRequest): Promise<boolean>
+
+    deleted(id: number): Promise<boolean>
 }

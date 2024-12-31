@@ -7,4 +7,6 @@ export interface IUserService {
     validateUser(username: string, password: string): Promise<boolean>;
 
     findAll(): Promise<UserEntity[]>;
+
+    deleted(id: number): Promise<boolean>
 }

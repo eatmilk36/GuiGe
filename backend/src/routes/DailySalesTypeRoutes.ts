@@ -22,4 +22,12 @@ router.post('/create', authenticateToken, async (req, res, next) => {
     }
 });
 
+router.post('/delete/:id', authenticateToken, async (req, res, next) => {
+    try {
+        await dailySalesTypeController.delete(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;

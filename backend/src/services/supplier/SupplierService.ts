@@ -22,4 +22,8 @@ export class SupplierService implements ISupplierService {
 
         return await this.supplierRepository.create(supplier);
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.supplierRepository.delete(id);
+    }
 }

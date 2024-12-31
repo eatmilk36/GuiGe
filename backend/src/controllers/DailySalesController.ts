@@ -43,4 +43,14 @@ export class DailySalesController {
             res.status(400).json({message: error.message});
         }
     }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params; // 路由參數
+        let isSuccess = await this.dailySalesService.deleted(parseInt(id));
+        if (isSuccess) {
+            res.status(200).json({message: '每日銷售記錄刪除成功'});
+            return;
+        }
+        res.status(400).json({message: '每日銷售刪除失敗'});
+    }
 }

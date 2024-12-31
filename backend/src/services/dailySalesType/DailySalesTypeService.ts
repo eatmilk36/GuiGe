@@ -19,4 +19,8 @@ export class DailySalesTypeService implements IDailySalesTypeService {
 
         return await this.dailySalesTypeRepository.create(dailySalesTypeEntity);
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.dailySalesTypeRepository.delete(id);
+    }
 }

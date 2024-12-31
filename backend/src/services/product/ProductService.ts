@@ -24,4 +24,8 @@ export class ProductService implements IProductService {
 
         return await this.productRepository.create(productEntity);
     }
+
+    async deleted(id: number): Promise<boolean> {
+        return await this.productRepository.delete(id);
+    }
 }

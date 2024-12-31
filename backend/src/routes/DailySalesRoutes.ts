@@ -30,4 +30,12 @@ router.get('/dashboard', authenticateToken, async (req, res, next) => {
     }
 });
 
+router.post('/delete/:id', authenticateToken, async (req, res, next) => {
+    try {
+        await dailySalesController.delete(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;

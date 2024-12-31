@@ -43,4 +43,17 @@ export class ProductRepository implements IProductRepository {
             return false;
         }
     }
+
+    async delete(id: number): Promise<boolean> {
+        const productEntity = await this.productRepository.findOneBy({id});
+        if (productEntity) {
+            // await this.productRepository.remove(productEntity);
+            productEntity.deletedAt = new Date();
+            await this.productRepository.save(productEntity);
+            return true;
+        } else {
+            // throw new Error(`ID 為 ${id} 的產品未找到`);
+            return false;
+        }
+    }
 }
