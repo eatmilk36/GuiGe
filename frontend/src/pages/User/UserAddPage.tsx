@@ -40,11 +40,11 @@ const UserAddPage: React.FC = () => {
             style={{ overflowX: 'auto' }}
         >
             <Typography variant="h4" gutterBottom>
-                Add User
+               新增使用者
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
                 <TextField
-                    label="Name"
+                    label="帳號"
                     variant="outlined"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -53,7 +53,7 @@ const UserAddPage: React.FC = () => {
                     fullWidth
                 />
                 <TextField
-                    label="Password"
+                    label="密碼"
                     type="password"
                     variant="outlined"
                     value={password}
@@ -63,7 +63,7 @@ const UserAddPage: React.FC = () => {
                     fullWidth
                 />
                 <TextField
-                    label="Email"
+                    label="信箱"
                     variant="outlined"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ const UserAddPage: React.FC = () => {
                     fullWidth
                 />
                 <Button variant="contained" color="primary" onClick={handleAddUser} fullWidth>
-                    Submit
+                   送出
                 </Button>
             </Box>
         </Box>
