@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/staffWork/StaffWorkApi';
+import { list, deleteStaffWork } from '../../api/staffWork/StaffWorkApi';
 
 const StaffWorkListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +36,21 @@ const StaffWorkListPage: React.FC = () => {
 
         fetchStaffWorks();
     }, []);
+
+    const handleDelete = async (staffWorkId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此工作記錄？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteStaffWork(staffWorkId);
+            setStaffWorks((prevStaffWorks) => prevStaffWorks.filter((staffWork) => staffWork.id !== staffWorkId));
+            console.log(`成功刪除工作記錄 ID: ${staffWorkId}`);
+        } catch (error) {
+            console.error(`刪除工作記錄失敗 ID: ${staffWorkId}`, error);
+        }
+    };
 
     const filteredStaffWorks = staffWorks.filter(staffWork =>
         staffWork.name.toString().includes(searchQuery) ||
@@ -121,6 +136,7 @@ const StaffWorkListPage: React.FC = () => {
                             <TableCell>工作數量</TableCell>
                             <TableCell>薪水</TableCell>
                             <TableCell>創建日期</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -135,6 +151,15 @@ const StaffWorkListPage: React.FC = () => {
                                     <TableCell>{staffWork.workCount}</TableCell>
                                     <TableCell>{staffWork.pay}</TableCell>
                                     <TableCell>{staffWork.createdAt}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(staffWork.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

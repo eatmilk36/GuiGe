@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/dailySales/DailySalesApi';
+import { list, deleteDailySales } from '../../api/dailySales/DailySalesApi';
 import { formatDate } from "../../utils/dateUtils";
 
 const DailySalesListPage: React.FC = () => {
@@ -39,6 +39,23 @@ const DailySalesListPage: React.FC = () => {
 
         fetchDailySales().then(_ => {});
     }, []);
+
+    const handleDelete = async (dailySalesId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此每日銷售？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteDailySales(dailySalesId);
+            setDailySales((prevDailySales) =>
+                prevDailySales.filter((sales) => sales.id !== dailySalesId)
+            );
+            console.log(`成功刪除每日銷售 ID: ${dailySalesId}`);
+        } catch (error) {
+            console.error(`刪除每日銷售失敗 ID: ${dailySalesId}`, error);
+        }
+    };
 
     const filteredDailySales = dailySales
         .filter(sales => sales.money.toString().includes(searchQuery)) // 篩選金額
@@ -139,6 +156,7 @@ const DailySalesListPage: React.FC = () => {
                             <TableCell>類型</TableCell>
                             <TableCell>項目</TableCell>
                             <TableCell>日期</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -151,6 +169,15 @@ const DailySalesListPage: React.FC = () => {
                                     <TableCell>{getTypeLabel(sales.salesType)}</TableCell>
                                     <TableCell>{sales.name}</TableCell>
                                     <TableCell>{formatDate(sales.createdAt)}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(sales.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

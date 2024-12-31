@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list as listStaff } from '../../api/staff/StaffApi';
+import { list as listStaff, deleteStaff } from '../../api/staff/StaffApi';
 
 const StaffListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +36,21 @@ const StaffListPage: React.FC = () => {
 
         fetchStaff();
     }, []);
+
+    const handleDelete = async (staffId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此員工？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteStaff(staffId);
+            setStaffList((prevStaffList) => prevStaffList.filter((staff) => staff.id !== staffId));
+            console.log(`成功刪除員工 ID: ${staffId}`);
+        } catch (error) {
+            console.error(`刪除員工失敗 ID: ${staffId}`, error);
+        }
+    };
 
     const filteredStaff = staffList.filter(staff =>
         staff.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -94,6 +109,7 @@ const StaffListPage: React.FC = () => {
                             <TableCell>手機</TableCell>
                             <TableCell>備註</TableCell>
                             <TableCell>創建日期</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -106,6 +122,15 @@ const StaffListPage: React.FC = () => {
                                     <TableCell>{staff.phone}</TableCell>
                                     <TableCell>{staff.note}</TableCell>
                                     <TableCell>{staff.createdAt}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(staff.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

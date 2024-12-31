@@ -12,6 +12,11 @@ export const list = async () => {
     return response.data;
 };
 
+export const deleteUser = async (id: number) => {
+    const response = await apiClient.post(`user/delete/${id}`, {});
+    return response.data;
+};
+
 export const create = async (userData: UserCreateRequest) => {
     let errors = await validateUserCreate(userData);
 

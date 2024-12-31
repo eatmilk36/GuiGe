@@ -12,6 +12,11 @@ export const list = async () => {
     return response.data;
 };
 
+export const deleteDailySales= async (id: number) => {
+    const response = await apiClient.post(`dailySales/delete/${id}`, {});
+    return response.data;
+};
+
 export const create = async (dailySalesData: DailySalesCreateRequest) => {
     let errors = await validateDailySalesCreate(dailySalesData);
 

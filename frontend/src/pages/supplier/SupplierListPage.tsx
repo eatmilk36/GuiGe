@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/supplier/SupplierApi';
+import { list, deleteSupplier } from '../../api/supplier/SupplierApi';
 
 const SupplierListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +36,21 @@ const SupplierListPage: React.FC = () => {
 
         fetchSuppliers();
     }, []);
+
+    const handleDelete = async (supplierId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此供應商？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteSupplier(supplierId);
+            setSuppliers((prevSuppliers) => prevSuppliers.filter((supplier) => supplier.id !== supplierId));
+            console.log(`成功刪除供應商 ID: ${supplierId}`);
+        } catch (error) {
+            console.error(`刪除供應商失敗 ID: ${supplierId}`, error);
+        }
+    };
 
     const filteredSuppliers = suppliers.filter(supplier =>
         supplier.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -96,6 +111,7 @@ const SupplierListPage: React.FC = () => {
                             <TableCell>信箱</TableCell>
                             <TableCell>創建日期</TableCell>
                             <TableCell>更新日期</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -110,6 +126,15 @@ const SupplierListPage: React.FC = () => {
                                     <TableCell>{supplier.email}</TableCell>
                                     <TableCell>{supplier.createdAt}</TableCell>
                                     <TableCell>{supplier.updatedAt}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(supplier.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

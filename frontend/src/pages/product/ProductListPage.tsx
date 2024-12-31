@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list as getProducts } from '../../api/product/ProductApi'; // 產品API
+import { list as getProducts, deleteProduct } from '../../api/product/ProductApi'; // 產品API
 import { list as getSuppliers } from '../../api/supplier/SupplierApi'; // 供應商API
 
 interface Product {
@@ -83,6 +83,21 @@ const ProductListPage: React.FC = () => {
 
         fetchData().then(_ => {});
     }, []);
+
+    const handleDelete = async (productId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此產品？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteProduct(productId);
+            setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
+            console.log(`成功刪除產品 ID: ${productId}`);
+        } catch (error) {
+            console.error(`刪除產品失敗 ID: ${productId}`, error);
+        }
+    };
 
     const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
@@ -181,6 +196,7 @@ const ProductListPage: React.FC = () => {
                             <TableCell>單價</TableCell>
                             <TableCell>數量</TableCell>
                             <TableCell>備註</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -197,6 +213,15 @@ const ProductListPage: React.FC = () => {
                                     <TableCell>{product.unitPrice}</TableCell>
                                     <TableCell>{product.count}</TableCell>
                                     <TableCell>{product.note}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(product.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

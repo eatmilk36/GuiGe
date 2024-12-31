@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { list } from '../../api/dailySalesType/DailySalesTypeApi';
+import { list, deleteDailySalesType } from '../../api/dailySalesType/DailySalesTypeApi';
 
 const DailySalesTypeListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +36,23 @@ const DailySalesTypeListPage: React.FC = () => {
 
         fetchDailySalesTypes().then(_ => {});
     }, []);
+
+    const handleDelete = async (dailySalesTypeId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此每日銷售類型？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteDailySalesType(dailySalesTypeId);
+            setDailySalesTypes((prevDailySalesTypes) =>
+                prevDailySalesTypes.filter((type) => type.id !== dailySalesTypeId)
+            );
+            console.log(`成功刪除每日銷售類型 ID: ${dailySalesTypeId}`);
+        } catch (error) {
+            console.error(`刪除每日銷售類型失敗 ID: ${dailySalesTypeId}`, error);
+        }
+    };
 
     const filteredDailySalesTypes = dailySalesTypes.filter(dailySalesType =>
         dailySalesType.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -92,6 +109,7 @@ const DailySalesTypeListPage: React.FC = () => {
                             <TableCell>識別值</TableCell>
                             <TableCell>名稱</TableCell>
                             <TableCell>是否啟用</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -102,6 +120,15 @@ const DailySalesTypeListPage: React.FC = () => {
                                     <TableCell>{dailySalesType.id}</TableCell>
                                     <TableCell>{dailySalesType.name}</TableCell>
                                     <TableCell>{dailySalesType.isActive ? '是' : '否'}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(dailySalesType.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>

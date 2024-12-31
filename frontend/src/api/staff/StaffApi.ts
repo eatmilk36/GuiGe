@@ -7,6 +7,11 @@ export const list = async () => {
     return response.data;
 };
 
+export const deleteStaff= async (id: number) => {
+    const response = await apiClient.post(`staff/delete/${id}`, {});
+    return response.data;
+};
+
 export const create = async (staffData: StaffCreateRequest) => {
     let errors = await validateStaffCreate(staffData);
 
