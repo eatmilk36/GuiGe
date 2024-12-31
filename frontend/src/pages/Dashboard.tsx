@@ -23,7 +23,7 @@ const LoadingScreen: React.FC = () => (
 
 const SalesCard: React.FC<{ title: string; value: number; bgColor: string }> = ({ title, value, bgColor }) => (
     <div className={`${bgColor} text-white p-4 rounded-lg shadow-md`}>
-        <h2 className="text-lg font-bold">{value}</h2>
+        <h2 className="text-lg font-bold">{value} 元</h2>
         <p>{title}</p>
     </div>
 );
@@ -63,6 +63,18 @@ const Dashboard: React.FC = () => {
         yearly: "bg-red-500",
     };
 
+    const defaultSalesData: SalesData[] = [
+        { type: "daily", totalSales: 0 },
+        { type: "monthly", totalSales: 0 },
+        { type: "quarterly", totalSales: 0 },
+        { type: "yearly", totalSales: 0 },
+    ];
+
+    const mergedSalesData = defaultSalesData.map((defaultData) => {
+        const actualData = salesData?.find((data) => data.type === defaultData.type);
+        return actualData || defaultData;
+    });
+
     if (loading) {
         return (
             <div>
@@ -85,7 +97,7 @@ const Dashboard: React.FC = () => {
         <div>
             <h1 className="text-2xl font-bold mb-6">儀錶板</h1>
             <div className="grid grid-cols-4 gap-4">
-                {salesData?.map((data) => (
+                {mergedSalesData.map((data) => (
                     <SalesCard
                         key={data.type}
                         title={typeToTitle[data.type]}

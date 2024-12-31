@@ -58,7 +58,7 @@ const StaffWorkAddPage: React.FC = () => {
             style={{ overflowX: 'auto' }}
         >
             <Typography variant="h4" gutterBottom>
-                Add Staff Work
+               新增員工工作
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
                 <TextField
@@ -123,7 +123,7 @@ const StaffWorkAddPage: React.FC = () => {
                     fullWidth
                 />
                 <Button variant="contained" color="primary" onClick={handleAddStaffWork} fullWidth>
-                    Submit
+                   送出
                 </Button>
             </Box>
         </Box>

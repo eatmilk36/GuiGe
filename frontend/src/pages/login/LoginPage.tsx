@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
                        登入
                     </Typography>
                     <TextField
-                        label="Username"
+                        label="帳號"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -60,7 +60,7 @@ const LoginPage: React.FC = () => {
                         onKeyDown={handleKeyDown}
                     />
                     <TextField
-                        label="Password"
+                        label="密碼"
                         type="password"
                         variant="outlined"
                         fullWidth
@@ -78,7 +78,7 @@ const LoginPage: React.FC = () => {
                         className="mt-4"
                         size="large"
                     >
-                        {isLoading ? <CircularProgress size={24} color="inherit" /> : 'login'}
+                        {isLoading ? <CircularProgress size={24} color="inherit" /> : '登入'}
                     </Button>
                 </CardContent>
             </Card>

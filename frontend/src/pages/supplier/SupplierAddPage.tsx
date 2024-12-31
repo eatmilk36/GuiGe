@@ -41,11 +41,11 @@ const SupplierAddPage: React.FC = () => {
             style={{ overflowX: 'auto' }}
         >
             <Typography variant="h4" gutterBottom>
-                Add Supplier
+               新增供應商
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
                 <TextField
-                    label="Name"
+                    label="名稱"
                     variant="outlined"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -54,7 +54,7 @@ const SupplierAddPage: React.FC = () => {
                     fullWidth
                 />
                 <TextField
-                    label="Address"
+                    label="地址"
                     variant="outlined"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -63,7 +63,7 @@ const SupplierAddPage: React.FC = () => {
                     fullWidth
                 />
                 <TextField
-                    label="Phone"
+                    label="手機"
                     variant="outlined"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -72,7 +72,7 @@ const SupplierAddPage: React.FC = () => {
                     fullWidth
                 />
                 <TextField
-                    label="Email"
+                    label="信箱"
                     variant="outlined"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -81,7 +81,7 @@ const SupplierAddPage: React.FC = () => {
                     fullWidth
                 />
                 <Button variant="contained" color="primary" onClick={handleAddSupplier} fullWidth>
-                    Submit
+                   送出
                 </Button>
             </Box>
         </Box>
