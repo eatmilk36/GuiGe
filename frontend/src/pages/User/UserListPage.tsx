@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Table,
     TableBody,
@@ -13,9 +13,9 @@ import {
     Box,
     TablePagination,
 } from '@mui/material';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import {list} from '../../api/user/UserApi';
+import { list, deleteUser } from '../../api/user/UserApi';
 
 const UserListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -37,11 +37,24 @@ const UserListPage: React.FC = () => {
         fetchUsers();
     }, []);
 
-    const filteredUsers = users.filter((user) =>
-        searchQuery === '' ||
+    const handleDelete = async (userId: number) => {
+        const confirmDelete = window.confirm('確認是否刪除此使用者？');
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+            await deleteUser(userId);
+            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+            console.log(`成功刪除使用者 ID: ${userId}`);
+        } catch (error) {
+            console.error(`刪除使用者失敗 ID: ${userId}`, error);
+        }
+    };
+
+    const filteredUsers = users.filter(user =>
         user.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -55,7 +68,7 @@ const UserListPage: React.FC = () => {
     return (
         <Box p={3}>
             <Typography variant="h4" gutterBottom>
-               使用者列表
+                使用者列表
             </Typography>
             {/* 搜尋框和新增按鈕的響應式佈局 */}
             <Box
@@ -67,16 +80,15 @@ const UserListPage: React.FC = () => {
             >
                 <TextField
                     variant="outlined"
-                    placeholder="收尋使用者"
+                    placeholder="搜尋使用者"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    // fullWidth
                 />
                 <Button
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon />}
-                    onClick={() => navigate('/users/add')}
+                    onClick={() => navigate('/user/add')}
                     sx={{
                         width: {
                             xs: '100%', // 小螢幕：按鈕全寬
@@ -88,7 +100,7 @@ const UserListPage: React.FC = () => {
                 </Button>
             </Box>
             {/* 表格容器 */}
-            <TableContainer component={Paper} style={{overflowX: 'auto'}}>
+            <TableContainer component={Paper} style={{ overflowX: 'auto' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -98,6 +110,7 @@ const UserListPage: React.FC = () => {
                             <TableCell>創建日期</TableCell>
                             <TableCell>更新日期</TableCell>
                             <TableCell>啟用</TableCell>
+                            <TableCell>操作</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -111,6 +124,15 @@ const UserListPage: React.FC = () => {
                                     <TableCell>{user.createdAt}</TableCell>
                                     <TableCell>{user.updatedAt}</TableCell>
                                     <TableCell>{user.isActive ? '是' : '否'}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outlined"
+                                            color="error"
+                                            onClick={() => handleDelete(user.id)}
+                                        >
+                                            刪除
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
