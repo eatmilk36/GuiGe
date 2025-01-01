@@ -26,6 +26,7 @@ export class DailySalesRepository implements IDailySalesRepository {
                      , 'daily' AS type
                 FROM DailySales
                 WHERE DATE (createdAt) = CURDATE() -- 當天
+                  AND DailySales.deletedAt IS NULL
                 GROUP BY DATE (createdAt), type
 
                 UNION ALL
@@ -41,6 +42,7 @@ export class DailySalesRepository implements IDailySalesRepository {
                        'monthly'                   AS type
                 FROM DailySales
                 WHERE DATE_FORMAT(createdAt, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') -- 當月
+                  AND DailySales.deletedAt IS NULL
                 GROUP BY DATE_FORMAT(createdAt, '%Y-%m'), type
 
                 UNION ALL
@@ -58,6 +60,7 @@ export class DailySalesRepository implements IDailySalesRepository {
                 FROM DailySales
                 WHERE QUARTER(createdAt) = QUARTER(CURDATE()) -- 當前季度
                   AND YEAR (createdAt) = YEAR (CURDATE())     -- 當前年份
+                  AND DailySales.deletedAt IS NULL
                 GROUP BY YEAR (createdAt), QUARTER(createdAt), type
 
                 UNION ALL
@@ -73,6 +76,7 @@ export class DailySalesRepository implements IDailySalesRepository {
        'yearly'                    AS type
                 FROM DailySales
                 WHERE YEAR (createdAt) = YEAR (CURDATE()) -- 當前年
+                  AND DailySales.deletedAt IS NULL
                 GROUP BY YEAR (createdAt), type;
             `;
 
