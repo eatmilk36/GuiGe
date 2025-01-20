@@ -1,0 +1,4 @@
+frontend/src/pages/User 改成小寫  frontend/src/pages/user
+要裝docker守護程式
+windows 要開啟wsl
+第一次要執行init之後都是update
