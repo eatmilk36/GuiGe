@@ -7,6 +7,8 @@ call update.bat
 REM 進入 backend 資料夾
 cd .\backend\
 
+npm i
+
 REM 設定忽略錯誤的選項
 setlocal enabledelayedexpansion
 

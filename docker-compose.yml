@@ -20,16 +20,35 @@ services:
       retries: 5
     restart: always
 
+  mysql_backup:
+    image: alpine:latest
+    container_name: mysql_backup
+    volumes:
+      - C:/backup:/backup
+    environment:
+      - MYSQL_HOST=mysqldb
+      - MYSQL_USER=jeter
+      - MYSQL_PASSWORD=jeter
+      - MYSQL_DATABASE=GuiGeDb
+    networks:
+      - app_network
+    entrypoint: >
+      /bin/sh -c "
+      apk add --no-cache mysql-client bash &&
+      echo '0 * * * * mysqldump -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > /backup/backup_$(date +\%Y\%m\%d\%H\%M\%S).sql && find /backup -type f -mtime +1 -exec rm -f {} \;' > /etc/crontabs/root &&
+      crond -f
+      "
+    restart: always
+
   app:
     container_name: guiGe
     build:
       context: ./backend
     working_dir: /app
-#    command: ["npm", "start"]
     volumes:
-      - C:/logs:/var/log/myapp # 僅映射日誌
+      - C:/logs:/var/log/myapp
     ports:
-      - "3333:3333" # 將容器內的 3000 端口映射到主機的 33925
+      - "3333:3333"
     environment:
       - ENVIRONMENT=production
       - NODE_ENV=production
@@ -70,7 +89,7 @@ services:
     volumes:
       - C:/logs:/var/log/myapp
       - ./loki-config:/etc/loki/
-      - C:/loki-data:/var/loki  # 將容器內的 /var/loki 目錄映射到宿主機
+      - C:/loki-data:/var/loki
     command: -config.file=/etc/loki/loki.yaml
     networks:
       - app_network
@@ -89,7 +108,6 @@ services:
       - app_network
     restart: always
 
-  # 查看需要把在頁面上把loki設定成http:loki:3100 跟 搜尋條件要改成{job="varlogs"}
   grafana:
     image: grafana/grafana:latest
     container_name: grafana_compose
@@ -107,12 +125,12 @@ services:
     restart: always
 
   alpine:
-    image: nginx:latest # 使用 nginx 官方映像檔
+    image: nginx:latest
     container_name: alpine_proxy
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro # 將自定義的 Nginx 配置文件掛載到容器中
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - "58778:80" # 將宿主機的 59233 埠映射到容器的 80 埠
+      - "58778:80"
     networks:
       - app_network
     depends_on:
@@ -127,3 +145,4 @@ networks:
 
 volumes:
   grafana-data:
+  backup:
